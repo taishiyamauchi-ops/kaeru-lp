@@ -540,28 +540,73 @@
     }
     .cta-inner {
       position: relative; z-index: 1;
-      max-width: 600px; margin: 0 auto;
+      max-width: 800px; margin: 0 auto;
     }
     .cta-inner h2 {
       font-family: 'Noto Serif JP', serif;
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700; line-height: 1.8;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
       letter-spacing: .03em;
     }
-    .cta-inner > p {
+    .cta-inner > p.cta-lead {
       font-size: .9rem; opacity: .85; margin-bottom: 36px;
     }
-    .btn-cta {
-      display: inline-block;
-      background: var(--yellow); color: var(--text-dark);
-      padding: 18px 56px; border-radius: 6px;
-      font-size: 1.05rem; font-weight: 700; text-decoration: none;
-      transition: all .25s;
-      font-family: 'Noto Serif JP', serif;
+    .cta-form {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 40px 36px;
+      text-align: left;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
     }
-    .btn-cta:hover { background: #f5d050; transform: translateY(-2px); }
-    .cta-note { margin-top: 14px; font-size: .75rem; opacity: .6; }
+    .cta-form .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 20px;
+    }
+    .cta-form .form-group { margin-bottom: 0; }
+    .cta-form .form-full { grid-column: 1 / -1; }
+    .cta-form .form-group label {
+      display: block; font-size: .78rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 5px;
+    }
+    .cta-form .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .6rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .cta-form .form-group input,
+    .cta-form .form-group select,
+    .cta-form .form-group textarea {
+      width: 100%; padding: 11px 13px;
+      border: 1px solid #ddd; border-radius: 7px;
+      font-size: .85rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .cta-form .form-group input:focus,
+    .cta-form .form-group select:focus,
+    .cta-form .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru); background: #fff;
+    }
+    .cta-form .form-group textarea { resize: vertical; min-height: 80px; }
+    .cta-form .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 7px;
+      padding: 16px; font-size: 1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 8px;
+    }
+    .cta-form .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .cta-form .form-note {
+      text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .cta-form .form-grid { grid-template-columns: 1fr; }
+      .cta-form { padding: 28px 20px; }
+    }
 
     /* ===== FOOTER ===== */
     .footer {
@@ -643,69 +688,58 @@
       fill: none; stroke: currentColor; stroke-width: 2;
     }
 
-    /* ===== CONTACT FORM OVERLAY ===== */
-    .form-overlay {
-      position: fixed; inset: 0;
-      z-index: 200;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .4s ease;
+    /* ===== SIDE FORM PANEL (expands from left CTA) ===== */
+    .side-cta {
+      display: flex;
+      align-items: stretch;
     }
-    .form-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .form-panel {
+    .form-slide {
+      width: 0;
+      overflow: hidden;
       background: var(--white);
-      border-radius: 16px;
-      max-width: 560px; width: 92%;
-      max-height: 90vh; overflow-y: auto;
-      padding: 48px 40px;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
-      transform: translateY(30px) scale(.96);
-      transition: transform .4s ease;
+      box-shadow: 4px 0 32px rgba(0,0,0,.12);
+      transition: width .45s cubic-bezier(.4,0,.2,1);
+      border-radius: 0 12px 12px 0;
     }
-    .form-overlay.active .form-panel {
-      transform: translateY(0) scale(1);
+    .side-cta.open .form-slide {
+      width: 380px;
     }
-    .form-close {
-      position: absolute; top: 16px; right: 16px;
-      width: 36px; height: 36px;
-      border: none; background: #f0f0f0; border-radius: 50%;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; color: #999;
-      transition: background .3s, color .3s;
+    .side-cta.open .side-cta-btn {
+      border-radius: 0;
+      background: var(--kaeru-dark);
     }
-    .form-close:hover { background: #e0e0e0; color: #333; }
-    .form-panel h2 {
+    .form-slide-inner {
+      width: 380px;
+      min-width: 380px;
+      padding: 28px 24px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .form-slide-inner h2 {
       font-family: 'Noto Serif JP', serif;
-      font-size: 1.4rem; font-weight: 700; color: var(--text-dark);
-      margin-bottom: 6px;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 4px;
     }
-    .form-panel .form-sub {
-      font-size: .85rem; color: #999; margin-bottom: 32px;
+    .form-slide-inner .form-sub {
+      font-size: .75rem; color: #999; margin-bottom: 20px;
     }
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 14px;
     }
     .form-group label {
-      display: block; font-size: .8rem; font-weight: 700;
-      color: var(--text-dark); margin-bottom: 6px;
+      display: block; font-size: .73rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 4px;
     }
     .form-group label .req {
-      background: #e74c3c; color: #fff; font-size: .65rem;
-      padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+      background: #e74c3c; color: #fff; font-size: .58rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
     }
     .form-group input,
     .form-group select,
     .form-group textarea {
-      width: 100%; padding: 12px 14px;
-      border: 1px solid #ddd; border-radius: 8px;
-      font-size: .9rem; font-family: 'Noto Sans JP', sans-serif;
+      width: 100%; padding: 9px 11px;
+      border: 1px solid #ddd; border-radius: 6px;
+      font-size: .82rem; font-family: 'Noto Sans JP', sans-serif;
       transition: border-color .3s;
       background: #fafafa;
     }
@@ -715,22 +749,23 @@
       outline: none; border-color: var(--kaeru);
       background: #fff;
     }
-    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-group textarea { resize: vertical; min-height: 70px; }
     .form-submit {
       display: block; width: 100%;
       background: var(--kaeru); color: var(--white);
-      border: none; border-radius: 8px;
-      padding: 16px; font-size: 1rem; font-weight: 700;
+      border: none; border-radius: 6px;
+      padding: 13px; font-size: .9rem; font-weight: 700;
       font-family: 'Noto Serif JP', serif;
       cursor: pointer; transition: background .3s, transform .2s;
-      margin-top: 8px;
+      margin-top: 4px;
     }
     .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
     .form-note {
-      text-align: center; font-size: .75rem; color: #aaa; margin-top: 12px;
+      text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
     }
     @media (max-width: 600px) {
-      .form-panel { padding: 32px 24px; }
+      .side-cta.open .form-slide { width: 280px; }
+      .form-slide-inner { width: 280px; min-width: 280px; padding: 20px 16px; }
       .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
     }
 
@@ -1037,9 +1072,48 @@
       「こんな空間にしたいんだけど…」<br>
       その段階で大丈夫です。
     </h2>
-    <p>まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
-    <a href="https://kaeru.design/contact" class="btn-cta" target="_blank" rel="noopener">見積り・お問合せはこちら</a>
-    <p class="cta-note">ご相談・お見積りは無料です</p>
+    <p class="cta-lead">まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
+    <div class="cta-form">
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>お名前 <span class="req">必須</span></label>
+            <input type="text" name="name" required placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>会社名・店舗名</label>
+            <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス <span class="req">必須</span></label>
+            <input type="email" name="email" required placeholder="info@example.com">
+          </div>
+          <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" name="tel" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group form-full">
+            <label>ご相談内容</label>
+            <select name="category">
+              <option value="">選択してください</option>
+              <option value="新規出店">新規出店のご相談</option>
+              <option value="リニューアル">リニューアル・改装</option>
+              <option value="看板・サイン">看板・サインのご相談</option>
+              <option value="修繕">修繕・メンテナンス</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div class="form-group form-full">
+            <label>お問合せ内容</label>
+            <textarea name="message" placeholder="ご要望やご質問があればお書きください"></textarea>
+          </div>
+          <div class="form-full">
+            <button type="submit" class="form-submit">送信する</button>
+            <p class="form-note">ご相談・お見積りは無料です</p>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -1050,55 +1124,52 @@
   <p style="margin-top:12px; opacity:.4">&copy; Kaeru Design Project Co., Ltd.</p>
 </footer>
 
-<!-- SIDE CTA (appears after scroll) -->
+<!-- SIDE CTA (appears after scroll, form expands from it) -->
 <div class="side-cta" id="sideCta">
   <button class="side-cta-btn" id="sideCtaBtn">
     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
     見積り・お問合せ
   </button>
-</div>
-
-<!-- CONTACT FORM OVERLAY -->
-<div class="form-overlay" id="formOverlay">
-  <div class="form-panel">
-    <button class="form-close" id="formClose">&times;</button>
-    <h2>お見積り・お問合せ</h2>
-    <p class="form-sub">まだ具体的でなくても大丈夫です。お気軽にどうぞ。</p>
-    <form id="contactForm" action="https://kaeru.design/contact" method="GET" target="_blank">
-      <div class="form-group">
-        <label>お名前 <span class="req">必須</span></label>
-        <input type="text" name="name" required placeholder="山田 太郎">
-      </div>
-      <div class="form-group">
-        <label>会社名・店舗名</label>
-        <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
-      </div>
-      <div class="form-group">
-        <label>メールアドレス <span class="req">必須</span></label>
-        <input type="email" name="email" required placeholder="info@example.com">
-      </div>
-      <div class="form-group">
-        <label>電話番号</label>
-        <input type="tel" name="tel" placeholder="090-0000-0000">
-      </div>
-      <div class="form-group">
-        <label>ご相談内容</label>
-        <select name="category">
-          <option value="">選択してください</option>
-          <option value="新規出店">新規出店のご相談</option>
-          <option value="リニューアル">リニューアル・改装</option>
-          <option value="看板・サイン">看板・サインのご相談</option>
-          <option value="修繕">修繕・メンテナンス</option>
-          <option value="その他">その他</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>お問合せ内容</label>
-        <textarea name="message" placeholder="ご要望やご質問があればお書きください"></textarea>
-      </div>
-      <button type="submit" class="form-submit">送信する</button>
-      <p class="form-note">ご相談・お見積りは無料です</p>
-    </form>
+  <div class="form-slide" id="formSlide">
+    <div class="form-slide-inner">
+      <h2>お見積り・お問合せ</h2>
+      <p class="form-sub">お気軽にどうぞ。</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-group">
+          <label>お名前 <span class="req">必須</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>会社名・店舗名</label>
+          <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="req">必須</span></label>
+          <input type="email" name="email" required placeholder="info@example.com">
+        </div>
+        <div class="form-group">
+          <label>電話番号</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>ご相談内容</label>
+          <select name="category">
+            <option value="">選択してください</option>
+            <option value="新規出店">新規出店のご相談</option>
+            <option value="リニューアル">リニューアル・改装</option>
+            <option value="看板・サイン">看板・サインのご相談</option>
+            <option value="修繕">修繕・メンテナンス</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>お問合せ内容</label>
+          <textarea name="message" placeholder="ご要望やご質問があれば"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+        <p class="form-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
   </div>
 </div>
 
@@ -1188,23 +1259,27 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Form overlay
-const formOverlay = document.getElementById('formOverlay');
+// Side form slide toggle
+const sideCtaEl = document.getElementById('sideCta');
 const sideCtaBtn = document.getElementById('sideCtaBtn');
-const formClose = document.getElementById('formClose');
 
-function openForm() { formOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-function closeForm() { formOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+sideCtaBtn.addEventListener('click', () => {
+  sideCtaEl.classList.toggle('open');
+});
 
-sideCtaBtn.addEventListener('click', openForm);
-formClose.addEventListener('click', closeForm);
-formOverlay.addEventListener('click', e => { if (e.target === formOverlay) closeForm(); });
+// Close side panel when clicking outside
+document.addEventListener('click', e => {
+  if (sideCtaEl.classList.contains('open') && !sideCtaEl.contains(e.target)) {
+    sideCtaEl.classList.remove('open');
+  }
+});
 
-// Also open form from header CTA and hero CTA (href="#contact")
+// href="#contact" links scroll to bottom CTA section (which now has inline form)
 document.querySelectorAll('a[href="#contact"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
-    openForm();
+    const t = document.getElementById('contact');
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 </script>
