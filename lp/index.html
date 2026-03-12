@@ -702,16 +702,16 @@
       border-radius: 0 12px 12px 0;
     }
     .side-cta.open .form-slide {
-      width: 380px;
+      width: 300px;
     }
     .side-cta.open .side-cta-btn {
       border-radius: 0;
       background: var(--kaeru-dark);
     }
     .form-slide-inner {
-      width: 380px;
-      min-width: 380px;
-      padding: 28px 24px;
+      width: 300px;
+      min-width: 300px;
+      padding: 24px 20px;
       overflow-y: auto;
       max-height: 80vh;
     }
@@ -764,8 +764,8 @@
       text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
     }
     @media (max-width: 600px) {
-      .side-cta.open .form-slide { width: 280px; }
-      .form-slide-inner { width: 280px; min-width: 280px; padding: 20px 16px; }
+      .side-cta.open .form-slide { width: 260px; }
+      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
       .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
     }
 
@@ -1132,42 +1132,23 @@
   </button>
   <div class="form-slide" id="formSlide">
     <div class="form-slide-inner">
-      <h2>お見積り・お問合せ</h2>
-      <p class="form-sub">お気軽にどうぞ。</p>
+      <h2>お問合せ</h2>
+      <p class="form-sub">お気軽にどうぞ</p>
       <form action="https://kaeru.design/contact" method="GET" target="_blank">
         <div class="form-group">
           <label>お名前 <span class="req">必須</span></label>
           <input type="text" name="name" required placeholder="山田 太郎">
         </div>
         <div class="form-group">
-          <label>会社名・店舗名</label>
-          <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
-        </div>
-        <div class="form-group">
           <label>メールアドレス <span class="req">必須</span></label>
           <input type="email" name="email" required placeholder="info@example.com">
         </div>
         <div class="form-group">
-          <label>電話番号</label>
-          <input type="tel" name="tel" placeholder="090-0000-0000">
-        </div>
-        <div class="form-group">
-          <label>ご相談内容</label>
-          <select name="category">
-            <option value="">選択してください</option>
-            <option value="新規出店">新規出店のご相談</option>
-            <option value="リニューアル">リニューアル・改装</option>
-            <option value="看板・サイン">看板・サインのご相談</option>
-            <option value="修繕">修繕・メンテナンス</option>
-            <option value="その他">その他</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>お問合せ内容</label>
-          <textarea name="message" placeholder="ご要望やご質問があれば"></textarea>
+          <label>ひとこと</label>
+          <textarea name="message" rows="2" placeholder="ご要望など"></textarea>
         </div>
         <button type="submit" class="form-submit">送信する</button>
-        <p class="form-note">ご相談・お見積りは無料です</p>
+        <p class="form-note">無料でご相談いただけます</p>
       </form>
     </div>
   </div>
