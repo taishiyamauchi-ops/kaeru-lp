@@ -666,12 +666,12 @@
       text-orientation: mixed;
       background: var(--kaeru);
       color: var(--white);
-      padding: 16px 12px;
-      border-radius: 0 6px 6px 0;
+      padding: 20px 14px;
+      border-radius: 0 7px 7px 0;
       font-family: 'Noto Serif JP', serif;
-      font-size: .8rem;
+      font-size: .85rem;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .1em;
       text-decoration: none;
       cursor: pointer;
       border: none;
@@ -697,12 +697,17 @@
       width: 0;
       overflow: hidden;
       background: var(--white);
-      box-shadow: 4px 0 32px rgba(0,0,0,.12);
-      transition: width .45s cubic-bezier(.4,0,.2,1);
+      box-shadow: none;
+      transition: width .45s cubic-bezier(.4,0,.2,1), box-shadow .3s;
       border-radius: 0 12px 12px 0;
+      opacity: 0;
+      visibility: hidden;
     }
     .side-cta.open .form-slide {
       width: 300px;
+      box-shadow: 4px 0 32px rgba(0,0,0,.12);
+      opacity: 1;
+      visibility: visible;
     }
     .side-cta.open .side-cta-btn {
       border-radius: 0;
@@ -1115,10 +1120,10 @@
 
 <!-- SIDE CTA (appears after scroll, form expands from it) -->
 <div class="side-cta" id="sideCta">
-  <button class="side-cta-btn" id="sideCtaBtn">見積・お問い合わせ</button>
+  <button class="side-cta-btn" id="sideCtaBtn">お見積り・お問い合わせ</button>
   <div class="form-slide" id="formSlide">
     <div class="form-slide-inner">
-      <h2>見積・お問い合わせ</h2>
+      <h2>お見積り・お問い合わせ</h2>
       <p class="form-sub">ご相談・お見積りは無料です</p>
       <form action="https://kaeru.design/contact" method="GET" target="_blank">
         <div class="form-group">
