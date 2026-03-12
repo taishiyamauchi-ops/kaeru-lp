@@ -79,28 +79,31 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
       opacity: 0;
-      animation: heroFade 60s infinite;
+      animation: heroFade 90s infinite;
     }
     .hero-bg img:nth-child(1) { animation-delay: 0s; }
-    .hero-bg img:nth-child(2) { animation-delay: 4s; }
-    .hero-bg img:nth-child(3) { animation-delay: 8s; }
-    .hero-bg img:nth-child(4) { animation-delay: 12s; }
-    .hero-bg img:nth-child(5) { animation-delay: 16s; }
-    .hero-bg img:nth-child(6) { animation-delay: 20s; }
-    .hero-bg img:nth-child(7) { animation-delay: 24s; }
-    .hero-bg img:nth-child(8) { animation-delay: 28s; }
-    .hero-bg img:nth-child(9) { animation-delay: 32s; }
-    .hero-bg img:nth-child(10) { animation-delay: 36s; }
-    .hero-bg img:nth-child(11) { animation-delay: 40s; }
-    .hero-bg img:nth-child(12) { animation-delay: 44s; }
-    .hero-bg img:nth-child(13) { animation-delay: 48s; }
-    .hero-bg img:nth-child(14) { animation-delay: 52s; }
-    .hero-bg img:nth-child(15) { animation-delay: 56s; }
+    .hero-bg img:nth-child(2) { animation-delay: 5s; }
+    .hero-bg img:nth-child(3) { animation-delay: 10s; }
+    .hero-bg img:nth-child(4) { animation-delay: 15s; }
+    .hero-bg img:nth-child(5) { animation-delay: 20s; }
+    .hero-bg img:nth-child(6) { animation-delay: 25s; }
+    .hero-bg img:nth-child(7) { animation-delay: 30s; }
+    .hero-bg img:nth-child(8) { animation-delay: 35s; }
+    .hero-bg img:nth-child(9) { animation-delay: 40s; }
+    .hero-bg img:nth-child(10) { animation-delay: 45s; }
+    .hero-bg img:nth-child(11) { animation-delay: 50s; }
+    .hero-bg img:nth-child(12) { animation-delay: 55s; }
+    .hero-bg img:nth-child(13) { animation-delay: 60s; }
+    .hero-bg img:nth-child(14) { animation-delay: 65s; }
+    .hero-bg img:nth-child(15) { animation-delay: 70s; }
+    .hero-bg img:nth-child(16) { animation-delay: 75s; }
+    .hero-bg img:nth-child(17) { animation-delay: 80s; }
+    .hero-bg img:nth-child(18) { animation-delay: 85s; }
     @keyframes heroFade {
       0%   { opacity: 0; transform: scale(1); }
-      1.5% { opacity: 1; }
-      5.5% { opacity: 1; }
-      6.7% { opacity: 0; transform: scale(1.05); }
+      0.8% { opacity: 1; }
+      4.7% { opacity: 1; }
+      5.6% { opacity: 0; transform: scale(1.05); }
       100% { opacity: 0; }
     }
     .hero-bg::after {
@@ -586,6 +589,151 @@
       .work-card { width: 280px; }
     }
 
+    /* ===== HEADER HIDE + SIDE CTA ===== */
+    .header {
+      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
+    }
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+
+    .side-cta {
+      position: fixed;
+      left: 0; top: 50%;
+      transform: translateY(-50%) translateX(-100%);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity .5s ease, transform .5s ease;
+      pointer-events: none;
+    }
+    .side-cta.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+    .side-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--kaeru);
+      color: var(--white);
+      padding: 24px 14px;
+      border-radius: 0 8px 8px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: 2px 2px 16px rgba(0,0,0,.15);
+      transition: background .3s, box-shadow .3s;
+    }
+    .side-cta-btn:hover {
+      background: var(--kaeru-dark);
+      box-shadow: 2px 4px 24px rgba(0,0,0,.25);
+    }
+    .side-cta-btn svg {
+      width: 20px; height: 20px;
+      margin-bottom: 10px;
+      fill: none; stroke: currentColor; stroke-width: 2;
+    }
+
+    /* ===== CONTACT FORM OVERLAY ===== */
+    .form-overlay {
+      position: fixed; inset: 0;
+      z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .4s ease;
+    }
+    .form-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .form-panel {
+      background: var(--white);
+      border-radius: 16px;
+      max-width: 560px; width: 92%;
+      max-height: 90vh; overflow-y: auto;
+      padding: 48px 40px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      transform: translateY(30px) scale(.96);
+      transition: transform .4s ease;
+    }
+    .form-overlay.active .form-panel {
+      transform: translateY(0) scale(1);
+    }
+    .form-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 36px; height: 36px;
+      border: none; background: #f0f0f0; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: #999;
+      transition: background .3s, color .3s;
+    }
+    .form-close:hover { background: #e0e0e0; color: #333; }
+    .form-panel h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .form-panel .form-sub {
+      font-size: .85rem; color: #999; margin-bottom: 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block; font-size: .8rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 6px;
+    }
+    .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .65rem;
+      padding: 1px 6px; border-radius: 3px; margin-left: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 12px 14px;
+      border: 1px solid #ddd; border-radius: 8px;
+      font-size: .9rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 8px;
+      padding: 16px; font-size: 1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .form-note {
+      text-align: center; font-size: .75rem; color: #aaa; margin-top: 12px;
+    }
+    @media (max-width: 600px) {
+      .form-panel { padding: 32px 24px; }
+      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
+    }
+
     /* ===== ANIMATIONS ===== */
     .fade-up {
       opacity: 0; transform: translateY(30px);
@@ -612,21 +760,24 @@
 <!-- HERO (full-bleed photo) -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://kaeru.design//common/dat/2023/1107/16993366061046016199.jpg" alt="chocoZAP 清田2条店 外観">
-    <img src="https://kaeru.design//common/dat/2024/1105/173079932360093788.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2023/1027/1698369059707772293.jpg" alt="chocoZAP 新さっぽろ青葉町店 外観">
-    <img src="https://kaeru.design//common/dat/2026/0126/17693876831836204505.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2025/1219/1766138236365321220.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="chocoZAP 新宿三丁目メディカル 外観">
-    <img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2025/1203/1764738633603412584.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2025/0916/17579854012033126966.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2025/0904/1756954885937901258.jpg" alt="">
-    <img src="https://kaeru.design/common/dat/2024/0517/1715906957191442878.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2023/1101/16988161681291927804.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2023/1020/1697788050745582989.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2023/0705/16885489861973657478.jpg" alt="">
-    <img src="https://kaeru.design//common/dat/2021/1014/16341810631315971834.jpg" alt="">
+    <img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="chocoZAP 新さっぽろ青葉町店">
+    <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="chocoZAP 新宿三丁目メディカル">
+    <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="ルミナスビューティークリニック">
+    <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="b-monster 立川スタジオ">
+    <img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="Thoth Pte.Ltd.">
+    <img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="CRONOS">
+    <img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="アシックス商事">
+    <img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="ミキハウス ニセコ">
+    <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="メンズクリア 徳島">
+    <img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="ACCEA CAFE 渋谷店">
+    <img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="ACCEA CAFE 堺筋長堀橋店">
+    <img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="BEYOND 大門・浜松町店">
+    <img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="オールドルーキーカフェ">
+    <img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="プラージュ 住道店">
+    <img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="Pilates KASANE">
+    <img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="やきとり日本一">
+    <img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="勉強カフェ 札幌">
+    <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="H&F BELX 札幌">
   </div>
   <div class="hero-content">
     <p class="lead">カエル・デザイン・プロジェクト株式会社 ／ 全国13拠点の空間デザイン会社</p>
@@ -661,6 +812,9 @@
       <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・東京</span><h3>b-monster 立川スタジオ様</h3><p class="meta">146.4坪 ／ 工期 2.0ヵ月</p></div></div>
       <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>Thoth Pte.Ltd.様</h3><p class="meta">155.0坪 ／ 工期 1.5ヵ月</p></div></div>
       <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・栃木</span><h3>CRONOS様</h3><p class="meta">21.0坪 ／ 工期 1.5ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>アシックス商事株式会社様</h3><p class="meta">オフィスデザイン ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・北海道</span><h3>ミキハウス ニセコビレッジ POP UPショップ様</h3><p class="meta">店舗デザイン ／ ニセコ</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="" loading="lazy"><div class="info"><span class="tag">メンズサロン・徳島</span><h3>メンズクリア 徳島駅前店様</h3><p class="meta">脱毛サロン ／ 20坪</p></div></div>
     </div>
   </div>
   <div class="marquee-wrap row-reverse">
@@ -671,6 +825,9 @@
       <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>喫煙喫茶オールドルーキーカフェ様</h3><p class="meta">16.9坪 ／ 工期 0.5ヵ月</p></div></div>
       <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容室・大阪</span><h3>理容プラージュ・美容プラージュ 住道店様</h3><p class="meta">39.0坪 ／ 工期 1.0ヵ月</p></div></div>
       <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ピラティス・千葉</span><h3>Pilates KASANE おゆみ野店様</h3><p class="meta">38.3坪 ／ 工期 1.8ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="" loading="lazy"><div class="info"><span class="tag">飲食・北海道</span><h3>やきとり日本一様</h3><p class="meta">2店舗同時リニューアル ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="" loading="lazy"><div class="info"><span class="tag">学習スペース・北海道</span><h3>勉強カフェ 札幌琴似スタジオ様</h3><p class="meta">学習＆コワーキング ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・北海道</span><h3>H&amp;F BELX 札幌ステラプレイス店様</h3><p class="meta">ティーブランド ／ ステラプレイス</p></div></div>
     </div>
   </div>
 </section>
@@ -893,12 +1050,82 @@
   <p style="margin-top:12px; opacity:.4">&copy; Kaeru Design Project Co., Ltd.</p>
 </footer>
 
+<!-- SIDE CTA (appears after scroll) -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    見積り・お問合せ
+  </button>
+</div>
+
+<!-- CONTACT FORM OVERLAY -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-panel">
+    <button class="form-close" id="formClose">&times;</button>
+    <h2>お見積り・お問合せ</h2>
+    <p class="form-sub">まだ具体的でなくても大丈夫です。お気軽にどうぞ。</p>
+    <form id="contactForm" action="https://kaeru.design/contact" method="GET" target="_blank">
+      <div class="form-group">
+        <label>お名前 <span class="req">必須</span></label>
+        <input type="text" name="name" required placeholder="山田 太郎">
+      </div>
+      <div class="form-group">
+        <label>会社名・店舗名</label>
+        <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
+      </div>
+      <div class="form-group">
+        <label>メールアドレス <span class="req">必須</span></label>
+        <input type="email" name="email" required placeholder="info@example.com">
+      </div>
+      <div class="form-group">
+        <label>電話番号</label>
+        <input type="tel" name="tel" placeholder="090-0000-0000">
+      </div>
+      <div class="form-group">
+        <label>ご相談内容</label>
+        <select name="category">
+          <option value="">選択してください</option>
+          <option value="新規出店">新規出店のご相談</option>
+          <option value="リニューアル">リニューアル・改装</option>
+          <option value="看板・サイン">看板・サインのご相談</option>
+          <option value="修繕">修繕・メンテナンス</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>お問合せ内容</label>
+        <textarea name="message" placeholder="ご要望やご質問があればお書きください"></textarea>
+      </div>
+      <button type="submit" class="form-submit">送信する</button>
+      <p class="form-note">ご相談・お見積りは無料です</p>
+    </form>
+  </div>
+</div>
+
 <script>
-// Header: transparent → white on scroll
+// Header: transparent → white on scroll, hide after works section
 const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 80);
-});
+const sideCta = document.getElementById('sideCta');
+const worksSection = document.getElementById('works');
+
+function updateHeaderState() {
+  const scrollY = window.scrollY;
+  const worksTop = worksSection ? worksSection.offsetTop : 999999;
+
+  // Scrolled past 80px → white bg
+  header.classList.toggle('scrolled', scrollY > 80 && scrollY < worksTop);
+
+  // Past works section → hide header, show side CTA
+  if (scrollY > worksTop - 100) {
+    header.classList.add('hidden');
+    sideCta.classList.add('visible');
+  } else {
+    header.classList.remove('hidden');
+    sideCta.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', updateHeaderState);
+updateHeaderState();
 
 // Duplicate marquee tracks for seamless loop
 document.querySelectorAll('.marquee-track').forEach(track => {
@@ -958,6 +1185,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     e.preventDefault();
     const t = document.querySelector(a.getAttribute('href'));
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Form overlay
+const formOverlay = document.getElementById('formOverlay');
+const sideCtaBtn = document.getElementById('sideCtaBtn');
+const formClose = document.getElementById('formClose');
+
+function openForm() { formOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+function closeForm() { formOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+sideCtaBtn.addEventListener('click', openForm);
+formClose.addEventListener('click', closeForm);
+formOverlay.addEventListener('click', e => { if (e.target === formOverlay) closeForm(); });
+
+// Also open form from header CTA and hero CTA (href="#contact")
+document.querySelectorAll('a[href="#contact"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    openForm();
   });
 });
 </script>
