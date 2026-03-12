@@ -666,12 +666,12 @@
       text-orientation: mixed;
       background: var(--kaeru);
       color: var(--white);
-      padding: 12px 10px;
+      padding: 16px 12px;
       border-radius: 0 6px 6px 0;
       font-family: 'Noto Serif JP', serif;
-      font-size: .7rem;
+      font-size: .8rem;
       font-weight: 700;
-      letter-spacing: .05em;
+      letter-spacing: .08em;
       text-decoration: none;
       cursor: pointer;
       border: none;
@@ -691,7 +691,7 @@
     /* ===== SIDE FORM PANEL (expands from left CTA) ===== */
     .side-cta {
       display: flex;
-      align-items: stretch;
+      align-items: center;
     }
     .form-slide {
       width: 0;
@@ -1115,10 +1115,10 @@
 
 <!-- SIDE CTA (appears after scroll, form expands from it) -->
 <div class="side-cta" id="sideCta">
-  <button class="side-cta-btn" id="sideCtaBtn">お問合せ</button>
+  <button class="side-cta-btn" id="sideCtaBtn">見積・お問い合わせ</button>
   <div class="form-slide" id="formSlide">
     <div class="form-slide-inner">
-      <h2>お問合せ</h2>
+      <h2>見積・お問い合わせ</h2>
       <p class="form-sub">お気軽にどうぞ</p>
       <form action="https://kaeru.design/contact" method="GET" target="_blank">
         <div class="form-group">
@@ -1126,15 +1126,23 @@
           <input type="text" name="name" required placeholder="山田 太郎">
         </div>
         <div class="form-group">
+          <label>会社名</label>
+          <input type="text" name="company" placeholder="株式会社〇〇">
+        </div>
+        <div class="form-group">
           <label>メールアドレス <span class="req">必須</span></label>
           <input type="email" name="email" required placeholder="info@example.com">
         </div>
         <div class="form-group">
-          <label>ひとこと</label>
-          <textarea name="message" rows="2" placeholder="ご要望など"></textarea>
+          <label>お電話番号</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea name="message" rows="3" required placeholder="ご要望やご質問をお書きください"></textarea>
         </div>
         <button type="submit" class="form-submit">送信する</button>
-        <p class="form-note">無料でご相談いただけます</p>
+        <p class="form-note">ご相談・お見積りは無料です</p>
       </form>
     </div>
   </div>
