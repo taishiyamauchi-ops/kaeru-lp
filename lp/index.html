@@ -666,12 +666,12 @@
       text-orientation: mixed;
       background: var(--kaeru);
       color: var(--white);
-      padding: 14px 11px;
-      border-radius: 0 8px 8px 0;
+      padding: 12px 10px;
+      border-radius: 0 6px 6px 0;
       font-family: 'Noto Serif JP', serif;
-      font-size: .75rem;
+      font-size: .7rem;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: .05em;
       text-decoration: none;
       cursor: pointer;
       border: none;
@@ -1081,31 +1081,20 @@
             <input type="text" name="name" required placeholder="山田 太郎">
           </div>
           <div class="form-group">
-            <label>会社名・店舗名</label>
-            <input type="text" name="company" placeholder="株式会社〇〇 / 〇〇店">
+            <label>会社名</label>
+            <input type="text" name="company" placeholder="株式会社〇〇">
           </div>
           <div class="form-group">
             <label>メールアドレス <span class="req">必須</span></label>
             <input type="email" name="email" required placeholder="info@example.com">
           </div>
           <div class="form-group">
-            <label>電話番号</label>
+            <label>お電話番号</label>
             <input type="tel" name="tel" placeholder="090-0000-0000">
           </div>
           <div class="form-group form-full">
-            <label>ご相談内容</label>
-            <select name="category">
-              <option value="">選択してください</option>
-              <option value="新規出店">新規出店のご相談</option>
-              <option value="リニューアル">リニューアル・改装</option>
-              <option value="看板・サイン">看板・サインのご相談</option>
-              <option value="修繕">修繕・メンテナンス</option>
-              <option value="その他">その他</option>
-            </select>
-          </div>
-          <div class="form-group form-full">
-            <label>お問合せ内容</label>
-            <textarea name="message" placeholder="ご要望やご質問があればお書きください"></textarea>
+            <label>お問い合わせ内容 <span class="req">必須</span></label>
+            <textarea name="message" required placeholder="ご要望やご質問をお書きください"></textarea>
           </div>
           <div class="form-full">
             <button type="submit" class="form-submit">送信する</button>
@@ -1126,10 +1115,7 @@
 
 <!-- SIDE CTA (appears after scroll, form expands from it) -->
 <div class="side-cta" id="sideCta">
-  <button class="side-cta-btn" id="sideCtaBtn">
-    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    見積り・お問合せ
-  </button>
+  <button class="side-cta-btn" id="sideCtaBtn">お問合せ</button>
   <div class="form-slide" id="formSlide">
     <div class="form-slide-inner">
       <h2>お問合せ</h2>
