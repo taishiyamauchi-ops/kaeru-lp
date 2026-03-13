@@ -1151,18 +1151,25 @@
 const header = document.getElementById('header');
 const sideCta = document.getElementById('sideCta');
 const worksSection = document.getElementById('works');
+const contactSection = document.getElementById('contact');
 
 function updateHeaderState() {
   const scrollY = window.scrollY;
   const worksTop = worksSection ? worksSection.offsetTop : 999999;
+  const contactTop = contactSection ? contactSection.offsetTop : 999999;
 
   // Scrolled past 80px → white bg
   header.classList.toggle('scrolled', scrollY > 80 && scrollY < worksTop);
 
   // Past works section → hide header, show side CTA
-  if (scrollY > worksTop - 100) {
+  // But hide side CTA when reaching contact section
+  if (scrollY > worksTop - 100 && scrollY < contactTop - 300) {
     header.classList.add('hidden');
     sideCta.classList.add('visible');
+  } else if (scrollY >= contactTop - 300) {
+    header.classList.add('hidden');
+    sideCta.classList.remove('visible');
+    sideCta.classList.remove('open');
   } else {
     header.classList.remove('hidden');
     sideCta.classList.remove('visible');
