@@ -1163,10 +1163,11 @@ function updateHeaderState() {
 
   // Past works section → hide header, show side CTA
   // But hide side CTA when reaching contact section
-  if (scrollY > worksTop - 100 && scrollY < contactTop - 300) {
+  const viewBottom = scrollY + window.innerHeight;
+  if (scrollY > worksTop - 100 && viewBottom < contactTop) {
     header.classList.add('hidden');
     sideCta.classList.add('visible');
-  } else if (scrollY >= contactTop - 300) {
+  } else if (viewBottom >= contactTop) {
     header.classList.add('hidden');
     sideCta.classList.remove('visible');
     sideCta.classList.remove('open');
