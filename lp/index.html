@@ -68,12 +68,14 @@
     /* ===== HERO ===== */
     .hero {
       position: relative;
+      width: 100vw; max-width: 100%;
       height: 100vh; min-height: 600px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
     .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
+      position: absolute; top: 0; left: 0; z-index: 0;
+      width: 100vw; height: 100%;
     }
     .hero-bg img {
       position: absolute; inset: 0;
