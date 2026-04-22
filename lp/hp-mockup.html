@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>店舗デザイン・内装設計なら｜カエル・デザイン・プロジェクト</title>
-  <meta name="description" content="設計から施工までワンストップ対応。全国13拠点で店舗・オフィスの空間デザインを手がけるカエル・デザイン・プロジェクト。">
+  <title>カエル・デザイン・プロジェクト｜全国15拠点の空間デザイン会社</title>
+  <meta name="description" content="設計から施工までワンストップ対応。全国15拠点で店舗・オフィスの空間デザインを手がけるカエル・デザイン・プロジェクト。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -36,12 +36,17 @@
     /* ===== HEADER ===== */
     .header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      transition: background .4s, box-shadow .4s;
+      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
     }
     .header.scrolled {
       background: rgba(255,255,255,.95);
       backdrop-filter: blur(8px);
       box-shadow: 0 1px 16px rgba(0,0,0,.06);
+    }
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
     }
     .header-inner {
       max-width: 1200px; margin: 0 auto;
@@ -50,6 +55,7 @@
     }
     .logo-mark {
       display: flex; align-items: center; text-decoration: none;
+      flex-shrink: 0;
     }
     .logo-mark svg {
       height: 28px; width: auto;
@@ -59,13 +65,69 @@
     .logo-mark .logo-color { display: none; }
     .header.scrolled .logo-mark .logo-white { display: none; }
     .header.scrolled .logo-mark .logo-color { display: block; }
+
+    /* Nav */
+    .header-nav {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .header-nav a {
+      text-decoration: none; font-size: .78rem; font-weight: 700;
+      color: var(--white); transition: color .4s, opacity .25s;
+      white-space: nowrap;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .header-nav a:hover { opacity: .7; }
+    .header.scrolled .header-nav a { color: var(--text-dark); }
+
     .header-cta {
       background: var(--yellow); color: var(--text-dark);
       padding: 10px 28px; border-radius: 6px; text-decoration: none;
       font-weight: 700; font-size: .85rem; transition: all .25s;
       font-family: 'Noto Serif JP', serif;
+      flex-shrink: 0;
     }
     .header-cta:hover { background: #f5d050; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative; z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--white);
+      position: absolute; left: 4px; transition: all .3s;
+    }
+    .header.scrolled .hamburger span { background: var(--text-dark); }
+    .hamburger span:nth-child(1) { top: 8px; }
+    .hamburger span:nth-child(2) { top: 15px; }
+    .hamburger span:nth-child(3) { top: 22px; }
+    .hamburger.open span:nth-child(1) { top: 15px; transform: rotate(45deg); background: var(--white); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 15px; transform: rotate(-45deg); background: var(--white); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,26,26,.95);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+      text-decoration: none; color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      transition: opacity .25s;
+    }
+    .mobile-nav a:hover { opacity: .7; }
+    .mobile-nav .mobile-nav-cta {
+      margin-top: 16px;
+      background: var(--yellow); color: var(--text-dark);
+      padding: 14px 40px; border-radius: 6px; font-weight: 700;
+    }
 
     /* ===== HERO ===== */
     .hero {
@@ -192,235 +254,6 @@
       font-size: .85rem; color: #bbb; letter-spacing: .1em;
     }
 
-    /* ===== CONCEPT ===== */
-    .concept {
-      max-width: 800px; margin: 0 auto;
-      text-align: center;
-      padding: 120px 32px;
-    }
-    .concept .section-num { margin-bottom: 12px; }
-    .concept h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-weight: 700; color: var(--text-dark);
-      line-height: 1.8; margin-bottom: 32px;
-      letter-spacing: .03em;
-    }
-    .concept h2 em {
-      font-style: normal;
-      background: linear-gradient(transparent 65%, var(--yellow) 65%);
-    }
-    .concept p {
-      font-size: .95rem; line-height: 2.2;
-      font-weight: 300;
-    }
-    .concept p strong {
-      font-weight: 700; color: var(--text-dark);
-    }
-
-    /* ===== SERVICES (connected flow) ===== */
-    .services {
-      position: relative;
-      padding: 120px 32px;
-      background: var(--text-dark);
-      color: var(--white);
-      overflow: hidden;
-    }
-    .services-bg {
-      position: absolute; inset: 0;
-    }
-    .services-bg img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0;
-      animation: kenburns 30s infinite;
-    }
-    .services-bg img:nth-child(1) { animation-delay: 0s; animation-name: kb1; }
-    .services-bg img:nth-child(2) { animation-delay: 6s; animation-name: kb2; }
-    .services-bg img:nth-child(3) { animation-delay: 12s; animation-name: kb3; }
-    .services-bg img:nth-child(4) { animation-delay: 18s; animation-name: kb4; }
-    .services-bg img:nth-child(5) { animation-delay: 24s; animation-name: kb5; }
-    @keyframes kb1 {
-      0%      { opacity: 0; transform: scale(1) translate(0,0); }
-      3%      { opacity: 1; }
-      17%     { opacity: 1; }
-      20%     { opacity: 0; transform: scale(1.15) translate(-2%,-1%); }
-      100%    { opacity: 0; }
-    }
-    @keyframes kb2 {
-      0%      { opacity: 0; transform: scale(1.1) translate(2%,0); }
-      3%      { opacity: 1; }
-      17%     { opacity: 1; }
-      20%     { opacity: 0; transform: scale(1) translate(0,2%); }
-      100%    { opacity: 0; }
-    }
-    @keyframes kb3 {
-      0%      { opacity: 0; transform: scale(1) translate(-1%,2%); }
-      3%      { opacity: 1; }
-      17%     { opacity: 1; }
-      20%     { opacity: 0; transform: scale(1.12) translate(1%,-1%); }
-      100%    { opacity: 0; }
-    }
-    @keyframes kb4 {
-      0%      { opacity: 0; transform: scale(1.15) translate(1%,1%); }
-      3%      { opacity: 1; }
-      17%     { opacity: 1; }
-      20%     { opacity: 0; transform: scale(1) translate(-2%,0); }
-      100%    { opacity: 0; }
-    }
-    @keyframes kb5 {
-      0%      { opacity: 0; transform: scale(1) translate(2%,-2%); }
-      3%      { opacity: 1; }
-      17%     { opacity: 1; }
-      20%     { opacity: 0; transform: scale(1.1) translate(0,1%); }
-      100%    { opacity: 0; }
-    }
-    .services-bg .overlay {
-      position: absolute; inset: 0;
-      background: rgba(30,30,30,.72);
-      z-index: 1;
-    }
-    .services > *:not(.services-bg) { position: relative; z-index: 2; }
-    .services .section-head {
-      max-width: 1200px; margin: 0 auto 56px;
-    }
-    .services .section-label { color: rgba(255,255,255,.5); }
-    .services h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 900;
-    }
-    .service-flow {
-      display: flex; align-items: flex-start;
-      max-width: 1100px; margin: 0 auto;
-      position: relative;
-    }
-    .service-flow::before {
-      content: '';
-      position: absolute;
-      top: 28px; left: 40px; right: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--kaeru), rgba(255,255,255,.2) 50%, var(--kaeru));
-    }
-    .service-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-      padding: 0 10px;
-    }
-    .service-step .step-icon {
-      width: 56px; height: 56px;
-      border: 2px solid var(--kaeru);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 16px;
-      background: var(--text-dark);
-      position: relative; z-index: 1;
-    }
-    .service-step .step-icon svg { width: 24px; height: 24px; }
-    .service-step .step-arrow {
-      position: absolute;
-      top: 22px; right: -10px;
-      color: var(--kaeru); font-size: 1rem; z-index: 2;
-    }
-    .service-step:last-child .step-arrow { display: none; }
-    .service-step h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: .8rem; font-weight: 700; margin-bottom: 6px;
-      white-space: nowrap;
-    }
-    .service-step p {
-      font-size: .65rem; opacity: .5; line-height: 1.7;
-      white-space: nowrap;
-    }
-    @media (max-width: 768px) {
-      .service-flow { flex-direction: column; align-items: stretch; gap: 8px; }
-      .service-flow::before {
-        top: 0; bottom: 0; left: 28px; right: auto;
-        width: 2px; height: auto;
-      }
-      .service-step {
-        display: flex; align-items: center; gap: 16px;
-        text-align: left; padding: 8px 0;
-      }
-      .service-step .step-icon { margin: 0; flex-shrink: 0; }
-      .service-step .step-arrow {
-        position: static;
-        transform: rotate(90deg); margin-left: auto;
-      }
-    }
-
-    /* ===== INDUSTRIES ===== */
-    .industries {
-      position: relative;
-      padding: 100px 32px;
-      text-align: center;
-      overflow: hidden;
-    }
-    .industries-bg {
-      position: absolute; inset: 0;
-      background: var(--sand);
-      transition: background .3s;
-    }
-    .industries-bg img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0;
-      transition: opacity .6s ease;
-    }
-    .industries-bg img.active { opacity: 1; }
-    .industries-bg .overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.55);
-      opacity: 0;
-      transition: opacity .6s ease;
-    }
-    .industries-bg .overlay.active { opacity: 1; }
-    .industries > *:not(.industries-bg) { position: relative; z-index: 2; }
-    .industries .section-head { margin-bottom: 48px; }
-    .industries h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 700; color: var(--text-dark);
-      transition: color .4s;
-    }
-    .industries.active-hover h2,
-    .industries.active-hover .section-label,
-    .industries.active-hover .industry-item p { color: #fff; }
-    .industry-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
-      max-width: 1200px; margin: 0 auto;
-    }
-    @media (max-width: 640px) {
-      .industry-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-    .industry-item {
-      background: var(--white);
-      border-radius: 12px;
-      padding: 28px 8px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,.04);
-      cursor: pointer;
-      transition: transform .3s, box-shadow .3s, background .3s;
-    }
-    .industry-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,.12);
-      background: rgba(255,255,255,.95);
-    }
-    .industry-item .ind-icon {
-      font-size: 2rem; margin-bottom: 12px; display: block;
-    }
-    .industry-item h3 {
-      font-size: .85rem; font-weight: 700; color: var(--text-dark);
-      margin-bottom: 4px;
-    }
-    .industry-item p {
-      font-size: .65rem; color: #999; line-height: 1.8;
-    }
-
     /* ===== WORKS MARQUEE ===== */
     .works {
       padding: 120px 0;
@@ -443,7 +276,6 @@
       padding-bottom: 2px; transition: opacity .25s;
     }
     .works-more-link:hover { opacity: .7; }
-
     .marquee-wrap { overflow: hidden; margin-bottom: 24px; }
     .marquee-track {
       display: flex; gap: 20px;
@@ -475,8 +307,110 @@
     .work-card h3 { font-size: .9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
     .work-card .meta { font-size: .75rem; color: #aaa; }
 
+    /* ===== SERVICES OVERVIEW ===== */
+    .services-overview {
+      padding: 120px 32px;
+      background: var(--sand);
+    }
+    .services-overview .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .services-overview h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    .service-card .svc-icon {
+      display: block; margin-bottom: 16px;
+    }
+    .service-card h3 {
+      font-size: .9rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .service-card p {
+      font-size: .7rem; color: #999; line-height: 1.8;
+    }
+
+    /* ===== NEWS / INFORMATION ===== */
+    .news-section {
+      padding: 120px 32px;
+      background: var(--white);
+    }
+    .news-section .section-head {
+      text-align: center; margin-bottom: 48px;
+    }
+    .news-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+    .news-list {
+      max-width: 900px; margin: 0 auto;
+      list-style: none;
+    }
+    .news-item {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .news-item:first-child { border-top: 1px solid #eee; }
+    .news-date {
+      font-size: .8rem; color: var(--kaeru); font-weight: 700;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .news-cat {
+      display: inline-block;
+      background: var(--kaeru); color: var(--white);
+      padding: 2px 10px; border-radius: 4px;
+      font-size: .65rem; font-weight: 700;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .news-title a {
+      text-decoration: none; color: var(--text-dark);
+      font-size: .9rem; font-weight: 400;
+      transition: color .25s;
+    }
+    .news-title a:hover { color: var(--kaeru); }
+    .news-more {
+      text-align: center; margin-top: 32px;
+    }
+    .news-more a {
+      font-size: .85rem; color: var(--kaeru); text-decoration: none;
+      font-weight: 700; transition: opacity .25s;
+    }
+    .news-more a:hover { opacity: .7; }
+
     /* ===== STRENGTH (editorial layout) ===== */
     .strength-section { padding: 120px 32px; }
+    .strength-section.bg-sand { background: var(--sand); }
+    .strength-section .section-head {
+      text-align: center; margin-bottom: 80px;
+    }
+    .strength-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
     .strength-block {
       max-width: 1100px; margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
@@ -503,6 +437,57 @@
       font-size: .9rem; line-height: 2.1; font-weight: 300;
     }
 
+    /* ===== DIVISIONS ===== */
+    .divisions {
+      padding: 120px 32px;
+      background: var(--text-dark);
+      color: var(--white);
+    }
+    .divisions .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .divisions .section-label { color: rgba(255,255,255,.5); }
+    .divisions h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900;
+    }
+    .division-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .division-card {
+      position: relative;
+      border-radius: 10px; overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .division-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,.4);
+    }
+    .division-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .division-card .division-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,.1) 60%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px 16px;
+    }
+    .division-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem; font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .division-card p {
+      font-size: .7rem; opacity: .7; line-height: 1.6;
+    }
+
     /* ===== FLOW ===== */
     .flow { background: var(--white); padding: 120px 32px; }
     .flow .section-head {
@@ -514,14 +499,15 @@
       font-weight: 900; color: var(--text-dark);
     }
     .flow-steps {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
     .flow-step { text-align: center; position: relative; }
     .flow-step::after {
       content: ''; position: absolute; top: 28px; right: -16px;
       width: 24px; height: 1px; background: #ddd;
     }
+    .flow-step:nth-child(3n)::after { display: none; }
     .flow-step:last-child::after { display: none; }
     .flow-step .num {
       font-family: 'Noto Serif JP', serif;
@@ -613,73 +599,105 @@
     .cta-form .form-note {
       text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px;
     }
-    @media (max-width: 600px) {
-      .cta-form .form-grid { grid-template-columns: 1fr; }
-      .cta-form { padding: 28px 20px; }
+
+    /* ===== FAQ ===== */
+    .faq-section {
+      padding: 120px 32px;
+      background: var(--sand);
+    }
+    .faq-section .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .faq-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+    .faq-list {
+      max-width: 900px; margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+    }
+    .faq-item:first-child { border-top: 1px solid #ddd; }
+    .faq-q {
+      width: 100%; background: none; border: none;
+      padding: 20px 40px 20px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem; font-weight: 700; color: var(--text-dark);
+      text-align: left; cursor: pointer;
+      position: relative; line-height: 1.7;
+    }
+    .faq-q::before {
+      content: 'Q.';
+      color: var(--kaeru); font-weight: 700;
+      margin-right: 8px;
+    }
+    .faq-q::after {
+      content: '+';
+      position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+      font-size: 1.4rem; color: var(--kaeru);
+      transition: transform .3s;
+    }
+    .faq-item.open .faq-q::after {
+      content: '-';
+    }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s ease;
+    }
+    .faq-a-inner {
+      padding: 0 0 20px 28px;
+      font-size: .88rem; line-height: 2; color: var(--text);
+      font-weight: 300;
+    }
+    .faq-a-inner::before {
+      content: 'A.';
+      color: var(--kaeru); font-weight: 700;
+      margin-right: 8px;
     }
 
     /* ===== FOOTER ===== */
     .footer {
       background: var(--text-dark); color: rgba(255,255,255,.5);
-      padding: 48px 32px; text-align: center; font-size: .8rem;
+      padding: 60px 32px 40px; font-size: .8rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
     }
     .footer strong {
-      color: var(--white); font-size: .9rem; display: block; margin-bottom: 6px;
+      color: var(--white); font-size: 1rem; display: block; margin-bottom: 24px;
       font-family: 'Noto Serif JP', serif;
     }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .strength-block { grid-template-columns: 1fr; gap: 32px; }
-      .strength-block.reverse { direction: ltr; }
-      .flow-steps { grid-template-columns: 1fr 1fr; }
-      .flow-step::after { display: none; }
-      .service-panel { width: 300px; }
+    .office-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 24px;
+      margin-bottom: 32px;
     }
-    /* sp-only: スマホ専用改行 */
-    .sp-only { display: none; }
-
-    @media (max-width: 600px) {
-      .sp-only { display: inline; }
-      section { padding: 80px 20px; }
-      .flow-steps { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
-      .hero-content h1 { font-size: 1.6rem; }
-      .service-panel { width: 260px; }
-      .work-card { width: 280px; }
-
-      /* ヘッダー：CTAを小さく */
-      .header-inner { padding: 12px 16px; }
-      .header-cta { font-size: .7rem; padding: 8px 16px; }
-
-      /* サイドバー：スマホでは非表示 */
-      .side-cta { display: none !important; }
-
-      /* 業種カード：2列に */
-      .industry-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .industry-item { padding: 20px 8px; }
-      .industries { padding: 80px 20px; }
-
-      /* CTA見出し：スマホで少し小さく */
-      .cta-inner h2 { font-size: 1.15rem; }
-
-      /* サービスセクション見出し */
-      .services .section-head h2 { font-size: .95rem; }
-
-      /* 強みセクション本文 */
-      .strength-text p { font-size: .85rem; }
-      .strength-text h3 { font-size: 1.2rem; }
+    .office-grid span {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links {
+      display: flex; gap: 20px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .75rem; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: .72rem; color: rgba(255,255,255,.35);
     }
 
-    /* ===== HEADER HIDE + SIDE CTA ===== */
-    .header {
-      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
-    }
-    .header.hidden {
-      opacity: 0;
-      transform: translateY(-100%);
-      pointer-events: none;
-    }
-
+    /* ===== SIDE CTA ===== */
     .side-cta {
       position: fixed;
       left: 0; top: 50%;
@@ -795,11 +813,6 @@
     .form-note {
       text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
     }
-    @media (max-width: 600px) {
-      .side-cta.open .form-slide { width: 260px; }
-      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
-      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
-    }
 
     /* ===== ANIMATIONS ===== */
     .fade-up {
@@ -809,9 +822,68 @@
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fade-up.d1 { transition-delay: .1s; }
     .fade-up.d2 { transition-delay: .2s; }
+
+    /* ===== RESPONSIVE ===== */
+    .sp-only { display: none; }
+
+    @media (max-width: 1024px) {
+      .header-nav { display: none; }
+      .hamburger { display: block; }
+      .header-cta { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .strength-block { grid-template-columns: 1fr; gap: 32px; }
+      .strength-block.reverse { direction: ltr; }
+      .division-grid { grid-template-columns: repeat(3, 1fr); }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .division-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-steps { grid-template-columns: repeat(2, 1fr); }
+      .flow-step::after { display: none; }
+      .office-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .sp-only { display: inline; }
+      section { padding: 80px 20px; }
+      .hero-content h1 { font-size: 1.6rem; }
+      .work-card { width: 280px; }
+      .header-inner { padding: 12px 16px; }
+      .side-cta { display: none !important; }
+      .cta-form .form-grid { grid-template-columns: 1fr; }
+      .cta-form { padding: 28px 20px; }
+      .cta-inner h2 { font-size: 1.15rem; }
+      .strength-text p { font-size: .85rem; }
+      .strength-text h3 { font-size: 1.2rem; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .service-card { padding: 24px 12px; }
+      .division-grid { grid-template-columns: 1fr; }
+      .division-card { aspect-ratio: 16/9; }
+      .flow-steps { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
+      .office-grid { grid-template-columns: repeat(2, 1fr); }
+      .news-item { flex-wrap: wrap; gap: 8px; }
+      .faq-q { font-size: .85rem; }
+      .side-cta.open .form-slide { width: 260px; }
+      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
+      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
+    }
   </style>
 </head>
 <body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="https://kaeru.design/service">サービス</a>
+  <a href="https://kaeru.design/works">制作事例</a>
+  <a href="https://kaeru.design/division">事業紹介</a>
+  <a href="https://kaeru.design/company">企業情報</a>
+  <a href="https://kaeru.design/column">コラム</a>
+  <a href="https://kaeru.design/recruit">採用情報</a>
+  <a href="#contact" class="mobile-nav-cta">お見積り・お問い合わせ</a>
+</div>
 
 <!-- HEADER -->
 <header class="header" id="header">
@@ -820,11 +892,24 @@
       <svg class="logo-white" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#fff"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
       <svg class="logo-color" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#00b097"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
     </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="https://kaeru.design/service">サービス</a></li>
+        <li><a href="https://kaeru.design/works">制作事例</a></li>
+        <li><a href="https://kaeru.design/division">事業紹介</a></li>
+        <li><a href="https://kaeru.design/company">企業情報</a></li>
+        <li><a href="https://kaeru.design/column">コラム</a></li>
+        <li><a href="https://kaeru.design/recruit">採用情報</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
     <a href="#contact" class="header-cta">お見積り・お問い合わせ</a>
   </div>
 </header>
 
-<!-- HERO (full-bleed photo) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg">
     <img src="img/chocozap-hero.jpg" alt="chocoZAP 外観">
@@ -847,14 +932,14 @@
     <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="H&F BELX 札幌">
   </div>
   <div class="hero-content">
-    <p class="lead"><span style="white-space:nowrap">カエル・デザイン・プロジェクト株式会社</span> ／ <span style="white-space:nowrap">全国13拠点の空間デザイン会社</span></p>
+    <p class="lead"><span style="white-space:nowrap">カエル・デザイン・プロジェクト株式会社</span> ／ <span style="white-space:nowrap">全国15拠点の空間デザイン会社</span></p>
     <h1>
-      空間の「こうしたい」を<br>
-      <em>まるっと、おまかせ。</em>
+      商空間を<br>
+      <em>トータルプロデュース。</em>
     </h1>
-    <p class="sub">空間デザインから設計、ロゴ看板、施工管理、修繕まで。ワンストップで完結します。</p>
+    <p class="sub">コンサルティングから設計、施工管理、看板、ロゴまで。ワンストップで対応します。</p>
     <div class="hero-ctas">
-      <a href="#contact" class="btn-hero">まずは相談してみる</a>
+      <a href="#contact" class="btn-hero">お問い合わせ</a>
       <a href="#works" class="btn-hero-sub">制作事例を見る</a>
     </div>
   </div>
@@ -868,9 +953,8 @@
       <p class="section-label">WORKS</p>
       <h2>制作事例</h2>
     </div>
-    <a href="https://kaeru.design/works" class="works-more-link" target="_blank" rel="noopener">すべて見る →</a>
+    <a href="https://kaeru.design/works" class="works-more-link" target="_blank" rel="noopener">すべて見る &rarr;</a>
   </div>
-
   <div class="marquee-wrap">
     <div class="marquee-track" id="m1">
       <a href="https://kaeru.design/works_detail?id=76" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・北海道</span><h3>chocoZAP 新さっぽろ青葉町店様</h3></div></a>
@@ -899,157 +983,100 @@
   </div>
 </section>
 
-<!-- CONCEPT -->
-<div class="concept fade-up">
-  <h2>
-    設計も、施工管理も、修繕も。<br>
-    <em>ぜんぶ、一社で。</em>
-  </h2>
-  <p>
-    コンサルティングからデザイン設計、施工管理、看板、ロゴまでワンストップで対応。
-  </p>
-  <p style="margin-top:1.5em;">
-    窓口がひとつだから、伝言ゲームにならない。<br>
-    仕上がりがブレない。<br>
-    <strong>お客様は、理想を伝えるだけ。</strong>
-  </p>
-</div>
-
-<!-- SERVICES (connected flow) -->
-<section class="services">
-  <div class="services-bg">
-    <img src="img/team.jpg" alt="" loading="lazy">
-    <img src="img/worker1.jpg" alt="" loading="lazy">
-    <img src="img/worker2.jpg" alt="" loading="lazy">
-    <img src="img/designer.jpg" alt="" loading="lazy">
-    <img src="img/sales.jpg" alt="" loading="lazy">
-    <div class="overlay"></div>
-  </div>
+<!-- SERVICES OVERVIEW -->
+<section class="services-overview fade-up">
   <div class="section-head">
-    <p class="section-label">SERVICES</p>
-    <h2>ぜんぶ、<br class="sp-only"><span style="white-space:nowrap">カエル・デザイン・プロジェクトに</span><br class="sp-only">おまかせ。</h2>
+    <p class="section-label">SERVICE</p>
+    <h2>サービスの一例</h2>
   </div>
-  <div class="service-flow">
-    <div class="service-step">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </div>
-      <span class="step-arrow">▶</span>
+  <div class="service-grid">
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
       <h3>開発コンサルタント</h3>
       <p>物件探し・出店計画</p>
-    </div>
-    <div class="service-step">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg>
-      </div>
-      <span class="step-arrow">▶</span>
-      <h3>設計・内装デザイン</h3>
+    </a>
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/></svg></span>
+      <h3>内装工事</h3>
+      <p>オフィス・店舗の新設移転</p>
+    </a>
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+      <h3>デザイン・設計</h3>
       <p>コンセプト設計・図面作成</p>
-    </div>
-    <div class="service-step">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
-      </div>
-      <span class="step-arrow">▶</span>
+    </a>
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg></span>
+      <h3>不動産企画</h3>
+      <p>物件紹介・条件交渉</p>
+    </a>
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
+      <h3>設備・営繕</h3>
+      <p>補修・改装・メンテナンス</p>
+    </a>
+    <a href="https://kaeru.design/service/" class="service-card">
+      <span class="svc-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></span>
       <h3>ロゴ・看板</h3>
       <p>サイン計画・ブランディング</p>
-    </div>
-    <div class="service-step">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      </div>
-      <span class="step-arrow">▶</span>
-      <h3>施工管理</h3>
-      <p>品質・工程・コスト管理</p>
-    </div>
-    <div class="service-step">
-      <div class="step-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-      </div>
-      <h3>修繕・リニューアル</h3>
-      <p>補修・改装・イメージ刷新</p>
-    </div>
+    </a>
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<section class="industries fade-up" id="industries-section">
-  <div class="industries-bg">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2025/1224/17665534691023778110.jpg" alt="">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2025/0904/17569548851935264619.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2025/1121/17636923071211400307.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2024/0708/17204054141556526373.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/1215/1765781734143778429.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/0606/1749183784573212290.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2026/0220/1771553718991059597.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2026/0109/176793853797061852.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1204/17648240301669135685.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="">
-    <div class="overlay"></div>
-  </div>
+<!-- NEWS / INFORMATION -->
+<section class="news-section fade-up">
   <div class="section-head">
-    <p class="section-label">INDUSTRIES</p>
-    <h2>あらゆる業種の空間づくりに対応。</h2>
+    <p class="section-label">INFORMATION</p>
+    <h2>お知らせ</h2>
   </div>
-  <div class="industry-grid">
-    <div class="industry-item" data-industry="飲食店">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-      <h3>飲食店</h3>
-      <p>カフェ・レストラン<br>居酒屋</p>
-    </div>
-    <div class="industry-item" data-industry="クリニック">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-      <h3>クリニック</h3>
-      <p>医院・歯科<br>美容クリニック</p>
-    </div>
-    <div class="industry-item" data-industry="理美容室">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v12"/><path d="M18 9v3a3 3 0 0 1-3 3h0"/><path d="M12 12l-6 9"/></svg></span>
-      <h3>理美容室</h3>
-      <p>ヘアサロン<br>ネイル・エステ</p>
-    </div>
-    <div class="industry-item" data-industry="小売・物販">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-      <h3>小売・物販</h3>
-      <p>アパレル・雑貨<br>専門店</p>
-    </div>
-    <div class="industry-item" data-industry="フィットネス">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></span>
-      <h3>フィットネス</h3>
-      <p>ジム・ヨガ<br>ピラティス</p>
-    </div>
-    <div class="industry-item" data-industry="オフィス">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg></span>
-      <h3>オフィス</h3>
-      <p>コワーキング<br>企業オフィス</p>
-    </div>
+  <ul class="news-list">
+    <li class="news-item">
+      <span class="news-date">2026.01.05</span>
+      <span class="news-cat">お知らせ</span>
+      <span class="news-title"><a href="https://kaeru.design/column">2026年 新年のご挨拶</a></span>
+    </li>
+    <li class="news-item">
+      <span class="news-date">2025.12.15</span>
+      <span class="news-cat">お知らせ</span>
+      <span class="news-title"><a href="https://kaeru.design/column">年末年始のお知らせ</a></span>
+    </li>
+    <li class="news-item">
+      <span class="news-date">2025.07.05</span>
+      <span class="news-cat">お知らせ</span>
+      <span class="news-title"><a href="https://kaeru.design/column">「カエルの内装建築コラム」連載開始のお知らせ</a></span>
+    </li>
+    <li class="news-item">
+      <span class="news-date">2025.03.31</span>
+      <span class="news-cat">お知らせ</span>
+      <span class="news-title"><a href="https://kaeru.design/column">札幌オフィス増床移転のお知らせ</a></span>
+    </li>
+  </ul>
+  <div class="news-more">
+    <a href="https://kaeru.design/column">もっと見る &rarr;</a>
   </div>
 </section>
 
-<!-- STRENGTHS (editorial: photo + text) -->
-<section class="strength-section">
+<!-- COMPANY PHILOSOPHY -->
+<section class="strength-section bg-sand">
+  <div class="section-head fade-up">
+    <p class="section-label">ABOUT</p>
+    <h2>What about K.D.P?</h2>
+  </div>
   <div class="strength-block fade-up">
     <div class="strength-photo">
-      <img src="img/staff-onestop.jpg" alt="ワンストップ対応" loading="lazy">
+      <img src="img/team.jpg" alt="ワンストップ対応" loading="lazy">
     </div>
     <div class="strength-text">
-      <h3>窓口ひとつで、ぜんぶ完結。</h3>
+      <h3>ワンストップ対応で、窓口ひとつ。</h3>
       <p>設計から施工管理まで一貫して担当するから、「言った・言わない」が起きません。お客様の時間と手間をとことん減らし、イメージ通りの空間を実現します。</p>
     </div>
   </div>
   <div class="strength-block reverse fade-up">
     <div class="strength-photo">
-      <img src="img/staff-nationwide.jpg" alt="全国対応" loading="lazy">
+      <img src="img/staff-nationwide.jpg" alt="全国15拠点" loading="lazy">
     </div>
     <div class="strength-text">
-      <h3>北海道から沖縄まで、<br>全国13拠点。</h3>
+      <h3>北海道から沖縄まで、全国15拠点。</h3>
       <p>地元の事情がわかるスタッフが対応。遠方でも品質は落としません。チェーン展開の多店舗案件もまとめておまかせください。</p>
     </div>
   </div>
@@ -1064,32 +1091,87 @@
   </div>
 </section>
 
+<!-- DIVISIONS -->
+<section class="divisions fade-up">
+  <div class="section-head">
+    <p class="section-label">DIVISION</p>
+    <h2>事業紹介</h2>
+  </div>
+  <div class="division-grid">
+    <div class="division-card">
+      <img src="img/division_interior.jpg" alt="内装デザイン・施工" loading="lazy">
+      <div class="division-overlay">
+        <h3>内装デザイン・施工</h3>
+        <p>店舗・オフィスの空間づくり</p>
+      </div>
+    </div>
+    <div class="division-card">
+      <img src="img/division_electric.jpg" alt="電気・設備工事" loading="lazy">
+      <div class="division-overlay">
+        <h3>電気・設備工事</h3>
+        <p>安全で快適な環境を支える</p>
+      </div>
+    </div>
+    <div class="division-card">
+      <img src="img/division_estate.jpg" alt="不動産事業" loading="lazy">
+      <div class="division-overlay">
+        <h3>不動産事業</h3>
+        <p>出店用地の企画・紹介</p>
+      </div>
+    </div>
+    <div class="division-card">
+      <img src="img/division_creative.jpg" alt="クリエイティブ" loading="lazy">
+      <div class="division-overlay">
+        <h3>クリエイティブ</h3>
+        <p>Web・グラフィック制作</p>
+      </div>
+    </div>
+    <div class="division-card">
+      <img src="img/division_planning.jpg" alt="企画・コワーキング" loading="lazy">
+      <div class="division-overlay">
+        <h3>企画・コワーキング</h3>
+        <p>新しい働き方の空間を提案</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FLOW -->
 <section class="flow fade-up">
   <div class="section-head">
     <p class="section-label">FLOW</p>
-    <h2>ご相談から完成までの流れ</h2>
+    <h2>完成までの流れ</h2>
   </div>
   <div class="flow-steps">
     <div class="flow-step">
       <div class="num">01</div>
       <h3>ご相談</h3>
-      <p>ご要望・予算を<br>ヒアリング</p>
+      <p>ご要望をヒアリング</p>
     </div>
     <div class="flow-step">
       <div class="num">02</div>
+      <h3>現地調査</h3>
+      <p>物件の確認・採寸</p>
+    </div>
+    <div class="flow-step">
+      <div class="num">03</div>
       <h3>ご提案</h3>
       <p>コンセプトと<br>デザインプランをご提示</p>
     </div>
     <div class="flow-step">
-      <div class="num">03</div>
-      <h3>設計・施工管理</h3>
+      <div class="num">04</div>
+      <h3>設計・施工</h3>
       <p>同じチームが<br>一貫して管理</p>
     </div>
     <div class="flow-step">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <h3>お引き渡し</h3>
-      <p>アフターサポートも<br>万全</p>
+      <p>アフターサポートも万全</p>
+    </div>
+    <div class="flow-step">
+      <div class="num">06</div>
+      <h3>修繕・改装</h3>
+      <p>長期的なパートナーとして</p>
     </div>
   </div>
 </section>
@@ -1109,7 +1191,7 @@
             <input type="text" name="name" required placeholder="山田 太郎">
           </div>
           <div class="form-group">
-            <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+            <label>会社名 <span style="font-weight:400;font-size:.65rem;color:#888">個人のお客様は入力不要です</span></label>
             <input type="text" name="company" placeholder="株式会社〇〇">
           </div>
           <div class="form-group">
@@ -1134,14 +1216,89 @@
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-head fade-up">
+    <p class="section-label">FAQ</p>
+    <h2>よくあるご質問</h2>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <button class="faq-q">初回の相談に準備するものはありますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">特に準備は不要です。ご要望やイメージがあればお伝えください。物件情報や参考写真があるとスムーズです。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">テナントが決まっていない段階でも相談できますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">はい、物件探しからお手伝いできます。出店エリアや業種に合った物件をご紹介いたします。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">営業中のまま改装工事はできますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">可能です。営業への影響を最小限にする工程を組みます。夜間・休日工事にも対応しています。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">デザインのイメージをうまく伝えられるか不安です。</button>
+      <div class="faq-a"><div class="faq-a-inner">ご安心ください。参考画像やキーワードから、プロがイメージを具体化します。CGパースでの確認も可能です。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">対応エリアはどこですか？</button>
+      <div class="faq-a"><div class="faq-a-inner">全国15拠点で対応しています。北海道から沖縄まで、地域に精通したスタッフがサポートします。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">他社との違いは何ですか？</button>
+      <div class="faq-a"><div class="faq-a-inner">設計から施工管理まで一社で完結するワンストップ体制が最大の強みです。窓口がひとつなので、伝言ゲームが起きません。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">CGパースでの完成イメージ確認はできますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">はい、3Dパースで完成イメージを事前にご確認いただけます。修正も柔軟に対応します。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">物件探しも手伝ってもらえますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">はい、不動産事業部と連携して、ご要望に合った物件をお探しします。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">見積りは無料ですか？</button>
+      <div class="faq-a"><div class="faq-a-inner">はい、ご相談・お見積りは無料です。お気軽にお問い合わせください。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">修繕やメンテナンスもお願いできますか？</button>
+      <div class="faq-a"><div class="faq-a-inner">はい、お引き渡し後のアフターサポートも行っています。長期的なパートナーとしてサポートします。</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer">
-  <strong>カエル・デザイン・プロジェクト株式会社</strong>
-  <p>本社：北海道小樽市新光2-21-17</p>
-  <p style="margin-top:12px; opacity:.4">&copy; Kaeru Design Project Co., Ltd.</p>
+  <div class="footer-inner">
+    <strong>カエル・デザイン・プロジェクト株式会社</strong>
+    <div class="office-grid">
+      <span>本社（小樽）</span>
+      <span>札幌</span>
+      <span>仙台</span>
+      <span>さいたま</span>
+      <span>東京（新宿）</span>
+      <span>東京（渋谷）</span>
+      <span>東京（品川）</span>
+      <span>横浜</span>
+      <span>川崎</span>
+      <span>名古屋</span>
+      <span>大阪（梅田）</span>
+      <span>大阪（心斎橋）</span>
+      <span>岡山</span>
+      <span>福岡</span>
+      <span>熊本</span>
+      <span>沖縄</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="https://kaeru.design/privacy">プライバシーポリシー</a>
+        <a href="https://kaeru.design/sitemap">サイトマップ</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Kaeru Design Project Co., Ltd.</span>
+    </div>
+  </div>
 </footer>
 
-<!-- SIDE CTA (appears after scroll, form expands from it) -->
+<!-- SIDE CTA -->
 <div class="side-cta" id="sideCta">
   <button class="side-cta-btn" id="sideCtaBtn">お見積り・お問い合わせ</button>
   <div class="form-slide" id="formSlide">
@@ -1177,7 +1334,7 @@
 </div>
 
 <script>
-// Header: transparent → white on scroll, hide after works section
+// Header: transparent -> white on scroll, hide after works section
 const header = document.getElementById('header');
 const sideCta = document.getElementById('sideCta');
 const worksSection = document.getElementById('works');
@@ -1188,11 +1345,8 @@ function updateHeaderState() {
   const worksTop = worksSection ? worksSection.offsetTop : 999999;
   const contactTop = contactSection ? contactSection.offsetTop : 999999;
 
-  // Scrolled past 80px → white bg
   header.classList.toggle('scrolled', scrollY > 80 && scrollY < worksTop);
 
-  // Past works section → hide header, show side CTA
-  // But hide side CTA when reaching contact section
   const viewBottom = scrollY + window.innerHeight;
   if (scrollY > worksTop - 100 && viewBottom < contactTop) {
     header.classList.add('hidden');
@@ -1220,53 +1374,15 @@ const obs = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-// Industries hover background
-(function(){
-  const section = document.getElementById('industries-section');
-  const allBgImgs = section.querySelectorAll('.industries-bg img');
-  const overlay = section.querySelector('.industries-bg .overlay');
-  const items = section.querySelectorAll('.industry-item');
-  let slideTimer = null;
-  let currentIdx = 0;
-
-  function startSlideshow(key) {
-    const imgs = [...allBgImgs].filter(img => img.dataset.industry === key);
-    if (!imgs.length) return;
-    currentIdx = 0;
-    allBgImgs.forEach(img => img.classList.remove('active'));
-    imgs[0].classList.add('active');
-    slideTimer = setInterval(() => {
-      imgs[currentIdx].classList.remove('active');
-      currentIdx = (currentIdx + 1) % imgs.length;
-      imgs[currentIdx].classList.add('active');
-    }, 2500);
-  }
-
-  function stopSlideshow() {
-    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
-    allBgImgs.forEach(img => img.classList.remove('active'));
-  }
-
-  items.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      section.classList.add('active-hover');
-      overlay.classList.add('active');
-      startSlideshow(item.dataset.industry);
-    });
-    item.addEventListener('mouseleave', () => {
-      section.classList.remove('active-hover');
-      overlay.classList.remove('active');
-      stopSlideshow();
-    });
-  });
-})();
-
-// Smooth scroll
+// Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
     const t = document.querySelector(a.getAttribute('href'));
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Close mobile nav if open
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburgerBtn').classList.remove('open');
   });
 });
 
@@ -1285,12 +1401,33 @@ document.addEventListener('click', e => {
   }
 });
 
-// href="#contact" links scroll to bottom CTA section (which now has inline form)
-document.querySelectorAll('a[href="#contact"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.getElementById('contact');
-    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(fi => {
+      fi.classList.remove('open');
+      fi.querySelector('.faq-a').style.maxHeight = null;
+    });
+
+    // Open clicked (if was closed)
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
   });
 });
 </script>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>店舗デザイン・内装設計なら｜カエル・デザイン・プロジェクト</title>
-  <meta name="description" content="設計から施工までワンストップ対応。全国13拠点で店舗・オフィスの空間デザインを手がけるカエル・デザイン・プロジェクト。">
+  <title>クリニック・医療施設専門の内装デザイン｜カエル・デザイン・プロジェクト</title>
+  <meta name="description" content="美容クリニック・歯科・内科・脱毛サロンの内装設計専門。患者様の不安を和らげ、清潔感と温かみを両立する空間をワンストップで。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -82,37 +82,23 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%; object-fit: cover;
       opacity: 0;
-      animation: heroFade 90s infinite;
+      animation: heroFade 20s infinite;
     }
-    .hero-bg img:nth-child(1) { animation: heroFadeFirst 90s infinite; animation-delay: 0s; }
+    .hero-bg img:nth-child(1) { animation: heroFadeFirst 20s infinite; animation-delay: 0s; }
     .hero-bg img:nth-child(2) { animation-delay: 5s; }
     .hero-bg img:nth-child(3) { animation-delay: 10s; }
     .hero-bg img:nth-child(4) { animation-delay: 15s; }
-    .hero-bg img:nth-child(5) { animation-delay: 20s; }
-    .hero-bg img:nth-child(6) { animation-delay: 25s; }
-    .hero-bg img:nth-child(7) { animation-delay: 30s; }
-    .hero-bg img:nth-child(8) { animation-delay: 35s; }
-    .hero-bg img:nth-child(9) { animation-delay: 40s; }
-    .hero-bg img:nth-child(10) { animation-delay: 45s; }
-    .hero-bg img:nth-child(11) { animation-delay: 50s; }
-    .hero-bg img:nth-child(12) { animation-delay: 55s; }
-    .hero-bg img:nth-child(13) { animation-delay: 60s; }
-    .hero-bg img:nth-child(14) { animation-delay: 65s; }
-    .hero-bg img:nth-child(15) { animation-delay: 70s; }
-    .hero-bg img:nth-child(16) { animation-delay: 75s; }
-    .hero-bg img:nth-child(17) { animation-delay: 80s; }
-    .hero-bg img:nth-child(18) { animation-delay: 85s; }
     @keyframes heroFadeFirst {
       0%   { opacity: 1; transform: scale(1); }
-      4.7% { opacity: 1; }
-      5.6% { opacity: 0; transform: scale(1.05); }
+      21%  { opacity: 1; }
+      25%  { opacity: 0; transform: scale(1.05); }
       100% { opacity: 0; }
     }
     @keyframes heroFade {
       0%   { opacity: 0; transform: scale(1); }
-      0.8% { opacity: 1; }
-      4.7% { opacity: 1; }
-      5.6% { opacity: 0; transform: scale(1.05); }
+      4%   { opacity: 1; }
+      21%  { opacity: 1; }
+      25%  { opacity: 0; transform: scale(1.05); }
       100% { opacity: 0; }
     }
     .hero-bg::after {
@@ -350,75 +336,61 @@
       }
     }
 
-    /* ===== INDUSTRIES ===== */
-    .industries {
+    /* ===== ISSUES (clinic pain points) ===== */
+    .issues {
       position: relative;
       padding: 100px 32px;
       text-align: center;
+      background: var(--sand);
       overflow: hidden;
     }
-    .industries-bg {
-      position: absolute; inset: 0;
-      background: var(--sand);
-      transition: background .3s;
-    }
-    .industries-bg img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      opacity: 0;
-      transition: opacity .6s ease;
-    }
-    .industries-bg img.active { opacity: 1; }
-    .industries-bg .overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.55);
-      opacity: 0;
-      transition: opacity .6s ease;
-    }
-    .industries-bg .overlay.active { opacity: 1; }
-    .industries > *:not(.industries-bg) { position: relative; z-index: 2; }
-    .industries .section-head { margin-bottom: 48px; }
-    .industries h2 {
+    .issues .section-head { margin-bottom: 48px; }
+    .issues h2 {
       font-family: 'Noto Serif JP', serif;
       font-size: clamp(1.3rem, 2.5vw, 1.8rem);
       font-weight: 700; color: var(--text-dark);
-      transition: color .4s;
     }
-    .industries.active-hover h2,
-    .industries.active-hover .section-label,
-    .industries.active-hover .industry-item p { color: #fff; }
-    .industry-grid {
+    .issue-grid {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 20px;
-      max-width: 1200px; margin: 0 auto;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px; margin: 0 auto;
     }
-    @media (max-width: 640px) {
-      .industry-grid { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) {
+      .issue-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .industry-item {
+    @media (max-width: 560px) {
+      .issue-grid { grid-template-columns: 1fr; }
+    }
+    .issue-item {
       background: var(--white);
       border-radius: 12px;
-      padding: 28px 8px;
-      text-align: center;
+      padding: 32px 24px;
+      text-align: left;
       box-shadow: 0 2px 12px rgba(0,0,0,.04);
-      cursor: pointer;
-      transition: transform .3s, box-shadow .3s, background .3s;
+      transition: transform .3s, box-shadow .3s;
+      display: flex; flex-direction: column; gap: 12px;
     }
-    .industry-item:hover {
+    .issue-item:hover {
       transform: translateY(-4px);
       box-shadow: 0 8px 24px rgba(0,0,0,.12);
-      background: rgba(255,255,255,.95);
     }
-    .industry-item .ind-icon {
-      font-size: 2rem; margin-bottom: 12px; display: block;
+    .issue-item .iss-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--kaeru-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
-    .industry-item h3 {
-      font-size: .85rem; font-weight: 700; color: var(--text-dark);
-      margin-bottom: 4px;
+    .issue-item .iss-icon svg { width: 24px; height: 24px; }
+    .issue-item h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem; font-weight: 700; color: var(--text-dark);
+      line-height: 1.6;
     }
-    .industry-item p {
-      font-size: .65rem; color: #999; line-height: 1.8;
+    .issue-item p {
+      font-size: .82rem; color: #777; line-height: 1.9;
+      font-weight: 300;
     }
 
     /* ===== WORKS MARQUEE ===== */
@@ -654,10 +626,8 @@
       /* サイドバー：スマホでは非表示 */
       .side-cta { display: none !important; }
 
-      /* 業種カード：2列に */
-      .industry-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .industry-item { padding: 20px 8px; }
-      .industries { padding: 80px 20px; }
+      /* お悩みカード：1列 */
+      .issues { padding: 80px 20px; }
 
       /* CTA見出し：スマホで少し小さく */
       .cta-inner h2 { font-size: 1.15rem; }
@@ -827,32 +797,18 @@
 <!-- HERO (full-bleed photo) -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="img/chocozap-hero.jpg" alt="chocoZAP 外観">
-    <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="chocoZAP 新宿三丁目メディカル">
     <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="ルミナスビューティークリニック">
-    <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="b-monster 立川スタジオ">
-    <img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="Thoth Pte.Ltd.">
-    <img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="CRONOS">
-    <img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="アシックス商事">
-    <img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="ミキハウス ニセコ">
-    <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="メンズクリア 徳島">
-    <img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="ACCEA CAFE 渋谷店">
-    <img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="ACCEA CAFE 堺筋長堀橋店">
-    <img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="BEYOND 大門・浜松町店">
-    <img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="オールドルーキーカフェ">
-    <img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="プラージュ 住道店">
-    <img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="Pilates KASANE">
-    <img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="やきとり日本一">
-    <img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="勉強カフェ 札幌">
-    <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="H&F BELX 札幌">
+    <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="新宿三丁目メディカルクリニック">
+    <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="メンズクリア 徳島駅前店">
+    <img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="理容プラージュ・美容プラージュ 住道店">
   </div>
   <div class="hero-content">
-    <p class="lead"><span style="white-space:nowrap">カエル・デザイン・プロジェクト株式会社</span> ／ <span style="white-space:nowrap">全国13拠点の空間デザイン会社</span></p>
+    <p class="lead"><span style="white-space:nowrap">美容クリニック・歯科・内科・美容皮膚科専門</span> ／ <span style="white-space:nowrap">カエル・デザイン・プロジェクト</span></p>
     <h1>
-      空間の「こうしたい」を<br>
-      <em>まるっと、おまかせ。</em>
+      患者様に選ばれる医院を、<br>
+      <em>空間から、まるっと。</em>
     </h1>
-    <p class="sub">空間デザインから設計、ロゴ看板、施工管理、修繕まで。ワンストップで完結します。</p>
+    <p class="sub">清潔感と温かみ、プライバシーと動線。医療施設ならではの設計ノウハウでワンストップ対応。</p>
     <div class="hero-ctas">
       <a href="#contact" class="btn-hero">まずは相談してみる</a>
       <a href="#works" class="btn-hero-sub">制作事例を見る</a>
@@ -866,35 +822,17 @@
   <div class="section-head">
     <div>
       <p class="section-label">WORKS</p>
-      <h2>制作事例</h2>
+      <h2>クリニック・医療施設の制作事例</h2>
     </div>
     <a href="https://kaeru.design/works" class="works-more-link" target="_blank" rel="noopener">すべて見る →</a>
   </div>
 
   <div class="marquee-wrap">
     <div class="marquee-track" id="m1">
-      <a href="https://kaeru.design/works_detail?id=76" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・北海道</span><h3>chocoZAP 新さっぽろ青葉町店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=99" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy"><div class="info"><span class="tag">クリニック・東京</span><h3>新宿三丁目メディカルクリニック様</h3></div></a>
       <a href="https://kaeru.design/works_detail?id=108" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容クリニック・群馬</span><h3>ルミナスビューティークリニック様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=146" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・東京</span><h3>b-monster 立川スタジオ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=131" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>Thoth Pte.Ltd.様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=134" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・栃木</span><h3>CRONOS様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=109" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>アシックス商事株式会社様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=147" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・北海道</span><h3>ミキハウス ニセコビレッジ POP UPショップ様</h3></div></a>
+      <a href="https://kaeru.design/works_detail?id=99" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy"><div class="info"><span class="tag">クリニック・東京</span><h3>新宿三丁目メディカルクリニック様</h3></div></a>
       <a href="https://kaeru.design/works_detail?id=58" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="" loading="lazy"><div class="info"><span class="tag">メンズサロン・徳島</span><h3>メンズクリア 徳島駅前店様</h3></div></a>
-    </div>
-  </div>
-  <div class="marquee-wrap row-reverse">
-    <div class="marquee-track" id="m2">
-      <a href="https://kaeru.design/works_detail?id=133" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>ACCEA CAFE 渋谷店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=142" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・大阪</span><h3>ACCEA CAFE 堺筋長堀橋店・梅田店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=132" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="" loading="lazy"><div class="info"><span class="tag">パーソナルジム・東京</span><h3>BEYOND 大門・浜松町店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=148" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>喫煙喫茶オールドルーキーカフェ様</h3></div></a>
       <a href="https://kaeru.design/works_detail?id=135" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容室・大阪</span><h3>理容プラージュ・美容プラージュ 住道店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=137" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ピラティス・千葉</span><h3>Pilates KASANE おゆみ野店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=143" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="" loading="lazy"><div class="info"><span class="tag">飲食・北海道</span><h3>やきとり日本一様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=149" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="" loading="lazy"><div class="info"><span class="tag">学習スペース・北海道</span><h3>勉強カフェ 札幌琴似スタジオ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=123" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・北海道</span><h3>H&amp;F BELX 札幌ステラプレイス店様</h3></div></a>
     </div>
   </div>
 </section>
@@ -902,16 +840,17 @@
 <!-- CONCEPT -->
 <div class="concept fade-up">
   <h2>
-    設計も、施工管理も、修繕も。<br>
-    <em>ぜんぶ、一社で。</em>
+    第一印象で、<br>
+    <em>ファンになる医院へ。</em>
   </h2>
   <p>
-    コンサルティングからデザイン設計、施工管理、看板、ロゴまでワンストップで対応。
+    患者様は、待合室で不安を抱えています。<br>
+    「ここは信頼できる医院だろうか」と、空間から判断されています。
   </p>
   <p style="margin-top:1.5em;">
-    窓口がひとつだから、伝言ゲームにならない。<br>
-    仕上がりがブレない。<br>
-    <strong>お客様は、理想を伝えるだけ。</strong>
+    カエル・デザイン・プロジェクトは、ルミナスビューティークリニック、新宿三丁目メディカル、メンズクリアなど<br>
+    年間多数のクリニックを手がけるプロ集団。<br>
+    <strong>「また来たい」と思える医院を、空間から設計します。</strong>
   </p>
 </div>
 
@@ -936,7 +875,7 @@
       </div>
       <span class="step-arrow">▶</span>
       <h3>開発コンサルタント</h3>
-      <p>物件探し・出店計画</p>
+      <p>物件探し・開業計画</p>
     </div>
     <div class="service-step">
       <div class="step-icon">
@@ -944,7 +883,7 @@
       </div>
       <span class="step-arrow">▶</span>
       <h3>設計・内装デザイン</h3>
-      <p>コンセプト設計・図面作成</p>
+      <p>動線・衛生設計・図面作成</p>
     </div>
     <div class="service-step">
       <div class="step-icon">
@@ -972,63 +911,54 @@
   </div>
 </section>
 
-<!-- INDUSTRIES -->
-<section class="industries fade-up" id="industries-section">
-  <div class="industries-bg">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2025/1224/17665534691023778110.jpg" alt="">
-    <img data-industry="飲食店" src="https://kaeru.design//common/dat/2025/0904/17569548851935264619.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2025/1121/17636923071211400307.jpg" alt="">
-    <img data-industry="クリニック" src="https://kaeru.design//common/dat/2024/0708/17204054141556526373.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/1215/1765781734143778429.jpg" alt="">
-    <img data-industry="理美容室" src="https://kaeru.design//common/dat/2025/0606/1749183784573212290.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2026/0220/1771553718991059597.jpg" alt="">
-    <img data-industry="小売・物販" src="https://kaeru.design//common/dat/2026/0109/176793853797061852.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="">
-    <img data-industry="フィットネス" src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1204/17648240301669135685.jpg" alt="">
-    <img data-industry="オフィス" src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="">
-    <div class="overlay"></div>
-  </div>
+<!-- ISSUES (clinic pain points) -->
+<section class="issues fade-up" id="issues-section">
   <div class="section-head">
-    <p class="section-label">INDUSTRIES</p>
-    <h2>あらゆる業種の空間づくりに対応。</h2>
+    <p class="section-label">ISSUES</p>
+    <h2>こんなお悩み、ありませんか？</h2>
   </div>
-  <div class="industry-grid">
-    <div class="industry-item" data-industry="飲食店">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
-      <h3>飲食店</h3>
-      <p>カフェ・レストラン<br>居酒屋</p>
+  <div class="issue-grid">
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.09 6.26L20 9.27l-5 4.87L16.18 21 12 17.77 7.82 21 9 14.14l-5-4.87 5.91-1.01L12 2z"/></svg>
+      </span>
+      <h3>清潔感と温かみ</h3>
+      <p>病院感が強すぎる／安っぽい印象になってしまう。</p>
     </div>
-    <div class="industry-item" data-industry="クリニック">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
-      <h3>クリニック</h3>
-      <p>医院・歯科<br>美容クリニック</p>
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </span>
+      <h3>プライバシー設計</h3>
+      <p>患者動線が交錯し、他の方と顔が合ってしまう。</p>
     </div>
-    <div class="industry-item" data-industry="理美容室">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M6 9v12"/><path d="M18 9v3a3 3 0 0 1-3 3h0"/><path d="M12 12l-6 9"/></svg></span>
-      <h3>理美容室</h3>
-      <p>ヘアサロン<br>ネイル・エステ</p>
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+      </span>
+      <h3>医療基準への対応</h3>
+      <p>衛生・消防・医療法など法令遵守の設計が必要。</p>
     </div>
-    <div class="industry-item" data-industry="小売・物販">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span>
-      <h3>小売・物販</h3>
-      <p>アパレル・雑貨<br>専門店</p>
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </span>
+      <h3>待合室の不安軽減</h3>
+      <p>患者が緊張する空間。もっとリラックスできる工夫を。</p>
     </div>
-    <div class="industry-item" data-industry="フィットネス">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></span>
-      <h3>フィットネス</h3>
-      <p>ジム・ヨガ<br>ピラティス</p>
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      </span>
+      <h3>音・匂い対策</h3>
+      <p>診療音・薬品臭が待合室に漏れないよう遮断したい。</p>
     </div>
-    <div class="industry-item" data-industry="オフィス">
-      <span class="ind-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg></span>
-      <h3>オフィス</h3>
-      <p>コワーキング<br>企業オフィス</p>
+    <div class="issue-item">
+      <span class="iss-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </span>
+      <h3>ブランディング統合</h3>
+      <p>ロゴ・サイン・WEBサイトまで一貫性を持たせたい。</p>
     </div>
   </div>
 </section>
@@ -1037,29 +967,29 @@
 <section class="strength-section">
   <div class="strength-block fade-up">
     <div class="strength-photo">
-      <img src="img/staff-onestop.jpg" alt="ワンストップ対応" loading="lazy">
+      <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="医療施設専門のノウハウ" loading="lazy">
     </div>
     <div class="strength-text">
-      <h3>窓口ひとつで、ぜんぶ完結。</h3>
-      <p>設計から施工管理まで一貫して担当するから、「言った・言わない」が起きません。お客様の時間と手間をとことん減らし、イメージ通りの空間を実現します。</p>
+      <h3>医療施設専門のノウハウ</h3>
+      <p>保健所・消防法・医療法に準拠した設計。衛生管理・感染対策を考慮した動線計画で、「患者様が安心できる医院」を空間から構築します。</p>
     </div>
   </div>
   <div class="strength-block reverse fade-up">
     <div class="strength-photo">
-      <img src="img/staff-nationwide.jpg" alt="全国対応" loading="lazy">
+      <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="美容・医療・歯科の実績多数" loading="lazy">
     </div>
     <div class="strength-text">
-      <h3>北海道から沖縄まで、<br>全国13拠点。</h3>
-      <p>地元の事情がわかるスタッフが対応。遠方でも品質は落としません。チェーン展開の多店舗案件もまとめておまかせください。</p>
+      <h3>美容・医療・歯科の<br>実績多数。</h3>
+      <p>ルミナスビューティークリニック、新宿三丁目メディカルクリニック、メンズクリア等、多数の医療施設を手がけてきました。チェーン展開・単院開業どちらも対応可能です。</p>
     </div>
   </div>
   <div class="strength-block fade-up">
     <div class="strength-photo">
-      <img src="img/staff-proposal.jpg" alt="提案力" loading="lazy">
+      <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="ブランディング一貫設計" loading="lazy">
     </div>
     <div class="strength-text">
-      <h3>「本当にやりたいこと」を<br>引き出す提案力。</h3>
-      <p>お客様自身も気づいていない要望を、豊富な経験から引き出して提案。従来の発想にとらわれない「カエル」発想でデザインします。</p>
+      <h3>ブランディング一貫設計</h3>
+      <p>空間・ロゴ・サイン・Webまで統一感のあるブランド体験を一社で構築。患者様の第一印象から通院体験まで、すべてがつながる医院をつくります。</p>
     </div>
   </div>
 </section>
@@ -1098,7 +1028,7 @@
 <section class="cta-section" id="contact">
   <div class="cta-inner fade-up">
     <h2>
-      「こんな空間にしたいんだけど…」<br>その段階で大丈夫です。
+      クリニック開業・リニューアルの<br>ご相談、無料で承ります。
     </h2>
     <p class="cta-lead">まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
     <div class="cta-form">
@@ -1109,8 +1039,8 @@
             <input type="text" name="name" required placeholder="山田 太郎">
           </div>
           <div class="form-group">
-            <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
-            <input type="text" name="company" placeholder="株式会社〇〇">
+            <label>医院名・法人名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+            <input type="text" name="company" placeholder="医療法人〇〇クリニック">
           </div>
           <div class="form-group">
             <label>メールアドレス <span class="req">必須</span></label>
@@ -1120,9 +1050,17 @@
             <label>お電話番号</label>
             <input type="tel" name="tel" placeholder="090-0000-0000">
           </div>
+          <div class="form-group">
+            <label>業態 <span class="req">必須</span></label>
+            <input type="text" name="industry" required placeholder="業態例「美容クリニック」「歯科医院」等">
+          </div>
+          <div class="form-group">
+            <label>ご予定地域</label>
+            <input type="text" name="area" placeholder="例：東京都新宿区">
+          </div>
           <div class="form-group form-full">
             <label>お問い合わせ内容 <span class="req">必須</span></label>
-            <textarea name="message" required placeholder="ご要望やご質問をお書きください"></textarea>
+            <textarea name="message" required placeholder="ご要望やご質問をお書きください（新規開業／リニューアル／坪数など）"></textarea>
           </div>
           <div class="form-full">
             <button type="submit" class="form-submit">送信する</button>
@@ -1154,8 +1092,8 @@
           <input type="text" name="name" required placeholder="山田 太郎">
         </div>
         <div class="form-group">
-          <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
-          <input type="text" name="company" placeholder="株式会社〇〇">
+          <label>医院名・法人名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+          <input type="text" name="company" placeholder="医療法人〇〇クリニック">
         </div>
         <div class="form-group">
           <label>メールアドレス <span class="req">必須</span></label>
@@ -1164,6 +1102,10 @@
         <div class="form-group">
           <label>お電話番号</label>
           <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>業態</label>
+          <input type="text" name="industry" placeholder="例：美容クリニック／歯科医院">
         </div>
         <div class="form-group">
           <label>お問い合わせ内容 <span class="req">必須</span></label>
@@ -1219,47 +1161,6 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-// Industries hover background
-(function(){
-  const section = document.getElementById('industries-section');
-  const allBgImgs = section.querySelectorAll('.industries-bg img');
-  const overlay = section.querySelector('.industries-bg .overlay');
-  const items = section.querySelectorAll('.industry-item');
-  let slideTimer = null;
-  let currentIdx = 0;
-
-  function startSlideshow(key) {
-    const imgs = [...allBgImgs].filter(img => img.dataset.industry === key);
-    if (!imgs.length) return;
-    currentIdx = 0;
-    allBgImgs.forEach(img => img.classList.remove('active'));
-    imgs[0].classList.add('active');
-    slideTimer = setInterval(() => {
-      imgs[currentIdx].classList.remove('active');
-      currentIdx = (currentIdx + 1) % imgs.length;
-      imgs[currentIdx].classList.add('active');
-    }, 2500);
-  }
-
-  function stopSlideshow() {
-    if (slideTimer) { clearInterval(slideTimer); slideTimer = null; }
-    allBgImgs.forEach(img => img.classList.remove('active'));
-  }
-
-  items.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      section.classList.add('active-hover');
-      overlay.classList.add('active');
-      startSlideshow(item.dataset.industry);
-    });
-    item.addEventListener('mouseleave', () => {
-      section.classList.remove('active-hover');
-      overlay.classList.remove('active');
-      stopSlideshow();
-    });
-  });
-})();
 
 // Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {

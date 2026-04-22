@@ -15,33 +15,46 @@
       --kaeru: #00b097;
       --kaeru-dark: #009680;
       --kaeru-light: #e6f8f5;
-      --sand: #f5f0e8;
+      --sand: #e4f9bd;
       --yellow: #ffdd66;
       --text: #444;
       --text-dark: #1a1a1a;
       --white: #fff;
+      --pop-green: #e6f8f5;
+      --pop-shadow: rgba(28,102,86,0.15);
+      --pop-pink: #fff0f5;
+      --pop-blue: #e8f4fd;
+      --pop-yellow: #fff8e1;
+      --pop-mint: #e0faf4;
     }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Noto Sans JP', sans-serif;
       color: var(--text);
       line-height: 1.9;
       background: var(--white);
       overflow-x: hidden;
+      cursor: url("img/cursor-open.svg") 16 22, auto;
       word-break: keep-all;
       overflow-wrap: break-word;
+    }
+    body.grabbing, body.grabbing * {
+      cursor: url("img/cursor-grab.svg") 16 18, auto !important;
+    }
+    a, button, input[type='submit'], .header-cta, .btn-hero, .btn-hero-sub, .work-card, .industry-chip, .btn-cta {
+      cursor: url("img/cursor-open.svg") 16 22, pointer !important;
     }
 
     /* ===== HEADER ===== */
     .header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--kaeru);
       transition: background .4s, box-shadow .4s;
     }
     .header.scrolled {
-      background: rgba(255,255,255,.95);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 1px 16px rgba(0,0,0,.06);
+      background: var(--kaeru);
+      box-shadow: 0 2px 12px rgba(0,0,0,.12);
     }
     .header-inner {
       max-width: 1200px; margin: 0 auto;
@@ -57,15 +70,17 @@
     }
     .logo-mark .logo-white { display: block; }
     .logo-mark .logo-color { display: none; }
-    .header.scrolled .logo-mark .logo-white { display: none; }
-    .header.scrolled .logo-mark .logo-color { display: block; }
+    .header.scrolled .logo-mark .logo-white { display: block; }
+    .header.scrolled .logo-mark .logo-color { display: none; }
     .header-cta {
       background: var(--yellow); color: var(--text-dark);
-      padding: 10px 28px; border-radius: 6px; text-decoration: none;
-      font-weight: 700; font-size: .85rem; transition: all .25s;
-      font-family: 'Noto Serif JP', serif;
+      border: 2px solid var(--text-dark);
+      padding: 10px 28px; border-radius: 999px; text-decoration: none;
+      font-weight: 900; font-size: .85rem; transition: all .3s ease;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      box-shadow: 3px 3px 0 rgba(0,0,0,.15);
     }
-    .header-cta:hover { background: #f5d050; transform: translateY(-1px); }
+    .header-cta:hover { transform: translateY(-2px); box-shadow: 4px 5px 0 rgba(0,0,0,.2); background: #ffe880; }
 
     /* ===== HERO ===== */
     .hero {
@@ -118,55 +133,82 @@
     .hero-bg::after {
       content: '';
       position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.6) 100%);
+      background: linear-gradient(135deg, rgba(0,176,151,0.55) 0%, rgba(0,200,170,0.5) 50%, rgba(0,150,128,0.6) 100%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0; z-index: 3;
+      height: 60px;
+      background: var(--pop-mint);
+      clip-path: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60'%3E%3Cpath d='M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E");
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 2;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(255,255,255,.15) 0, rgba(255,255,255,.15) 8px, transparent 8px),
+        radial-gradient(circle at 85% 35%, rgba(255,255,255,.12) 0, rgba(255,255,255,.12) 12px, transparent 12px),
+        radial-gradient(circle at 70% 75%, rgba(255,255,255,.1) 0, rgba(255,255,255,.1) 6px, transparent 6px),
+        radial-gradient(circle at 25% 80%, rgba(255,255,255,.08) 0, rgba(255,255,255,.08) 14px, transparent 14px),
+        radial-gradient(circle at 50% 15%, rgba(255,255,255,.1) 0, rgba(255,255,255,.1) 10px, transparent 10px),
+        radial-gradient(circle at 90% 85%, rgba(255,255,255,.12) 0, rgba(255,255,255,.12) 5px, transparent 5px);
+      pointer-events: none;
     }
     .hero-content {
-      position: relative; z-index: 1;
+      position: relative; z-index: 2;
       text-align: center; color: var(--white);
       padding: 0 24px;
-      text-shadow: 0 2px 12px rgba(0,0,0,.4);
+      text-shadow: 0 2px 16px rgba(0,0,0,.3);
     }
     .hero-content .lead {
       font-size: .85rem; letter-spacing: .2em; font-weight: 400;
       margin-bottom: 24px; opacity: 1;
-      text-shadow: 0 1px 8px rgba(0,0,0,.6);
+      text-shadow: 0 1px 8px rgba(0,0,0,.5);
     }
     .hero-content h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 700; line-height: 1.6;
-      margin-bottom: 20px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      font-weight: 900; line-height: 1.6;
+      margin-bottom: 24px;
       letter-spacing: .05em;
     }
     .hero-content h1 em {
       font-style: normal;
-      color: var(--yellow);
+      color: var(--white);
+      background: linear-gradient(transparent 60%, var(--yellow) 60%);
+      text-shadow: none;
+      padding: 0 8px;
     }
     .hero-content .sub {
-      font-size: .95rem; opacity: .8; margin-bottom: 40px;
-      font-weight: 300; letter-spacing: .05em;
+      font-size: 1rem; opacity: .9; margin-bottom: 48px;
+      font-weight: 400; letter-spacing: .05em;
+      text-shadow: 0 1px 8px rgba(0,0,0,.4);
     }
     .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn-hero {
-      background: var(--kaeru); color: var(--white);
-      padding: 16px 44px; border-radius: 6px;
-      font-size: 1rem; font-weight: 700; text-decoration: none;
-      transition: all .25s;
-      font-family: 'Noto Serif JP', serif;
+      background: var(--yellow); color: var(--text-dark);
+      padding: 20px 56px; border-radius: 999px;
+      font-size: 1.15rem; font-weight: 900; text-decoration: none;
+      transition: all .3s ease; border: 3px solid var(--text-dark);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.2);
+      text-shadow: none;
     }
-    .btn-hero:hover { background: var(--kaeru-dark); transform: translateY(-2px); }
+    .btn-hero:hover { transform: translateY(-4px); box-shadow: 6px 8px 0 rgba(0,0,0,.25); background: #ffe880; }
     .btn-hero-sub {
-      background: rgba(255,255,255,.15); color: var(--white);
-      padding: 16px 44px; border-radius: 6px;
-      font-size: 1rem; font-weight: 700; text-decoration: none;
-      transition: all .25s; backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,.3);
-      font-family: 'Noto Serif JP', serif;
+      background: var(--white); color: var(--kaeru);
+      padding: 18px 48px; border-radius: 999px;
+      font-size: 1rem; font-weight: 900; text-decoration: none;
+      transition: all .25s;
+      border: 3px solid var(--white);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      box-shadow: 4px 4px 0 rgba(0,0,0,.15);
+      text-shadow: none;
     }
-    .btn-hero-sub:hover { background: rgba(255,255,255,.25); }
+    .btn-hero-sub:hover { transform: translateY(-4px); box-shadow: 6px 8px 0 rgba(0,0,0,.2); }
     .scroll-hint {
       position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      z-index: 1; color: var(--white); text-align: center;
+      z-index: 4; color: var(--white); text-align: center;
       font-size: .7rem; letter-spacing: .2em; opacity: .6;
     }
     .scroll-hint::after {
@@ -182,25 +224,72 @@
     }
 
     /* ===== SECTION COMMON ===== */
-    section { padding: 120px 32px; }
+    section { padding: 120px 32px; position: relative; }
     .section-label {
-      font-size: .75rem; letter-spacing: .2em; color: var(--kaeru);
-      font-weight: 700; margin-bottom: 8px;
+      font-size: .8rem; letter-spacing: .15em; color: var(--kaeru);
+      font-weight: 900; margin-bottom: 12px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      display: inline-block;
+      background: var(--pop-mint);
+      padding: 8px 24px;
+      border-radius: 2em;
+      border: 2px solid var(--kaeru);
     }
     .section-num {
-      font-family: 'Noto Serif JP', serif;
-      font-size: .85rem; color: #bbb; letter-spacing: .1em;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: .85rem; color: var(--kaeru); letter-spacing: .1em;
+      font-weight: 700;
+    }
+    /* Pop wave dividers — animated */
+    .wave-wrap {
+      position: relative; margin-top: -2px; overflow: hidden; height: 50px; z-index: 4;
+    }
+    .wave-wrap svg {
+      display: block; width: 200%; height: 100%;
+      animation: waveSlide 8s ease-in-out infinite alternate;
+    }
+    .wave-wrap:nth-of-type(even) svg { animation-direction: alternate-reverse; }
+    @keyframes waveSlide {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-25%); }
+    }
+    /* Pop decorative bubbles */
+    .pop-bubbles {
+      position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0;
+    }
+    .pop-bubbles::before,
+    .pop-bubbles::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .5;
+    }
+    .pop-bubbles::before {
+      width: 120px; height: 120px;
+      top: 10%; right: 5%;
+      background: rgba(0,176,151,.08);
+    }
+    .pop-bubbles::after {
+      width: 80px; height: 80px;
+      bottom: 15%; left: 8%;
+      background: rgba(255,221,102,.15);
     }
 
     /* ===== CONCEPT ===== */
     .concept {
-      max-width: 800px; margin: 0 auto;
+      max-width: none; margin: 0 auto;
       text-align: center;
       padding: 120px 32px;
+      position: relative;
+      background: var(--pop-mint);
     }
-    .concept .section-num { margin-bottom: 12px; }
+    .concept h2, .concept p, .concept .section-num { max-width: 800px; margin-left: auto; margin-right: auto; }
+    .concept .section-num {
+      margin-bottom: 12px;
+      color: var(--kaeru); font-weight: 900;
+    }
     .concept h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700; color: var(--text-dark);
       line-height: 1.8; margin-bottom: 32px;
@@ -208,22 +297,24 @@
     }
     .concept h2 em {
       font-style: normal;
-      background: linear-gradient(transparent 65%, var(--yellow) 65%);
+      border-bottom: 4px solid var(--yellow);
+      padding-bottom: 2px;
+      background: none;
     }
     .concept p {
       font-size: .95rem; line-height: 2.2;
       font-weight: 300;
     }
     .concept p strong {
-      font-weight: 700; color: var(--text-dark);
+      font-weight: 700; color: var(--kaeru);
     }
 
     /* ===== SERVICES (connected flow) ===== */
     .services {
       position: relative;
-      padding: 120px 32px;
+      padding: 140px 32px;
       background: var(--text-dark);
-      color: var(--white);
+      color: var(--text-dark);
       overflow: hidden;
     }
     .services-bg {
@@ -277,18 +368,19 @@
     }
     .services-bg .overlay {
       position: absolute; inset: 0;
-      background: rgba(30,30,30,.72);
+      background: rgba(0,176,151,0.92);
       z-index: 1;
     }
     .services > *:not(.services-bg) { position: relative; z-index: 2; }
     .services .section-head {
       max-width: 1200px; margin: 0 auto 56px;
     }
-    .services .section-label { color: rgba(255,255,255,.5); }
+    .services .section-label { color: var(--white); background: rgba(255,255,255,.15); }
     .services h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(1.4rem, 2.5vw, 2rem);
       font-weight: 900;
+      color: var(--white);
     }
     .service-flow {
       display: flex; align-items: flex-start;
@@ -298,9 +390,11 @@
     .service-flow::before {
       content: '';
       position: absolute;
-      top: 28px; left: 40px; right: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--kaeru), rgba(255,255,255,.2) 50%, var(--kaeru));
+      top: 30px; left: 40px; right: 40px;
+      height: 3px;
+      border-top: 3px dashed rgba(255,255,255,.4);
+      background: none;
+      opacity: 1;
     }
     .service-step {
       flex: 1;
@@ -309,29 +403,32 @@
       padding: 0 10px;
     }
     .service-step .step-icon {
-      width: 56px; height: 56px;
-      border: 2px solid var(--kaeru);
+      width: 60px; height: 60px;
+      border: none;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 16px;
-      background: var(--text-dark);
+      background: var(--white);
+      box-shadow: 0 4px 16px rgba(0,176,151,.2);
       position: relative; z-index: 1;
     }
-    .service-step .step-icon svg { width: 24px; height: 24px; }
+    .service-step .step-icon svg { width: 26px; height: 26px; }
     .service-step .step-arrow {
       position: absolute;
-      top: 22px; right: -10px;
-      color: var(--kaeru); font-size: 1rem; z-index: 2;
+      top: 24px; right: -10px;
+      color: var(--white); font-size: 1rem; z-index: 2;
     }
     .service-step:last-child .step-arrow { display: none; }
     .service-step h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: .8rem; font-weight: 700; margin-bottom: 6px;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: .85rem; font-weight: 700; margin-bottom: 6px;
       white-space: nowrap;
+      color: var(--white);
     }
     .service-step p {
-      font-size: .65rem; opacity: .5; line-height: 1.7;
+      font-size: .7rem; opacity: .7; line-height: 1.7;
       white-space: nowrap;
+      color: var(--white);
     }
     @media (max-width: 768px) {
       .service-flow { flex-direction: column; align-items: stretch; gap: 8px; }
@@ -353,13 +450,14 @@
     /* ===== INDUSTRIES ===== */
     .industries {
       position: relative;
-      padding: 100px 32px;
+      padding: 120px 32px;
       text-align: center;
       overflow: hidden;
+      background: var(--pop-blue);
     }
     .industries-bg {
       position: absolute; inset: 0;
-      background: var(--sand);
+      background: none !important;
       transition: background .3s;
     }
     .industries-bg img {
@@ -378,10 +476,11 @@
     .industries-bg .overlay.active { opacity: 1; }
     .industries > *:not(.industries-bg) { position: relative; z-index: 2; }
     .industries .section-head { margin-bottom: 48px; }
+    .industries .section-label { color: var(--kaeru); background: var(--white); border-color: var(--kaeru); }
     .industries h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 700; color: var(--text-dark);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900; color: var(--text-dark);
       transition: color .4s;
     }
     .industries.active-hover h2,
@@ -398,34 +497,43 @@
     }
     .industry-item {
       background: var(--white);
-      border-radius: 12px;
-      padding: 28px 8px;
+      border-radius: 20px;
+      padding: 32px 8px;
       text-align: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+      border: 3px solid var(--kaeru);
       cursor: pointer;
-      transition: transform .3s, box-shadow .3s, background .3s;
+      transition: all .3s ease;
+      box-shadow: 4px 4px 0 rgba(0,176,151,.12);
     }
     .industry-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,.12);
-      background: rgba(255,255,255,.95);
+      transform: translateY(-6px) rotate(-1deg);
+      box-shadow: 6px 8px 0 rgba(0,176,151,.2);
+      background: var(--pop-mint);
     }
     .industry-item .ind-icon {
-      font-size: 2rem; margin-bottom: 12px; display: block;
+      font-size: 2rem; margin-bottom: 12px; display: flex;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--pop-mint);
+      align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+      border: 2px solid var(--kaeru);
     }
+    .industry-item .ind-icon svg { color: var(--kaeru); }
     .industry-item h3 {
-      font-size: .85rem; font-weight: 700; color: var(--text-dark);
+      font-size: .9rem; font-weight: 900; color: var(--text-dark);
       margin-bottom: 4px;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
     .industry-item p {
-      font-size: .65rem; color: #999; line-height: 1.8;
+      font-size: .65rem; color: #888; line-height: 1.8;
     }
 
     /* ===== WORKS MARQUEE ===== */
     .works {
-      padding: 120px 0;
-      background: var(--sand);
+      padding: 48px 0 100px;
+      background: var(--white);
       overflow: hidden;
+      position: relative;
     }
     .works .section-head {
       max-width: 1200px; margin: 0 auto 48px;
@@ -433,16 +541,28 @@
       display: flex; align-items: end; justify-content: space-between;
     }
     .works h2 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 900; color: var(--text-dark);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 900; color: var(--kaeru);
+      position: relative;
+      display: inline-block;
+    }
+    .works h2::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 4px; border-radius: 2px;
+      background: var(--kaeru);
     }
     .works-more-link {
-      font-size: .85rem; color: var(--kaeru); text-decoration: none;
-      font-weight: 700; border-bottom: 1px solid var(--kaeru);
-      padding-bottom: 2px; transition: opacity .25s;
+      font-size: .85rem; color: var(--text-dark); text-decoration: none;
+      font-weight: 900; border-bottom: none;
+      padding: 12px 32px; border-radius: 999px;
+      background: var(--pop-mint); border: 3px solid var(--kaeru);
+      transition: all .3s ease;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      box-shadow: 3px 3px 0 rgba(0,176,151,.15);
     }
-    .works-more-link:hover { opacity: .7; }
+    .works-more-link:hover { transform: translateY(-3px); box-shadow: 5px 6px 0 rgba(0,176,151,.2); background: var(--kaeru); color: var(--white); }
 
     .marquee-wrap { overflow: hidden; margin-bottom: 24px; }
     .marquee-track {
@@ -458,44 +578,71 @@
     }
     .work-card {
       flex-shrink: 0; width: 360px;
-      border-radius: 10px; overflow: hidden;
+      border-radius: 20px; overflow: hidden;
       background: var(--white);
-      box-shadow: 0 2px 16px rgba(0,0,0,.06);
-      transition: transform .3s;
-      text-decoration: none; color: inherit; display: block; cursor: pointer;
+      border: 3px solid var(--kaeru);
+      box-shadow: 6px 6px 0 rgba(0,176,151,.15);
+      transition: all .3s ease;
     }
-    .work-card:hover { transform: translateY(-4px); }
+    .work-card:hover { transform: translateY(-6px); box-shadow: 8px 8px 0 rgba(0,176,151,.2); }
     .work-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
     .work-card .info { padding: 16px 18px; }
     .work-card .tag {
       display: inline-block; background: var(--kaeru); color: var(--white);
-      padding: 3px 10px; border-radius: 4px;
+      padding: 4px 16px; border-radius: 2em;
       font-size: .7rem; font-weight: 700; margin-bottom: 6px;
     }
     .work-card h3 { font-size: .9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
     .work-card .meta { font-size: .75rem; color: #aaa; }
 
     /* ===== STRENGTH (editorial layout) ===== */
-    .strength-section { padding: 120px 32px; }
+    .strength-section {
+      padding: 120px 32px;
+      background: var(--pop-yellow);
+    }
+    .strength-section .section-head {
+      text-align: center; margin-bottom: 80px;
+    }
+    .strength-section .section-head h2 {
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
     .strength-block {
       max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
       align-items: center;
-      margin-bottom: 100px;
+      margin-bottom: 80px;
+      position: relative;
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      border: 3px solid var(--kaeru);
+      box-shadow: 6px 6px 0 rgba(0,176,151,.12);
     }
     .strength-block:last-child { margin-bottom: 0; }
     .strength-block.reverse { direction: rtl; }
     .strength-block.reverse > * { direction: ltr; }
     .strength-photo {
-      border-radius: 12px; overflow: hidden;
+      border-radius: 16px; overflow: hidden;
       aspect-ratio: 4/3;
     }
-    .strength-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .strength-text .section-num { margin-bottom: 12px; }
+    .strength-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: 16px;
+      border: none;
+    }
+    .strength-text .section-num {
+      margin-bottom: 12px;
+      display: inline-block;
+      background: var(--kaeru); color: var(--white);
+      padding: 4px 16px; border-radius: 2em;
+      font-size: .8rem; font-weight: 700;
+    }
     .strength-text h3 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(1.2rem, 2vw, 1.6rem);
-      font-weight: 700; color: var(--text-dark);
+      font-weight: 700; color: var(--kaeru);
       line-height: 1.7; margin-bottom: 16px;
       letter-spacing: .03em;
     }
@@ -504,36 +651,61 @@
     }
 
     /* ===== FLOW ===== */
-    .flow { background: var(--white); padding: 120px 32px; }
+    .flow { background: var(--pop-pink); padding: 120px 32px; }
     .flow .section-head {
       text-align: center; margin-bottom: 60px;
     }
+    .flow .section-label { color: var(--kaeru); background: var(--white); border-color: var(--kaeru); }
     .flow h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(1.4rem, 2.5vw, 2rem);
       font-weight: 900; color: var(--text-dark);
     }
     .flow-steps {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+      position: relative;
     }
-    .flow-step { text-align: center; position: relative; }
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 60px; right: 60px;
+      height: 3px;
+      border-top: 3px dashed var(--kaeru);
+      opacity: .3;
+    }
+    .flow-step {
+      text-align: center; position: relative;
+      border-radius: 20px;
+      background: var(--white); padding: 32px 16px;
+      border: 3px solid var(--kaeru);
+      transition: all .3s ease;
+      box-shadow: 4px 4px 0 rgba(0,176,151,.12);
+    }
+    .flow-step:hover { transform: translateY(-6px); box-shadow: 6px 8px 0 rgba(0,176,151,.2); }
     .flow-step::after {
-      content: ''; position: absolute; top: 28px; right: -16px;
-      width: 24px; height: 1px; background: #ddd;
+      content: ''; position: absolute; top: 32px; right: -18px;
+      width: 28px; height: 3px;
+      border-top: 3px dashed var(--kaeru);
+      opacity: .3;
+      display: none;
     }
     .flow-step:last-child::after { display: none; }
     .flow-step .num {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 2rem; font-weight: 400; color: var(--kaeru);
-      margin-bottom: 12px; line-height: 1;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: 1.3rem; font-weight: 900; color: var(--white);
+      background: var(--kaeru); border-radius: 50%;
+      width: 64px; height: 64px; line-height: 64px;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 16px rgba(0,176,151,.3);
+      position: relative; z-index: 1;
     }
     .flow-step h3 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: .95rem; font-weight: 700; color: var(--text-dark);
+      font-family: 'Zen Maru Gothic', sans-serif;
+      font-size: .95rem; font-weight: 700; color: var(--kaeru);
       margin-bottom: 6px;
     }
-    .flow-step p { font-size: .8rem; color: #999; line-height: 1.7; }
+    .flow-step p { font-size: .8rem; color: #666; line-height: 1.7; }
 
     /* ===== CTA ===== */
     .cta-section {
@@ -544,6 +716,16 @@
       color: var(--white);
       overflow: hidden;
     }
+    .cta-section::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.1) 0, rgba(255,255,255,.1) 15px, transparent 15px),
+        radial-gradient(circle at 90% 30%, rgba(255,255,255,.08) 0, rgba(255,255,255,.08) 20px, transparent 20px),
+        radial-gradient(circle at 75% 80%, rgba(255,255,255,.06) 0, rgba(255,255,255,.06) 10px, transparent 10px),
+        radial-gradient(circle at 20% 70%, rgba(255,255,255,.1) 0, rgba(255,255,255,.1) 8px, transparent 8px);
+      pointer-events: none;
+    }
     .cta-section::before {
       content: ''; position: absolute; inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -553,22 +735,24 @@
       max-width: 800px; margin: 0 auto;
     }
     .cta-inner h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: clamp(1.5rem, 3vw, 2.2rem);
       font-weight: 700; line-height: 1.8;
       margin-bottom: 8px;
       letter-spacing: .03em;
+      color: var(--white);
     }
     .cta-inner > p.cta-lead {
-      font-size: .9rem; opacity: .85; margin-bottom: 36px;
+      font-size: .9rem; color: rgba(255,255,255,.85); margin-bottom: 36px;
     }
     .cta-form {
       background: var(--white);
-      border-radius: 14px;
-      padding: 40px 36px;
+      border-radius: 28px;
+      padding: 44px 40px;
       text-align: left;
       color: var(--text);
-      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+      box-shadow: 8px 8px 0 rgba(0,0,0,.08);
+      border: 3px solid var(--text-dark);
     }
     .cta-form .form-grid {
       display: grid;
@@ -588,11 +772,11 @@
     .cta-form .form-group input,
     .cta-form .form-group select,
     .cta-form .form-group textarea {
-      width: 100%; padding: 11px 13px;
-      border: 1px solid #ddd; border-radius: 7px;
+      width: 100%; padding: 13px 16px;
+      border: 2px solid #e8e8e8; border-radius: 12px;
       font-size: .85rem; font-family: 'Noto Sans JP', sans-serif;
-      transition: border-color .3s;
-      background: #fafafa;
+      transition: all .3s ease;
+      background: #f8faf8;
     }
     .cta-form .form-group input:focus,
     .cta-form .form-group select:focus,
@@ -602,14 +786,20 @@
     .cta-form .form-group textarea { resize: vertical; min-height: 80px; }
     .cta-form .form-submit {
       display: block; width: 100%;
-      background: var(--kaeru); color: var(--white);
-      border: none; border-radius: 7px;
-      padding: 16px; font-size: 1rem; font-weight: 700;
-      font-family: 'Noto Serif JP', serif;
-      cursor: pointer; transition: background .3s, transform .2s;
-      margin-top: 8px;
+      background: var(--kaeru);
+      color: var(--white);
+      border: none; border-radius: 999px;
+      padding: 18px; font-size: 1.05rem; font-weight: 900;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      cursor: pointer; transition: all .3s ease;
+      margin-top: 12px;
+      box-shadow: 0 4px 16px rgba(0,176,151,.3);
     }
-    .cta-form .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .cta-form .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,176,151,.4);
+      background: var(--kaeru-dark);
+    }
     .cta-form .form-note {
       text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px;
     }
@@ -620,12 +810,12 @@
 
     /* ===== FOOTER ===== */
     .footer {
-      background: var(--text-dark); color: rgba(255,255,255,.5);
-      padding: 48px 32px; text-align: center; font-size: .8rem;
+      background: var(--kaeru); color: rgba(255,255,255,.7);
+      padding: 56px 32px; text-align: center; font-size: .8rem;
     }
     .footer strong {
       color: var(--white); font-size: .9rem; display: block; margin-bottom: 6px;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
     }
 
     /* ===== RESPONSIVE ===== */
@@ -636,14 +826,10 @@
       .flow-step::after { display: none; }
       .service-panel { width: 300px; }
     }
-    /* sp-only: スマホ専用改行 */
-    .sp-only { display: none; }
-
     @media (max-width: 600px) {
-      .sp-only { display: inline; }
       section { padding: 80px 20px; }
       .flow-steps { grid-template-columns: 1fr; max-width: 280px; margin: 0 auto; }
-      .hero-content h1 { font-size: 1.6rem; }
+      .hero-content h1 { font-size: 1.8rem; }
       .service-panel { width: 260px; }
       .work-card { width: 280px; }
 
@@ -658,16 +844,6 @@
       .industry-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .industry-item { padding: 20px 8px; }
       .industries { padding: 80px 20px; }
-
-      /* CTA見出し：スマホで少し小さく */
-      .cta-inner h2 { font-size: 1.15rem; }
-
-      /* サービスセクション見出し */
-      .services .section-head h2 { font-size: .95rem; }
-
-      /* 強みセクション本文 */
-      .strength-text p { font-size: .85rem; }
-      .strength-text h3 { font-size: 1.2rem; }
     }
 
     /* ===== HEADER HIDE + SIDE CTA ===== */
@@ -706,7 +882,7 @@
       color: var(--text-dark);
       padding: 28px 18px;
       border-radius: 0 7px 7px 0;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: .95rem;
       font-weight: 700;
       letter-spacing: .1em;
@@ -748,7 +924,7 @@
       max-height: 80vh;
     }
     .form-slide-inner h2 {
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
       margin-bottom: 4px;
     }
@@ -770,7 +946,7 @@
     .form-group select,
     .form-group textarea {
       width: 100%; padding: 9px 11px;
-      border: 1px solid #ddd; border-radius: 6px;
+      border: 1px solid #ddd; border-radius: .5em;
       font-size: .82rem; font-family: 'Noto Sans JP', sans-serif;
       transition: border-color .3s;
       background: #fafafa;
@@ -785,9 +961,9 @@
     .form-submit {
       display: block; width: 100%;
       background: var(--kaeru); color: var(--white);
-      border: none; border-radius: 6px;
+      border: none; border-radius: 2em;
       padding: 13px; font-size: .9rem; font-weight: 700;
-      font-family: 'Noto Serif JP', serif;
+      font-family: 'Zen Maru Gothic', sans-serif;
       cursor: pointer; transition: background .3s, transform .2s;
       margin-top: 4px;
     }
@@ -809,6 +985,58 @@
     .fade-up.visible { opacity: 1; transform: translateY(0); }
     .fade-up.d1 { transition-delay: .1s; }
     .fade-up.d2 { transition-delay: .2s; }
+
+    /* ===== POP GENERAL OVERRIDES ===== */
+    /* Global transitions on all interactive elements */
+    .industry-item, .work-card, .flow-step, .strength-block,
+    .btn-hero, .btn-hero-sub, .header-cta, .side-cta-btn {
+      transition: all .3s ease;
+    }
+
+    /* Green glow on all button hovers */
+    .btn-hero:hover, .header-cta:hover, .side-cta-btn:hover {
+      box-shadow: 0 8px 25px rgba(0,176,151,0.3);
+    }
+
+    .concept { padding: 100px 32px; }
+    .works { padding: 48px 0 100px; }
+
+    /* Form input focus pop style */
+    .cta-form .form-group input:focus,
+    .cta-form .form-group select:focus,
+    .cta-form .form-group textarea:focus {
+      border-color: var(--kaeru);
+      box-shadow: 0 0 0 3px rgba(0,176,151,.12);
+    }
+
+    /* Hero buttons pop style */
+    .btn-hero {
+      box-shadow: 0 4px 16px rgba(0,176,151,.3);
+    }
+    .btn-hero-sub {
+      border-width: 3px;
+    }
+
+    /* ===== POP ANIMATIONS ===== */
+    @keyframes pyon {
+      0% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+      10% { transform: scale(1.05, 0.95) translate(0%, 3%); }
+      40% { transform: scale(1.1, 0.9) translate(0%, 8%); }
+      50% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+      60% { transform: scale(0.95, 1.1) translate(0%, -25%); }
+      75% { transform: scale(0.95, 1.1) translate(0%, -10%); }
+      85% { transform: scale(1.1, 0.9) translate(0%, 8%); }
+      100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+    }
+    @keyframes shake {
+      0% { transform: skew(0deg,0deg); }
+      25% { transform: skew(1.5deg, 1.5deg); }
+      75% { transform: skew(-1deg, -1deg); }
+      100% { transform: skew(0deg,0deg); }
+    }
+    .btn-hero:hover { animation: pyon .4s ease-out 1; }
+    .header-cta:hover { animation: shake .15s linear 3; }
+
   </style>
 </head>
 <body>
@@ -847,7 +1075,7 @@
     <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="H&F BELX 札幌">
   </div>
   <div class="hero-content">
-    <p class="lead"><span style="white-space:nowrap">カエル・デザイン・プロジェクト株式会社</span> ／ <span style="white-space:nowrap">全国13拠点の空間デザイン会社</span></p>
+    <p class="lead">カエル・デザイン・プロジェクト株式会社 ／ 全国13拠点の空間デザイン会社</p>
     <h1>
       空間の「こうしたい」を<br>
       <em>まるっと、おまかせ。</em>
@@ -861,6 +1089,9 @@
   <div class="scroll-hint">SCROLL</div>
 </section>
 
+<!-- Wave: hero → works (white, overlaps hero bottom) -->
+<div class="wave-wrap" style="margin-top:-50px; z-index:5;"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,30 C360,60 720,0 1080,30 C1440,60 1800,0 2160,30 C2520,60 2700,20 2880,30 L2880,60 L0,60Z" fill="#fff"/></svg></div>
+
 <!-- WORKS MARQUEE -->
 <section class="works" id="works">
   <div class="section-head">
@@ -873,47 +1104,53 @@
 
   <div class="marquee-wrap">
     <div class="marquee-track" id="m1">
-      <a href="https://kaeru.design/works_detail?id=76" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・北海道</span><h3>chocoZAP 新さっぽろ青葉町店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=99" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy"><div class="info"><span class="tag">クリニック・東京</span><h3>新宿三丁目メディカルクリニック様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=108" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容クリニック・群馬</span><h3>ルミナスビューティークリニック様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=146" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・東京</span><h3>b-monster 立川スタジオ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=131" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>Thoth Pte.Ltd.様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=134" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・栃木</span><h3>CRONOS様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=109" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>アシックス商事株式会社様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=147" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・北海道</span><h3>ミキハウス ニセコビレッジ POP UPショップ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=58" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="" loading="lazy"><div class="info"><span class="tag">メンズサロン・徳島</span><h3>メンズクリア 徳島駅前店様</h3></div></a>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="" loading="lazy"><div class="info"><span class="tag">chocoZAP・北海道</span><h3>chocoZAP 新さっぽろ青葉町店様</h3><p class="meta">フィットネスジム ／ RIZAP監修</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy"><div class="info"><span class="tag">chocoZAP・東京</span><h3>新宿三丁目メディカルクリニック様</h3><p class="meta">診断施設＋chocoZAP ／ 新宿</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容クリニック・群馬</span><h3>ルミナスビューティークリニック様</h3><p class="meta">93.0坪 ／ 工期 2.5ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="" loading="lazy"><div class="info"><span class="tag">フィットネス・東京</span><h3>b-monster 立川スタジオ様</h3><p class="meta">146.4坪 ／ 工期 2.0ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>Thoth Pte.Ltd.様</h3><p class="meta">155.0坪 ／ 工期 1.5ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・栃木</span><h3>CRONOS様</h3><p class="meta">21.0坪 ／ 工期 1.5ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy"><div class="info"><span class="tag">オフィス・北海道</span><h3>アシックス商事株式会社様</h3><p class="meta">オフィスデザイン ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="" loading="lazy"><div class="info"><span class="tag">アパレル・北海道</span><h3>ミキハウス ニセコビレッジ POP UPショップ様</h3><p class="meta">店舗デザイン ／ ニセコ</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="" loading="lazy"><div class="info"><span class="tag">メンズサロン・徳島</span><h3>メンズクリア 徳島駅前店様</h3><p class="meta">脱毛サロン ／ 20坪</p></div></div>
     </div>
   </div>
   <div class="marquee-wrap row-reverse">
     <div class="marquee-track" id="m2">
-      <a href="https://kaeru.design/works_detail?id=133" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>ACCEA CAFE 渋谷店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=142" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・大阪</span><h3>ACCEA CAFE 堺筋長堀橋店・梅田店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=132" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="" loading="lazy"><div class="info"><span class="tag">パーソナルジム・東京</span><h3>BEYOND 大門・浜松町店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=148" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>喫煙喫茶オールドルーキーカフェ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=135" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容室・大阪</span><h3>理容プラージュ・美容プラージュ 住道店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=137" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ピラティス・千葉</span><h3>Pilates KASANE おゆみ野店様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=143" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="" loading="lazy"><div class="info"><span class="tag">飲食・北海道</span><h3>やきとり日本一様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=149" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="" loading="lazy"><div class="info"><span class="tag">学習スペース・北海道</span><h3>勉強カフェ 札幌琴似スタジオ様</h3></div></a>
-      <a href="https://kaeru.design/works_detail?id=123" class="work-card" target="_blank" rel="noopener"><img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・北海道</span><h3>H&amp;F BELX 札幌ステラプレイス店様</h3></div></a>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ACCEA CAFE・東京</span><h3>ACCEA CAFE 渋谷店様</h3><p class="meta">コワーキングカフェ ／ フルリノベーション</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ACCEA CAFE・大阪</span><h3>ACCEA CAFE 堺筋長堀橋店・梅田店様</h3><p class="meta">コワーキングカフェ ／ 94.0坪</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="" loading="lazy"><div class="info"><span class="tag">パーソナルジム・東京</span><h3>BEYOND 大門・浜松町店様</h3><p class="meta">36.5坪 ／ 工期 0.8ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・東京</span><h3>喫煙喫茶オールドルーキーカフェ様</h3><p class="meta">16.9坪 ／ 工期 0.5ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy"><div class="info"><span class="tag">美容室・大阪</span><h3>理容プラージュ・美容プラージュ 住道店様</h3><p class="meta">39.0坪 ／ 工期 1.0ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="" loading="lazy"><div class="info"><span class="tag">ピラティス・千葉</span><h3>Pilates KASANE おゆみ野店様</h3><p class="meta">38.3坪 ／ 工期 1.8ヵ月</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="" loading="lazy"><div class="info"><span class="tag">飲食・北海道</span><h3>やきとり日本一様</h3><p class="meta">2店舗同時リニューアル ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="" loading="lazy"><div class="info"><span class="tag">学習スペース・北海道</span><h3>勉強カフェ 札幌琴似スタジオ様</h3><p class="meta">学習＆コワーキング ／ 札幌</p></div></div>
+      <div class="work-card"><img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy"><div class="info"><span class="tag">カフェ・北海道</span><h3>H&amp;F BELX 札幌ステラプレイス店様</h3><p class="meta">ティーブランド ／ ステラプレイス</p></div></div>
     </div>
   </div>
 </section>
 
+<!-- Wave: works → concept (mint) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,20 C240,55 480,0 720,35 C960,60 1200,10 1440,25 C1680,55 1920,0 2160,35 C2400,60 2640,10 2880,25 L2880,60 L0,60Z" fill="#e0faf4"/></svg></div>
+
 <!-- CONCEPT -->
 <div class="concept fade-up">
+  <p class="section-num">01 / Concept</p>
   <h2>
     設計も、施工管理も、修繕も。<br>
     <em>ぜんぶ、一社で。</em>
   </h2>
   <p>
-    コンサルティングからデザイン設計、施工管理、看板、ロゴまでワンストップで対応。
-  </p>
-  <p style="margin-top:1.5em;">
+    コンサルティングからデザイン設計、施工管理、<br>
+    看板、ロゴまでワンストップで対応。<br><br>
     窓口がひとつだから、伝言ゲームにならない。<br>
     仕上がりがブレない。<br>
     <strong>お客様は、理想を伝えるだけ。</strong>
   </p>
 </div>
+
+<!-- Wave: concept → services (dark/green) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,35 C360,5 720,55 1080,20 C1440,5 1800,55 2160,20 C2520,5 2700,40 2880,30 L2880,60 L0,60Z" fill="#1a1a1a"/></svg></div>
 
 <!-- SERVICES (connected flow) -->
 <section class="services">
@@ -927,7 +1164,7 @@
   </div>
   <div class="section-head">
     <p class="section-label">SERVICES</p>
-    <h2>ぜんぶ、<br class="sp-only"><span style="white-space:nowrap">カエル・デザイン・プロジェクトに</span><br class="sp-only">おまかせ。</h2>
+    <h2>ぜんぶ、カエル・デザイン・プロジェクトにおまかせ。</h2>
   </div>
   <div class="service-flow">
     <div class="service-step">
@@ -971,6 +1208,9 @@
     </div>
   </div>
 </section>
+
+<!-- Wave: services → industries (light blue) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,25 C480,55 960,5 1440,35 C1920,55 2400,5 2880,35 L2880,60 L0,60Z" fill="#e8f4fd"/></svg></div>
 
 <!-- INDUSTRIES -->
 <section class="industries fade-up" id="industries-section">
@@ -1033,6 +1273,9 @@
   </div>
 </section>
 
+<!-- Wave: industries → strength (yellow) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,40 C360,10 720,50 1080,15 C1440,10 1800,50 2160,15 C2520,5 2700,35 2880,25 L2880,60 L0,60Z" fill="#fff8e1"/></svg></div>
+
 <!-- STRENGTHS (editorial: photo + text) -->
 <section class="strength-section">
   <div class="strength-block fade-up">
@@ -1040,6 +1283,7 @@
       <img src="img/staff-onestop.jpg" alt="ワンストップ対応" loading="lazy">
     </div>
     <div class="strength-text">
+      <p class="section-num">02 / Why Kaeru</p>
       <h3>窓口ひとつで、ぜんぶ完結。</h3>
       <p>設計から施工管理まで一貫して担当するから、「言った・言わない」が起きません。お客様の時間と手間をとことん減らし、イメージ通りの空間を実現します。</p>
     </div>
@@ -1049,6 +1293,7 @@
       <img src="img/staff-nationwide.jpg" alt="全国対応" loading="lazy">
     </div>
     <div class="strength-text">
+      <p class="section-num">03 / Nationwide</p>
       <h3>北海道から沖縄まで、<br>全国13拠点。</h3>
       <p>地元の事情がわかるスタッフが対応。遠方でも品質は落としません。チェーン展開の多店舗案件もまとめておまかせください。</p>
     </div>
@@ -1058,11 +1303,15 @@
       <img src="img/staff-proposal.jpg" alt="提案力" loading="lazy">
     </div>
     <div class="strength-text">
+      <p class="section-num">04 / Proposal</p>
       <h3>「本当にやりたいこと」を<br>引き出す提案力。</h3>
       <p>お客様自身も気づいていない要望を、豊富な経験から引き出して提案。従来の発想にとらわれない「カエル」発想でデザインします。</p>
     </div>
   </div>
 </section>
+
+<!-- Wave: strength → flow (pink) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,30 C240,55 480,5 720,40 C960,60 1200,15 1440,30 C1680,55 1920,5 2160,40 C2400,60 2640,15 2880,30 L2880,60 L0,60Z" fill="#fff0f5"/></svg></div>
 
 <!-- FLOW -->
 <section class="flow fade-up">
@@ -1094,11 +1343,15 @@
   </div>
 </section>
 
+<!-- Wave: flow → CTA (green) -->
+<div class="wave-wrap"><svg viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0,20 C360,50 720,5 1080,35 C1440,50 1800,5 2160,35 C2520,50 2700,20 2880,25 L2880,60 L0,60Z" fill="#00b097"/></svg></div>
+
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-inner fade-up">
     <h2>
-      「こんな空間にしたいんだけど…」<br>その段階で大丈夫です。
+      「こんな空間にしたいんだけど…」<br>
+      その段階で大丈夫です。
     </h2>
     <p class="cta-lead">まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
     <div class="cta-form">
@@ -1109,7 +1362,7 @@
             <input type="text" name="name" required placeholder="山田 太郎">
           </div>
           <div class="form-group">
-            <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+            <label>会社名</label>
             <input type="text" name="company" placeholder="株式会社〇〇">
           </div>
           <div class="form-group">
@@ -1154,7 +1407,7 @@
           <input type="text" name="name" required placeholder="山田 太郎">
         </div>
         <div class="form-group">
-          <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+          <label>会社名</label>
           <input type="text" name="company" placeholder="株式会社〇〇">
         </div>
         <div class="form-group">
@@ -1293,6 +1546,10 @@ document.querySelectorAll('a[href="#contact"]').forEach(a => {
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// Frog hand grab cursor on mousedown
+document.addEventListener('mousedown', () => document.body.classList.add('grabbing'));
+document.addEventListener('mouseup', () => document.body.classList.remove('grabbing'));
 </script>
 
 </body>

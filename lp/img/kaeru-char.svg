@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 420" fill="none" stroke="#1a7a6d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Left leg -->
+  <g class="kaeru-leg-l">
+    <path d="M105 330 L102 370 Q100 378 92 380"/>
+    <ellipse cx="82" cy="386" rx="11" ry="7"/>
+    <ellipse cx="68" cy="389" rx="9" ry="6"/>
+    <ellipse cx="95" cy="390" rx="9" ry="6"/>
+  </g>
+  <!-- Right leg -->
+  <g class="kaeru-leg-r">
+    <path d="M155 330 L158 370 Q160 378 168 380"/>
+    <ellipse cx="178" cy="386" rx="11" ry="7"/>
+    <ellipse cx="192" cy="389" rx="9" ry="6"/>
+    <ellipse cx="165" cy="390" rx="9" ry="6"/>
+  </g>
+  <!-- Body -->
+  <g class="kaeru-torso">
+    <path d="M78 175 Q74 210 76 250 Q78 290 88 320 Q100 335 130 338 Q160 335 172 320 Q182 290 184 250 Q186 210 182 175" fill="#fff"/>
+  </g>
+  <!-- Tie -->
+  <g class="kaeru-tie">
+    <path d="M112 172 L122 186 L130 172" stroke-width="3" fill="none"/>
+    <path d="M148 172 L138 186 L130 172" stroke-width="3" fill="none"/>
+    <path d="M122 186 L118 248 L130 256 L142 248 L138 186 Z" fill="#fff" stroke-width="2.5"/>
+    <line x1="121" y1="202" x2="139" y2="197" stroke-width="1.8"/>
+    <line x1="120" y1="212" x2="140" y2="207" stroke-width="1.8"/>
+    <line x1="119" y1="222" x2="141" y2="217" stroke-width="1.8"/>
+    <line x1="119" y1="232" x2="141" y2="227" stroke-width="1.8"/>
+    <line x1="121" y1="242" x2="139" y2="239" stroke-width="1.8"/>
+  </g>
+  <!-- Left arm -->
+  <g class="kaeru-arm-l">
+    <path d="M78 180 Q56 210 50 245 Q46 275 55 300"/>
+    <path d="M55 300 Q50 305 46 302 Q43 298 47 296"/>
+    <path d="M55 300 Q52 307 48 308 Q44 305 46 302"/>
+    <path d="M55 300 Q56 308 52 312 Q48 310 48 308"/>
+  </g>
+  <!-- Right arm (the waving one) -->
+  <g class="kaeru-arm-r">
+    <path d="M182 180 Q204 210 210 245 Q214 275 205 300"/>
+    <path d="M205 300 Q210 305 214 302 Q217 298 213 296"/>
+    <path d="M205 300 Q208 307 212 308 Q216 305 214 302"/>
+    <path d="M205 300 Q204 308 208 312 Q212 310 212 308"/>
+  </g>
+  <!-- Head: wide frog jaw, narrow top, eyes on top -->
+  <g class="kaeru-head">
+    <!-- Wide head/jaw shape -->
+    <path d="M48 160 Q35 140 35 115 Q35 90 50 72 Q65 55 90 46 Q110 40 130 40 Q150 40 170 46 Q195 55 210 72 Q225 90 225 115 Q225 140 212 160 Q195 172 130 175 Q65 172 48 160" fill="#fff"/>
+    <!-- Eye bumps (small, on top of head) -->
+    <ellipse cx="110" cy="50" rx="11" ry="10" fill="#fff"/>
+    <ellipse cx="150" cy="50" rx="11" ry="10" fill="#fff"/>
+    <!-- Pupils -->
+    <ellipse cx="110" cy="52" rx="4.5" ry="5.5" fill="#1a7a6d" stroke="none"/>
+    <ellipse cx="150" cy="52" rx="4.5" ry="5.5" fill="#1a7a6d" stroke="none"/>
+    <!-- Nostrils -->
+    <circle cx="122" cy="92" r="3" fill="#1a7a6d" stroke="none"/>
+    <circle cx="138" cy="92" r="3" fill="#1a7a6d" stroke="none"/>
+    <!-- Wide smile -->
+    <path d="M80 120 Q105 148 130 148 Q155 148 180 120" stroke-width="3"/>
+  </g>
+</svg>

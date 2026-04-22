@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企業情報｜カエル・デザイン・プロジェクト</title>
+  <meta name="description" content="カエル・デザイン・プロジェクト株式会社の企業情報。全国16拠点で店舗・オフィスの空間デザインを手がけています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --kaeru: #00b097;
+      --kaeru-dark: #009680;
+      --kaeru-light: #e6f8f5;
+      --sand: #f5f0e8;
+      --yellow: #ffdd66;
+      --text: #444;
+      --text-dark: #1a1a1a;
+      --white: #fff;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: var(--white);
+      overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 16px rgba(0,0,0,.06);
+    }
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+    }
+    .logo-mark {
+      display: flex; align-items: center; text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark svg {
+      height: 28px; width: auto;
+      transition: opacity .4s;
+    }
+    .logo-mark .logo-white { display: none; }
+    .logo-mark .logo-color { display: block; }
+
+    /* Nav */
+    .header-nav {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .header-nav a {
+      text-decoration: none; font-size: .78rem; font-weight: 700;
+      color: var(--text-dark); transition: color .4s, opacity .25s;
+      white-space: nowrap;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .header-nav a:hover { opacity: .7; }
+
+    .header-cta {
+      background: var(--yellow); color: var(--text-dark);
+      padding: 10px 28px; border-radius: 6px; text-decoration: none;
+      font-weight: 700; font-size: .85rem; transition: all .25s;
+      font-family: 'Noto Serif JP', serif;
+      flex-shrink: 0;
+    }
+    .header-cta:hover { background: #f5d050; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative; z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--text-dark);
+      position: absolute; left: 4px; transition: all .3s;
+    }
+    .hamburger span:nth-child(1) { top: 8px; }
+    .hamburger span:nth-child(2) { top: 15px; }
+    .hamburger span:nth-child(3) { top: 22px; }
+    .hamburger.open span:nth-child(1) { top: 15px; transform: rotate(45deg); background: var(--white); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 15px; transform: rotate(-45deg); background: var(--white); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,26,26,.95);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+      text-decoration: none; color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      transition: opacity .25s;
+    }
+    .mobile-nav a:hover { opacity: .7; }
+    .mobile-nav .mobile-nav-cta {
+      margin-top: 16px;
+      background: var(--yellow); color: var(--text-dark);
+      padding: 14px 40px; border-radius: 6px; font-weight: 700;
+    }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      background: var(--sand);
+      padding: 140px 32px 60px;
+      text-align: center;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .page-hero .section-label {
+      font-size: .75rem; letter-spacing: .2em; color: var(--kaeru);
+      font-weight: 700; margin-bottom: 8px;
+    }
+    .page-hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--text-dark);
+      margin-bottom: 16px;
+    }
+    .breadcrumb {
+      font-size: .78rem; color: #999;
+    }
+    .breadcrumb a {
+      color: var(--kaeru); text-decoration: none;
+      transition: opacity .25s;
+    }
+    .breadcrumb a:hover { opacity: .7; }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* ===== SECTION COMMON ===== */
+    section { padding: 120px 32px; }
+    .section-label {
+      font-size: .75rem; letter-spacing: .2em; color: var(--kaeru);
+      font-weight: 700; margin-bottom: 8px;
+    }
+    .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .section-head h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+
+    /* ===== COMPANY OVERVIEW TABLE ===== */
+    .company-overview {
+      padding: 120px 32px;
+      background: var(--white);
+    }
+    .company-table {
+      max-width: 900px; margin: 0 auto;
+    }
+    .company-row {
+      display: flex;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      gap: 16px;
+    }
+    .company-row:first-child { border-top: 1px solid #eee; }
+    .company-label {
+      font-weight: 700; color: var(--text-dark);
+      font-size: .9rem;
+      width: 160px;
+      flex-shrink: 0;
+    }
+    .company-value {
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    /* ===== PHILOSOPHY ===== */
+    .philosophy {
+      padding: 120px 32px;
+      background: var(--sand);
+    }
+    .philosophy-quote {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      text-align: center;
+      line-height: 1.8;
+      margin-bottom: 32px;
+      letter-spacing: .03em;
+    }
+    .philosophy-desc {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: .9rem;
+      line-height: 2.2;
+      font-weight: 300;
+      text-align: center;
+      color: var(--text);
+    }
+
+    /* ===== OFFICE LOCATIONS GRID ===== */
+    .offices-section {
+      padding: 120px 32px;
+      background: var(--white);
+    }
+    .office-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .office-card {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 20px 18px;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .office-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 16px rgba(0,0,0,.08);
+    }
+    .office-card .city {
+      font-weight: 700; font-size: .9rem; color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .office-card .address {
+      font-size: .75rem; color: #999; line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ===== HISTORY TIMELINE ===== */
+    .history {
+      padding: 120px 32px;
+      background: var(--sand);
+    }
+    .timeline {
+      max-width: 900px; margin: 0 auto;
+    }
+    .timeline-row {
+      display: flex;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      gap: 24px;
+      align-items: baseline;
+    }
+    .timeline-row:first-child { border-top: 1px solid rgba(0,0,0,.08); }
+    .timeline-year {
+      font-family: 'Noto Serif JP', serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--kaeru);
+      width: 80px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .timeline-event {
+      font-size: .9rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      position: relative;
+      padding: 120px 32px;
+      text-align: center;
+      background: var(--kaeru);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto;
+    }
+    .cta-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1.8;
+      margin-bottom: 8px;
+      letter-spacing: .03em;
+    }
+    .cta-inner > p.cta-lead {
+      font-size: .9rem; opacity: .85; margin-bottom: 36px;
+    }
+    .cta-form {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 40px 36px;
+      text-align: left;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+    .cta-form .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 20px;
+    }
+    .cta-form .form-group { margin-bottom: 0; }
+    .cta-form .form-full { grid-column: 1 / -1; }
+    .cta-form .form-group label {
+      display: block; font-size: .78rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 5px;
+    }
+    .cta-form .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .6rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .cta-form .form-group input,
+    .cta-form .form-group select,
+    .cta-form .form-group textarea {
+      width: 100%; padding: 11px 13px;
+      border: 1px solid #ddd; border-radius: 7px;
+      font-size: .85rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .cta-form .form-group input:focus,
+    .cta-form .form-group select:focus,
+    .cta-form .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru); background: #fff;
+    }
+    .cta-form .form-group textarea { resize: vertical; min-height: 80px; }
+    .cta-form .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 7px;
+      padding: 16px; font-size: 1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 8px;
+    }
+    .cta-form .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .cta-form .form-note {
+      text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--text-dark); color: rgba(255,255,255,.5);
+      padding: 60px 32px 40px; font-size: .8rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer strong {
+      color: var(--white); font-size: 1rem; display: block; margin-bottom: 24px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .footer-office-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 24px;
+      margin-bottom: 32px;
+    }
+    .footer-office-grid span {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links {
+      display: flex; gap: 20px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .75rem; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: .72rem; color: rgba(255,255,255,.35);
+    }
+
+    /* ===== SIDE CTA ===== */
+    .side-cta {
+      position: fixed;
+      left: 0; top: 50%;
+      transform: translateY(-50%) translateX(-100%);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity .5s ease, transform .5s ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+    .side-cta.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+    .side-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--yellow);
+      color: var(--text-dark);
+      padding: 28px 18px;
+      border-radius: 0 7px 7px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: 2px 2px 16px rgba(0,0,0,.15);
+      transition: background .3s, box-shadow .3s;
+    }
+    .side-cta-btn:hover {
+      background: #f5d050;
+      box-shadow: 2px 4px 24px rgba(0,0,0,.25);
+    }
+    .form-slide {
+      width: 0;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: none;
+      transition: width .45s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+      border-radius: 0 12px 12px 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .side-cta.open .form-slide {
+      width: 300px;
+      box-shadow: 4px 0 32px rgba(0,0,0,.12);
+      opacity: 1;
+      visibility: visible;
+    }
+    .side-cta.open .side-cta-btn {
+      border-radius: 0;
+      background: var(--kaeru-dark);
+    }
+    .form-slide-inner {
+      width: 300px;
+      min-width: 300px;
+      padding: 24px 20px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .form-slide-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .form-slide-inner .form-sub {
+      font-size: .75rem; color: #999; margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block; font-size: .73rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 4px;
+    }
+    .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .58rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 9px 11px;
+      border: 1px solid #ddd; border-radius: 6px;
+      font-size: .82rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 6px;
+      padding: 13px; font-size: .9rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 4px;
+    }
+    .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .form-note {
+      text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: .1s; }
+    .fade-up.d2 { transition-delay: .2s; }
+
+    /* ===== RESPONSIVE ===== */
+    .sp-only { display: none; }
+
+    @media (max-width: 1024px) {
+      .header-nav { display: none; }
+      .hamburger { display: block; }
+      .header-cta { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .office-cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .office-cards { grid-template-columns: repeat(2, 1fr); }
+      .footer-office-grid { grid-template-columns: repeat(3, 1fr); }
+      .company-row { flex-direction: column; gap: 4px; }
+      .company-label { width: auto; }
+    }
+
+    @media (max-width: 600px) {
+      .sp-only { display: inline; }
+      section { padding: 80px 20px; }
+      .page-hero { padding: 120px 20px 48px; min-height: 240px; }
+      .page-hero h1 { font-size: 1.6rem; }
+      .header-inner { padding: 12px 16px; }
+      .side-cta { display: none !important; }
+      .cta-form .form-grid { grid-template-columns: 1fr; }
+      .cta-form { padding: 28px 20px; }
+      .cta-inner h2 { font-size: 1.15rem; }
+      .office-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .office-card { padding: 16px 14px; }
+      .footer-office-grid { grid-template-columns: repeat(2, 1fr); }
+      .philosophy-quote { font-size: 1.2rem; }
+      .side-cta.open .form-slide { width: 260px; }
+      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
+      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="hp-mockup.html">TOP</a>
+  <a href="hp-mockup.html#works">制作事例</a>
+  <a href="company.html">企業情報</a>
+  <a href="#contact" class="mobile-nav-cta">お見積り・お問い合わせ</a>
+</div>
+
+<!-- HEADER -->
+<header class="header scrolled" id="header">
+  <div class="header-inner">
+    <a href="hp-mockup.html" class="logo-mark">
+      <svg class="logo-white" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#fff"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+      <svg class="logo-color" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#00b097"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="hp-mockup.html">TOP</a></li>
+        <li><a href="hp-mockup.html#works">制作事例</a></li>
+        <li><a href="company.html">企業情報</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#contact" class="header-cta">お見積り・お問い合わせ</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <p class="section-label">COMPANY</p>
+  <h1>企業情報</h1>
+  <p class="breadcrumb">
+    <a href="hp-mockup.html">TOP</a><span>&gt;</span>企業情報
+  </p>
+</section>
+
+<!-- COMPANY OVERVIEW -->
+<section class="company-overview">
+  <div class="section-head fade-up">
+    <p class="section-label">OVERVIEW</p>
+    <h2>会社概要</h2>
+  </div>
+  <div class="company-table fade-up">
+    <div class="company-row">
+      <div class="company-label">会社名</div>
+      <div class="company-value">カエル・デザイン・プロジェクト株式会社</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">英文名</div>
+      <div class="company-value">Kaeru Design Project Co., Ltd.</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">代表者</div>
+      <div class="company-value">代表取締役 （※）</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">設立</div>
+      <div class="company-value">2015年</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">資本金</div>
+      <div class="company-value">1,000万円</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">従業員数</div>
+      <div class="company-value">120名（グループ計）</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">事業内容</div>
+      <div class="company-value">店舗・オフィスの空間デザイン、設計・施工管理、不動産企画、ロゴ・看板デザイン、Web制作</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">本社所在地</div>
+      <div class="company-value">北海道小樽市</div>
+    </div>
+    <div class="company-row">
+      <div class="company-label">拠点数</div>
+      <div class="company-value">全国16拠点</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="section-head fade-up">
+    <p class="section-label">PHILOSOPHY</p>
+    <h2>企業理念</h2>
+  </div>
+  <div class="fade-up">
+    <p class="philosophy-quote">「カエル」発想で、空間に新しい価値を。</p>
+    <p class="philosophy-desc">
+      私たちは「変える」「帰る」「蘇る」という多義的な意味を持つ「カエル」の精神で、既成概念にとらわれない空間づくりに取り組んでいます。お客様の想いをカタチにし、訪れる人が何度でも帰りたくなる場所を創造すること。それがカエル・デザイン・プロジェクトの使命です。
+    </p>
+  </div>
+</section>
+
+<!-- OFFICE LOCATIONS -->
+<section class="offices-section">
+  <div class="section-head fade-up">
+    <p class="section-label">OFFICES</p>
+    <h2>全国拠点一覧</h2>
+  </div>
+  <div class="office-cards fade-up">
+    <div class="office-card">
+      <div class="city">本社（小樽）</div>
+      <div class="address">北海道小樽市色内1丁目</div>
+    </div>
+    <div class="office-card">
+      <div class="city">札幌オフィス</div>
+      <div class="address">北海道札幌市中央区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">仙台オフィス</div>
+      <div class="address">宮城県仙台市青葉区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">さいたまオフィス</div>
+      <div class="address">埼玉県さいたま市大宮区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">東京（新宿）</div>
+      <div class="address">東京都新宿区西新宿</div>
+    </div>
+    <div class="office-card">
+      <div class="city">東京（渋谷）</div>
+      <div class="address">東京都渋谷区渋谷</div>
+    </div>
+    <div class="office-card">
+      <div class="city">東京（品川）</div>
+      <div class="address">東京都品川区東五反田</div>
+    </div>
+    <div class="office-card">
+      <div class="city">横浜オフィス</div>
+      <div class="address">神奈川県横浜市西区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">川崎オフィス</div>
+      <div class="address">神奈川県川崎市川崎区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">名古屋オフィス</div>
+      <div class="address">愛知県名古屋市中区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">大阪（梅田）</div>
+      <div class="address">大阪府大阪市北区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">大阪（心斎橋）</div>
+      <div class="address">大阪府大阪市中央区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">岡山オフィス</div>
+      <div class="address">岡山県岡山市北区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">福岡オフィス</div>
+      <div class="address">福岡県福岡市中央区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">熊本オフィス</div>
+      <div class="address">熊本県熊本市中央区</div>
+    </div>
+    <div class="office-card">
+      <div class="city">沖縄オフィス</div>
+      <div class="address">沖縄県那覇市</div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="history">
+  <div class="section-head fade-up">
+    <p class="section-label">HISTORY</p>
+    <h2>沿革</h2>
+  </div>
+  <div class="timeline fade-up">
+    <div class="timeline-row">
+      <div class="timeline-year">2015年</div>
+      <div class="timeline-event">北海道小樽市にて設立</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2016年</div>
+      <div class="timeline-event">札幌オフィス開設</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2017年</div>
+      <div class="timeline-event">東京オフィス開設、事業拡大</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2018年</div>
+      <div class="timeline-event">大阪・福岡オフィス開設</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2019年</div>
+      <div class="timeline-event">全国10拠点体制に</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2020年</div>
+      <div class="timeline-event">電気・設備工事部門を新設</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2021年</div>
+      <div class="timeline-event">不動産事業部を新設</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2022年</div>
+      <div class="timeline-event">クリエイティブ事業部を新設</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2023年</div>
+      <div class="timeline-event">コワーキング事業を開始</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2024年</div>
+      <div class="timeline-event">全国15拠点体制に拡大</div>
+    </div>
+    <div class="timeline-row">
+      <div class="timeline-year">2025年</div>
+      <div class="timeline-event">札幌オフィス増床移転</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner fade-up">
+    <h2>
+      「こんな空間にしたいんだけど…」<br>その段階で大丈夫です。
+    </h2>
+    <p class="cta-lead">まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
+    <div class="cta-form">
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>お名前 <span class="req">必須</span></label>
+            <input type="text" name="name" required placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>会社名 <span style="font-weight:400;font-size:.65rem;color:#888">個人のお客様は入力不要です</span></label>
+            <input type="text" name="company" placeholder="株式会社〇〇">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス <span class="req">必須</span></label>
+            <input type="email" name="email" required placeholder="info@example.com">
+          </div>
+          <div class="form-group">
+            <label>お電話番号</label>
+            <input type="tel" name="tel" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group form-full">
+            <label>お問い合わせ内容 <span class="req">必須</span></label>
+            <textarea name="message" required placeholder="ご要望やご質問をお書きください"></textarea>
+          </div>
+          <div class="form-full">
+            <button type="submit" class="form-submit">送信する</button>
+            <p class="form-note">ご相談・お見積りは無料です</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <strong>カエル・デザイン・プロジェクト株式会社</strong>
+    <div class="footer-office-grid">
+      <span>本社（小樽）</span>
+      <span>札幌</span>
+      <span>仙台</span>
+      <span>さいたま</span>
+      <span>東京（新宿）</span>
+      <span>東京（渋谷）</span>
+      <span>東京（品川）</span>
+      <span>横浜</span>
+      <span>川崎</span>
+      <span>名古屋</span>
+      <span>大阪（梅田）</span>
+      <span>大阪（心斎橋）</span>
+      <span>岡山</span>
+      <span>福岡</span>
+      <span>熊本</span>
+      <span>沖縄</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="https://kaeru.design/privacy">プライバシーポリシー</a>
+        <a href="https://kaeru.design/sitemap">サイトマップ</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Kaeru Design Project Co., Ltd.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SIDE CTA -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">お見積り・お問い合わせ</button>
+  <div class="form-slide" id="formSlide">
+    <div class="form-slide-inner">
+      <h2>お見積り・お問い合わせ</h2>
+      <p class="form-sub">ご相談・お見積りは無料です</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-group">
+          <label>お名前 <span class="req">必須</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+          <input type="text" name="company" placeholder="株式会社〇〇">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="req">必須</span></label>
+          <input type="email" name="email" required placeholder="info@example.com">
+        </div>
+        <div class="form-group">
+          <label>お電話番号</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea name="message" rows="3" required placeholder="ご要望やご質問をお書きください"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+        <p class="form-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Header scroll behavior - starts with .scrolled class, show side CTA on scroll
+const header = document.getElementById('header');
+const sideCta = document.getElementById('sideCta');
+const contactSection = document.getElementById('contact');
+
+function updateHeaderState() {
+  const scrollY = window.scrollY;
+  const contactTop = contactSection ? contactSection.offsetTop : 999999;
+  const viewBottom = scrollY + window.innerHeight;
+
+  // Show side CTA when scrolled past hero, hide near contact
+  if (scrollY > 400 && viewBottom < contactTop) {
+    sideCta.classList.add('visible');
+  } else if (viewBottom >= contactTop) {
+    sideCta.classList.remove('visible');
+    sideCta.classList.remove('open');
+  } else {
+    sideCta.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', updateHeaderState);
+updateHeaderState();
+
+// Fade-up on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburgerBtn').classList.remove('open');
+  });
+});
+
+// Side form slide toggle
+const sideCtaEl = document.getElementById('sideCta');
+const sideCtaBtn = document.getElementById('sideCtaBtn');
+
+sideCtaBtn.addEventListener('click', () => {
+  sideCtaEl.classList.toggle('open');
+});
+
+// Close side panel when clicking outside
+document.addEventListener('click', e => {
+  if (sideCtaEl.classList.contains('open') && !sideCtaEl.contains(e.target)) {
+    sideCtaEl.classList.remove('open');
+  }
+});
+
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

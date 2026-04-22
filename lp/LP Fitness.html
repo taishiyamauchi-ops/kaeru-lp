@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フィットネス・ピラティス専門の空間設計｜カエル・デザイン・プロジェクト</title>
+<meta name="description" content="ジム・ピラティス・ヨガスタジオの内装設計。防音・動線・空調の専門ノウハウで、会員が続く空間をワンストップ設計。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=20260422">
+<style>
+/* Fitness-specific overrides */
+:root { --vertical-accent: #00806e; }
+.hero-title h1 em { color: #d0e4df; }
+
+/* Vertical-specific section: signature */
+.signature { padding:140px 40px; background:var(--paper); }
+.signature-inner { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:1.1fr 1fr; gap:100px; align-items:center; }
+.sig-img { aspect-ratio:4/5; overflow:hidden; background:var(--line-soft); position:relative; }
+.sig-img img { width:100%; height:100%; object-fit:cover; }
+.sig-img .tag { position:absolute; left:20px; bottom:20px; padding:10px 16px; background:var(--white); font-family:var(--f-mono); font-size:10px; letter-spacing:.24em; text-transform:uppercase; font-weight:500; }
+.sig-copy .eyebrow { margin-bottom:24px; display:block; }
+.sig-copy h2 { font-family:var(--f-jp-display); font-weight:300; font-size:clamp(28px, 3.4vw, 44px); line-height:1.4; margin-bottom:32px; }
+.sig-copy h2 em { font-style:normal; font-family:var(--f-jp-display); color:var(--kaeru); font-weight:500; }
+.sig-copy p { font-size:14px; line-height:2; color:var(--ink-3); margin-bottom:20px; }
+.sig-specs { margin-top:40px; padding-top:32px; border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.sig-specs .s dt { font-family:var(--f-mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-4); margin-bottom:10px; font-weight:500; }
+.sig-specs .s dd { font-family:var(--f-display); font-style:italic; font-size:26px; color:var(--ink); line-height:1.1; }
+.sig-specs .s dd small { font-family:var(--f-jp-body); font-style:normal; font-size:11px; color:var(--ink-3); display:block; margin-top:4px; letter-spacing:.05em; }
+
+/* Program grid (4 types) */
+.program-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+.program-cell { padding:40px 32px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; flex-direction:column; gap:18px; min-height:280px; position:relative; transition:background .4s; }
+.program-cell:hover { background:var(--paper); }
+.program-cell .n { font-family:var(--f-display); font-style:italic; font-size:28px; color:var(--ink-4); }
+.program-cell h3 { font-family:var(--f-jp-display); font-weight:400; font-size:18px; letter-spacing:.02em; }
+.program-cell .jp { font-family:var(--f-mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--kaeru); font-weight:500; }
+.program-cell p { font-size:12.5px; line-height:1.85; color:var(--ink-3); margin-top:auto; }
+
+@media (max-width: 1100px) {
+  .signature-inner { grid-template-columns:1fr; gap:40px; }
+  .program-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .program-grid { grid-template-columns:1fr; }
+  .sig-specs { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a href="hub.html" class="wordmark">Kaeru <em>Design</em><small>— Fitness & Pilates</small></a>
+  <nav class="topbar-nav">
+    <a href="#strengths">強み</a>
+    <a href="#programs">対応業態</a>
+    <a href="#works">実績</a>
+    <a href="#flow">流れ</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <a href="#contact" class="topbar-cta">無料相談 <span class="arrow"></span></a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-media" id="heroMedia">
+    <img class="active" src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="">
+    <img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="">
+    <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="">
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span>Fitness · Pilates · Yoga Studio Design</span></div>
+    <div class="hero-title">
+      <h1>通いたくなる、<br><em>ジム・スタジオを。</em></h1>
+      <div class="hero-meta">
+        <p>防音・動線・空調。フィットネス特有の設計ノウハウで、<br>設計から施工までワンストップ対応。会員が続く空間をつくります。</p>
+        <a href="#contact" class="hero-cta">プロジェクト相談 <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-rail"><span class="line"></span><span>Scroll</span></div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="intro-grid reveal">
+    <div class="intro-label"><span class="num">— 01</span><span class="eyebrow">Introduction</span></div>
+    <p class="intro-lead">
+      続くジムには、<em>理由がある。</em><br>
+      音、動線、空調、鏡。<br>
+      <em>会員が通いたくなる空間を、</em>設計から。
+    </p>
+    <div class="intro-body">
+      <p>フィットネスの空間づくりは、見た目のデザインだけでは足りません。<strong>床の反発、壁の遮音、天井の吸音、空調の風量や気流。</strong>身体を預ける場所として、会員様が安心して通い続けられる条件をすべて整える必要があります。</p>
+      <p>カエル・デザインは2006年の創業以来、180件を超えるスタジオを手がけてきました。コンサルティングから設計・施工・アフターフォローまで、窓口ひとつでワンストップ対応します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTHS (3 pillars) -->
+<section class="section" id="strengths">
+  <div class="section-head reveal">
+    <div class="label"><span class="num">— 02</span><span class="eyebrow">Strengths</span></div>
+    <h2>ジムに、<em>欠かせない3つ。</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><span class="n">01</span><h3>防音・遮音設計</h3><p>音楽・動作音・声。近隣クレームの原因となる音の問題を、構造・素材・レイアウトの3つの工夫で抑えます。</p><span class="t">Acoustic</span></div>
+    <div class="why-card reveal"><span class="n">02</span><h3>動線の設計</h3><p>受付・更衣室・トレーニングエリア・シャワー。混雑する時間帯でもスムーズに動ける回遊動線を、想定会員数から計算して設計します。</p><span class="t">Flow</span></div>
+    <div class="why-card reveal"><span class="n">03</span><h3>空調と換気計画</h3><p>激しい運動、呼吸法、長時間の滞在。業態ごとに必要な風量・温湿度・換気回数を、専門チームが算出します。</p><span class="t">Climate</span></div>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<section class="signature">
+  <div class="signature-inner">
+    <div class="sig-img reveal">
+      <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="b-monster 立川スタジオ">
+      <span class="tag">Signature Work</span>
+    </div>
+    <div class="sig-copy reveal">
+      <span class="eyebrow">Case — b-monster 立川スタジオ</span>
+      <h2>非日常に、<em>没入する空間。</em></h2>
+      <p>暗転と音響、そしてパンチの衝撃。都市型フィットネスの象徴的なブランドが求めたのは、「日常を忘れられる没入感」でした。</p>
+      <p>音響設計士と連携した完全遮音構造、グラフィック照明、空調の気流制御。ブランドの世界観を、空間としてかたちにしました。</p>
+      <dl class="sig-specs">
+        <div class="s"><dt>Area</dt><dd>320<small>㎡</small></dd></div>
+        <div class="s"><dt>Location</dt><dd><em>Tachikawa</em><small>Tokyo</small></dd></div>
+        <div class="s"><dt>Year</dt><dd>2026<small>Completed</small></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS (4 types) -->
+<section class="section" id="programs">
+  <div class="section-head reveal">
+    <div class="label"><span class="num">— 03</span><span class="eyebrow">Business Types</span></div>
+    <h2>業態ごとに、<em>最適な設計を。</em></h2>
+  </div>
+  <div class="program-grid">
+    <div class="program-cell reveal"><span class="n">i</span><span class="jp">Fitness Gym</span><h3>フィットネスジム</h3><p>大型マシン、フリーウェイト、スタジオ。大規模会員数に耐える床荷重・電源容量・動線を計画します。</p></div>
+    <div class="program-cell reveal"><span class="n">ii</span><span class="jp">Pilates Studio</span><h3>ピラティススタジオ</h3><p>マシン配置、鏡、床材。女性会員比率の高い業態に合わせて、ラウンジやパウダールームも含めて設計します。</p></div>
+    <div class="program-cell reveal"><span class="n">iii</span><span class="jp">Yoga Studio</span><h3>ヨガスタジオ</h3><p>静けさ、自然光、呼吸。ホットヨガの空調や温度ムラ、床発熱など、業態特有の要件を設計に反映します。</p></div>
+    <div class="program-cell reveal"><span class="n">iv</span><span class="jp">Boutique / Personal</span><h3>パーソナル/ブティック</h3><p>少人数・高単価の業態。完全個室、プライバシー、ブランド体験を軸に、空間から差別化を図ります。</p></div>
+  </div>
+</section>
+
+<!-- DARK: Process -->
+<section class="dark-section" id="flow">
+  <div class="dark-inner">
+    <div class="section-head reveal">
+      <div class="label"><span class="num">— 04</span><span class="eyebrow">Process</span></div>
+      <h2>初回相談から開業まで、<em>3〜6ヶ月。</em></h2>
+    </div>
+    <div class="f-list">
+      <div class="row reveal"><span class="n">01</span><h3>ヒアリング・コンセプト</h3><span class="d">ブランド、想定する会員層、収益モデルなど、事業の全体像から必要な空間要件を一緒に整理します。</span><span class="eyebrow">Week 1–2</span></div>
+      <div class="row reveal"><span class="n">02</span><h3>物件調査・現地診断</h3><span class="d">用途地域、遮音、電気、給排水。ジムとして開業可能かを、設計の視点から診断します。</span><span class="eyebrow">Week 2–3</span></div>
+      <div class="row reveal"><span class="n">03</span><h3>基本設計・お見積り</h3><span class="d">プランニング、マシン配置、動線、お見積り。ご判断いただける精度でご提示します。</span><span class="eyebrow">Week 3–6</span></div>
+      <div class="row reveal"><span class="n">04</span><h3>実施設計・施工</h3><span class="d">設計監理と現場管理。施工もカエル・デザインがワンストップで対応します。</span><span class="eyebrow">Month 2–5</span></div>
+      <div class="row reveal"><span class="n">05</span><h3>お引き渡し・アフターフォロー</h3><span class="d">開業後の修繕・メンテナンス・追加工事も、同じチームで継続対応します。</span><span class="eyebrow">Month 6+</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKS -->
+<section class="works-mini" id="works">
+  <div class="works-mini-inner">
+    <div class="section-head reveal">
+      <div class="label"><span class="num">— 05</span><span class="eyebrow">Selected Works</span></div>
+      <h2>手がけた<em>スタジオ</em>の一部。</h2>
+    </div>
+    <div class="works-grid3">
+      <a href="https://kaeru.design/works_detail?id=146" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 001</span><h3>b-monster 立川スタジオ</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">フィットネス · 東京 · 146.4坪 · 工期2.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=132" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 002</span><h3>BEYOND 大門・浜松町店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">パーソナルジム · 東京 · 36.5坪 · 工期0.8ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=76" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 003</span><h3>chocoZAP 新さっぽろ青葉町店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">フィットネスジム · 北海道 · RIZAP監修</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=101" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2024/0520/1716181769490130000.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 004</span><h3>chocoZAP 徳丸一丁目店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">フィットネスジム · 東京 · 14.4坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=100" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2024/0517/17159069571525692359.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 005</span><h3>chocoZAP 矢向六丁目店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">フィットネスジム · 神奈川 · 29.9坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=77" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2023/1107/1699336606127064429.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 006</span><h3>chocoZAP 清田２条店・平岸１条店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">フィットネスジム · 北海道 · 31.0坪 · 工期1.0ヵ月（2店舗同時）</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=137" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 007</span><h3>Pilates KASANE イオンタウンおゆみ野店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">ピラティス · 千葉 · 38.3坪 · 工期1.8ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=138" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1225/17666359431106356711.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 008</span><h3>Pilates KASANE 平塚店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">ピラティス · 神奈川 · 43.0坪 · 工期0.5ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=139" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1225/17666366361022091836.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 009</span><h3>Pilates KASANE イーアス沖縄豊崎店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">ピラティス · 沖縄 · 53.1坪 · 工期2.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=140" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1225/17666362621789541422.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 010</span><h3>Pilates KASANE イオンモールいわき小名浜店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">ピラティス · 福島 · 47.8坪 · 工期1.0ヵ月</span></div>
+      </a>
+    </div>
+    <div style="margin-top:60px; text-align:center;">
+      <a href="https://kaeru.design/works" class="btn-outline" target="_blank" rel="noopener">全ての実績を見る <span class="arrow"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-block" id="contact">
+  <div class="cta-inner">
+    <div class="cta-copy reveal">
+      <span class="eyebrow">Start a project</span>
+      <h2>そのスタジオ、<br><em>ご相談ください。</em></h2>
+      <p class="lead">物件探しの段階から、開業後の改修まで。13拠点・180件超のフィットネス実績を、窓口ひとつで。</p>
+      <dl class="contact-lines">
+        <div><dt>Tel</dt><dd>03-5816-0280</dd></div>
+        <div><dt>Hours</dt><dd class="sml">平日 9:00–18:00（土日祝休）</dd></div>
+        <div><dt>Email</dt><dd class="sml">info@kaeru.design</dd></div>
+      </dl>
+    </div>
+    <form class="cta-form reveal" onsubmit="event.preventDefault(); alert('お問い合わせありがとうございます。');">
+      <div class="fh"><span class="label">お問い合わせフォーム</span><span class="num">— Inquiry</span></div>
+      <div class="form-grid">
+        <div class="field"><label>お名前 <span class="req">*</span></label><input type="text" required></div>
+        <div class="field"><label>会社名</label><input type="text"></div>
+        <div class="field full"><label>Email <span class="req">*</span></label><input type="email" required></div>
+        <div class="field"><label>業態</label>
+          <select><option>フィットネスジム</option><option>ピラティス</option><option>ヨガ</option><option>パーソナル / ブティック</option><option>その他</option></select>
+        </div>
+        <div class="field"><label>ご希望エリア</label><input type="text" placeholder="例）東京都渋谷区"></div>
+        <div class="field full"><label>ご相談内容</label><textarea placeholder="現在の状況・スケジュール・ご予算など"></textarea></div>
+        <button class="form-submit">送信する <span class="arrow"></span></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="brand">Kaeru <em>Design</em></span>
+    <a href="hub.html" class="back-hub">← バリエーション一覧に戻る</a>
+    <span class="meta">© 2026 Kaeru Design Project</span>
+  </div>
+</footer>
+
+<!-- SIDE CTA (left floating) -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">無料相談・お見積り</button>
+  <div class="form-slide">
+    <div class="form-slide-inner">
+      <h3>プロジェクト相談</h3>
+      <p class="form-sub">Free Consultation</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="fg"><label>お名前 <span class="req">必須</span></label><input type="text" name="name" required placeholder="山田 太郎"></div>
+        <div class="fg"><label>会社名</label><input type="text" name="company" placeholder="株式会社〇〇"></div>
+        <div class="fg"><label>業態</label><input type="text" name="type" placeholder="パーソナルジム / ピラティス 他"></div>
+        <div class="fg"><label>メールアドレス <span class="req">必須</span></label><input type="email" name="email" required placeholder="info@example.com"></div>
+        <div class="fg"><label>お電話番号</label><input type="tel" name="tel" placeholder="090-0000-0000"></div>
+        <div class="fg"><label>ご相談内容 <span class="req">必須</span></label><textarea name="message" rows="3" required placeholder="物件・規模・ご予算などをお書きください"></textarea></div>
+        <button type="submit" class="fs-submit">送信する</button>
+        <p class="fs-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="base.js?v=20260422"></script>
+</body>
+</html>

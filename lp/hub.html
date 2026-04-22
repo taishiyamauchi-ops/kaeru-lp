@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>業態別LP バリエーション｜カエル・デザイン・プロジェクト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=20260422">
+<style>
+body { background:var(--paper); min-height:100vh; }
+.hub-wrap { max-width:1400px; margin:0 auto; padding:100px 40px 80px; }
+.hub-head { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; padding-bottom:60px; border-bottom:1px solid var(--line); margin-bottom:60px; }
+.hub-head .left { display:flex; flex-direction:column; gap:20px; }
+.hub-head .wordmark { font-family:var(--f-display); font-size:22px; }
+.hub-head .wordmark em { font-style:italic; color:var(--kaeru); }
+.hub-head h1 { font-family:var(--f-jp-display); font-weight:300; font-size:clamp(40px, 5.5vw, 72px); line-height:1.2; letter-spacing:.02em; }
+.hub-head h1 em { font-style:normal; font-family:var(--f-jp-display); color:var(--kaeru); font-weight:500; }
+.hub-head .right { font-size:14px; line-height:2; color:var(--ink-3); padding-bottom:12px; }
+.hub-meta { display:flex; gap:40px; padding-top:24px; border-top:1px solid var(--line); margin-top:24px; }
+.hub-meta > div dt { font-family:var(--f-mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-4); font-weight:500; margin-bottom:6px; }
+.hub-meta > div dd { font-family:var(--f-display); font-style:italic; font-size:20px; color:var(--ink); }
+
+.hub-grid { display:grid; grid-template-columns:repeat(12, 1fr); gap:24px; }
+.hub-card { position:relative; overflow:hidden; background:var(--ink); color:var(--white); aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:flex-end; padding:32px; transition:transform .6s cubic-bezier(.2,.6,.2,1); text-decoration:none; }
+.hub-card:hover { transform:translateY(-6px); }
+.hub-card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.62; transition:opacity .5s, transform 1.2s; }
+.hub-card:hover img { opacity:.5; transform:scale(1.04); }
+.hub-card::after { content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(14,14,12,.1) 0%, rgba(14,14,12,.85) 100%); }
+.hub-card > * { position:relative; z-index:1; }
+.hub-card .idx { position:absolute; top:28px; left:32px; font-family:var(--f-display); font-style:italic; font-size:22px; color:rgba(255,255,255,.7); z-index:2; }
+.hub-card .tag { position:absolute; top:32px; right:32px; font-family:var(--f-mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.7); font-weight:500; z-index:2; }
+.hub-card .en { font-family:var(--f-mono); font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:var(--kaeru-soft); font-weight:500; margin-bottom:12px; display:block; }
+.hub-card h2 { font-family:var(--f-jp-display); font-weight:400; font-size:26px; line-height:1.4; letter-spacing:.02em; margin-bottom:14px; }
+.hub-card .lead { font-size:13px; line-height:1.8; color:rgba(255,255,255,.8); margin-bottom:22px; max-width:380px; }
+.hub-card .view { display:inline-flex; align-items:center; gap:12px; font-family:var(--f-mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--white); padding-top:18px; border-top:1px solid rgba(255,255,255,.3); font-weight:500; }
+.hub-card .view .arr { width:26px; height:1px; background:currentColor; position:relative; transition:width .4s; }
+.hub-card .view .arr::after { content:''; position:absolute; right:0; top:-3px; width:7px; height:7px; border-right:1px solid currentColor; border-top:1px solid currentColor; transform:rotate(45deg); }
+.hub-card:hover .view .arr { width:46px; }
+
+.hub-card.c1 { grid-column: span 6; }
+.hub-card.c2 { grid-column: span 6; }
+.hub-card.c3 { grid-column: span 4; aspect-ratio:3/4; }
+.hub-card.c4 { grid-column: span 4; aspect-ratio:3/4; }
+.hub-card.c5 { grid-column: span 4; aspect-ratio:3/4; }
+
+.hub-foot { margin-top:80px; padding-top:40px; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; font-family:var(--f-mono); font-size:10px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-4); font-weight:500; }
+
+@media (max-width:1100px) {
+  .hub-head { grid-template-columns:1fr; gap:30px; }
+  .hub-card.c1, .hub-card.c2 { grid-column: span 12; }
+  .hub-card.c3, .hub-card.c4, .hub-card.c5 { grid-column: span 6; }
+}
+@media (max-width:700px) {
+  .hub-wrap { padding:60px 20px 40px; }
+  .hub-card.c1, .hub-card.c2, .hub-card.c3, .hub-card.c4, .hub-card.c5 { grid-column: span 12; aspect-ratio:4/5; }
+  .hub-foot { flex-direction:column; gap:12px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<div class="hub-wrap">
+  <header class="hub-head">
+    <div class="left">
+      <span class="wordmark">Kaeru <em>Design</em></span>
+      <h1>業態別LP<br><em>5 variations.</em></h1>
+      <dl class="hub-meta">
+        <div><dt>Variations</dt><dd>05</dd></div>
+        <div><dt>Shared Base</dt><dd><em>base.css</em></dd></div>
+        <div><dt>Status</dt><dd>Review</dd></div>
+      </dl>
+    </div>
+    <div class="right">
+      <p>業態ごとに異なる「続く空間」の条件に合わせて、カエル・デザインのLPを5パターンご用意しました。共通のデザインベース（タイポグラフィ・カラー・動き）を踏襲しつつ、業態特有の課題——動線、音環境、什器、厨房設備など——に合わせたセクション構成でまとめています。</p>
+    </div>
+  </header>
+
+  <div class="hub-grid">
+    <a href="LP Fitness.html" class="hub-card c1" target="_blank" rel="noopener">
+      <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="">
+      <span class="idx">— 01</span>
+      <span class="tag">Fitness · Pilates · Yoga</span>
+      <span class="en">Variation 01</span>
+      <h2>フィットネス・ピラティス</h2>
+      <p class="lead">防音・動線・空調。ジム特有の設計要件を踏まえ、会員が続くスタジオを設計するためのLP。</p>
+      <span class="view">View LP <span class="arr"></span></span>
+    </a>
+
+    <a href="LP Clinic.html" class="hub-card c2" target="_blank" rel="noopener">
+      <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="">
+      <span class="idx">— 02</span>
+      <span class="tag">Clinic · Dental · Aesthetic</span>
+      <span class="en">Variation 02</span>
+      <h2>クリニック・医療</h2>
+      <p class="lead">動線・プライバシー・感染対策・バリアフリー。医療空間ならではの要件を、落ち着いたデザインで提案。</p>
+      <span class="view">View LP <span class="arr"></span></span>
+    </a>
+
+    <a href="LP Office.html" class="hub-card c3" target="_blank" rel="noopener">
+      <img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="">
+      <span class="idx">— 03</span>
+      <span class="tag">Workplace</span>
+      <span class="en">Variation 03</span>
+      <h2>オフィス</h2>
+      <p class="lead">働き方・ブランド・プロジェクト管理。ゾーニング図を軸に、働きたくなるオフィスを提案。</p>
+      <span class="view">View <span class="arr"></span></span>
+    </a>
+
+    <a href="LP Retail.html" class="hub-card c4" target="_blank" rel="noopener">
+      <img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="">
+      <span class="idx">— 04</span>
+      <span class="tag">Apparel · Lifestyle</span>
+      <span class="en">Variation 04</span>
+      <h2>小売</h2>
+      <p class="lead">ブランドの世界観、MD動線、多店舗展開。売れる店舗づくりに必要な設計要素を網羅。</p>
+      <span class="view">View <span class="arr"></span></span>
+    </a>
+
+    <a href="LP FB.html" class="hub-card c5" target="_blank" rel="noopener">
+      <img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="">
+      <span class="idx">— 05</span>
+      <span class="tag">Café · Restaurant · Bar</span>
+      <span class="en">Variation 05</span>
+      <h2>飲食店</h2>
+      <p class="lead">客単価・回転率・世界観。飲食店特有の課題を、メニュー仕立てでわかりやすく整理。</p>
+      <span class="view">View <span class="arr"></span></span>
+    </a>
+  </div>
+
+  <div class="hub-foot">
+    <span>5 industry variations · shared editorial base</span>
+    <span>© 2026 Kaeru Design Project</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>採用情報｜カエル・デザイン・プロジェクト</title>
+  <meta name="description" content="カエル・デザイン・プロジェクトの採用情報。空間デザイナー、施工管理、営業、Webデザイナーを募集中。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --kaeru: #00b097;
+      --kaeru-dark: #009680;
+      --kaeru-light: #e6f8f5;
+      --sand: #f5f0e8;
+      --yellow: #ffdd66;
+      --text: #444;
+      --text-dark: #1a1a1a;
+      --white: #fff;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: var(--white);
+      overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 16px rgba(0,0,0,.06);
+    }
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+    }
+    .logo-mark {
+      display: flex; align-items: center; text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark svg {
+      height: 28px; width: auto;
+      transition: opacity .4s;
+    }
+    .logo-mark .logo-white { display: block; }
+    .logo-mark .logo-color { display: none; }
+    .header.scrolled .logo-mark .logo-white { display: none; }
+    .header.scrolled .logo-mark .logo-color { display: block; }
+
+    /* Nav */
+    .header-nav {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .header-nav a {
+      text-decoration: none; font-size: .78rem; font-weight: 700;
+      color: var(--white); transition: color .4s, opacity .25s;
+      white-space: nowrap;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .header-nav a:hover { opacity: .7; }
+    .header.scrolled .header-nav a { color: var(--text-dark); }
+
+    .header-cta {
+      background: var(--yellow); color: var(--text-dark);
+      padding: 10px 28px; border-radius: 6px; text-decoration: none;
+      font-weight: 700; font-size: .85rem; transition: all .25s;
+      font-family: 'Noto Serif JP', serif;
+      flex-shrink: 0;
+    }
+    .header-cta:hover { background: #f5d050; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative; z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--white);
+      position: absolute; left: 4px; transition: all .3s;
+    }
+    .header.scrolled .hamburger span { background: var(--text-dark); }
+    .hamburger span:nth-child(1) { top: 8px; }
+    .hamburger span:nth-child(2) { top: 15px; }
+    .hamburger span:nth-child(3) { top: 22px; }
+    .hamburger.open span:nth-child(1) { top: 15px; transform: rotate(45deg); background: var(--white); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 15px; transform: rotate(-45deg); background: var(--white); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,26,26,.95);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+      text-decoration: none; color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      transition: opacity .25s;
+    }
+    .mobile-nav a:hover { opacity: .7; }
+    .mobile-nav .mobile-nav-cta {
+      margin-top: 16px;
+      background: var(--yellow); color: var(--text-dark);
+      padding: 14px 40px; border-radius: 6px; font-weight: 700;
+    }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      position: relative;
+      width: 100vw;
+      height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .page-hero-bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .page-hero-bg::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.45) 50%, rgba(0,0,0,.6) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 2;
+      text-align: center; color: var(--white);
+      padding: 0 24px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.4);
+    }
+    .page-hero-content .section-label {
+      color: rgba(255,255,255,.7);
+      font-size: .75rem; letter-spacing: .2em; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .page-hero-content h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.6;
+      margin-bottom: 12px;
+      letter-spacing: .05em;
+    }
+    .page-hero-content .sub {
+      font-size: .9rem; opacity: .85; font-weight: 300; letter-spacing: .03em;
+    }
+    .breadcrumb {
+      position: absolute; bottom: 16px; left: 32px; z-index: 2;
+      font-size: .72rem; color: rgba(255,255,255,.6);
+    }
+    .breadcrumb a {
+      color: rgba(255,255,255,.6); text-decoration: none; transition: color .25s;
+    }
+    .breadcrumb a:hover { color: var(--white); }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ===== SECTION COMMON ===== */
+    section { padding: 120px 32px; }
+    .section-label {
+      font-size: .75rem; letter-spacing: .2em; color: var(--kaeru);
+      font-weight: 700; margin-bottom: 8px;
+    }
+
+    /* ===== MESSAGE SECTION ===== */
+    .message-section {
+      padding: 120px 32px;
+      background: var(--white);
+    }
+    .message-inner {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .message-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700; color: var(--text-dark);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+    .message-inner p {
+      font-size: .95rem; line-height: 2.2; font-weight: 300;
+      text-align: left;
+    }
+
+    /* ===== NUMBERS SECTION ===== */
+    .numbers-section {
+      padding: 100px 32px;
+      background: var(--sand);
+    }
+    .numbers-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+    }
+    .number-item {
+      text-align: center; flex: 1; min-width: 160px;
+    }
+    .number-item .num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--kaeru);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .number-item .num-label {
+      font-size: .85rem; color: var(--text-dark); font-weight: 700;
+    }
+
+    /* ===== JOB LISTINGS ===== */
+    .jobs-section {
+      padding: 120px 32px;
+      background: var(--white);
+    }
+    .jobs-section .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .jobs-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+    .jobs-grid {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    .job-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .job-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    .job-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+    .job-meta {
+      display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;
+    }
+    .job-meta span {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 4px;
+    }
+    .job-location {
+      background: var(--kaeru-light); color: var(--kaeru);
+    }
+    .job-type {
+      background: #f0f0f0; color: var(--text-dark);
+    }
+    .job-card p {
+      font-size: .85rem; line-height: 1.9; color: var(--text);
+      margin-bottom: 16px; font-weight: 300;
+    }
+    .job-link {
+      font-size: .85rem; color: var(--kaeru); text-decoration: none;
+      font-weight: 700; transition: opacity .25s;
+    }
+    .job-link:hover { opacity: .7; }
+
+    /* ===== BENEFITS SECTION ===== */
+    .benefits-section {
+      padding: 120px 32px;
+      background: var(--sand);
+    }
+    .benefits-section .section-head {
+      text-align: center; margin-bottom: 60px;
+    }
+    .benefits-section h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 900; color: var(--text-dark);
+    }
+    .benefits-grid {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .benefit-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .benefit-icon {
+      display: block; margin: 0 auto 12px;
+    }
+    .benefit-item p {
+      font-size: .88rem; font-weight: 700; color: var(--text-dark);
+    }
+
+    /* ===== APPLICATION CTA ===== */
+    .apply-cta {
+      position: relative;
+      padding: 120px 32px;
+      text-align: center;
+      background: var(--kaeru);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .apply-cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .apply-cta-inner {
+      position: relative; z-index: 1;
+      max-width: 700px; margin: 0 auto;
+    }
+    .apply-cta-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1.8;
+      margin-bottom: 16px;
+      letter-spacing: .03em;
+    }
+    .apply-cta-inner > p {
+      font-size: .9rem; opacity: .85; margin-bottom: 40px;
+    }
+    .apply-buttons {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-apply {
+      background: var(--yellow); color: var(--text-dark);
+      padding: 16px 44px; border-radius: 6px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      transition: all .25s;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .btn-apply:hover { background: #f5d050; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 16px 44px; border-radius: 6px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      transition: all .25s;
+      border: 2px solid rgba(255,255,255,.5);
+      font-family: 'Noto Serif JP', serif;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.8); }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--text-dark); color: rgba(255,255,255,.5);
+      padding: 60px 32px 40px; font-size: .8rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer strong {
+      color: var(--white); font-size: 1rem; display: block; margin-bottom: 24px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .office-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 24px;
+      margin-bottom: 32px;
+    }
+    .office-grid span {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links {
+      display: flex; gap: 20px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .75rem; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: .72rem; color: rgba(255,255,255,.35);
+    }
+
+    /* ===== SIDE CTA ===== */
+    .side-cta {
+      position: fixed;
+      left: 0; top: 50%;
+      transform: translateY(-50%) translateX(-100%);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity .5s ease, transform .5s ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+    .side-cta.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+    .side-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--yellow);
+      color: var(--text-dark);
+      padding: 28px 18px;
+      border-radius: 0 7px 7px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: 2px 2px 16px rgba(0,0,0,.15);
+      transition: background .3s, box-shadow .3s;
+    }
+    .side-cta-btn:hover {
+      background: #f5d050;
+      box-shadow: 2px 4px 24px rgba(0,0,0,.25);
+    }
+    .form-slide {
+      width: 0;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: none;
+      transition: width .45s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+      border-radius: 0 12px 12px 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .side-cta.open .form-slide {
+      width: 300px;
+      box-shadow: 4px 0 32px rgba(0,0,0,.12);
+      opacity: 1;
+      visibility: visible;
+    }
+    .side-cta.open .side-cta-btn {
+      border-radius: 0;
+      background: var(--kaeru-dark);
+    }
+    .form-slide-inner {
+      width: 300px;
+      min-width: 300px;
+      padding: 24px 20px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .form-slide-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .form-slide-inner .form-sub {
+      font-size: .75rem; color: #999; margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block; font-size: .73rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 4px;
+    }
+    .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .58rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 9px 11px;
+      border: 1px solid #ddd; border-radius: 6px;
+      font-size: .82rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 6px;
+      padding: 13px; font-size: .9rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 4px;
+    }
+    .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .form-note {
+      text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: .1s; }
+    .fade-up.d2 { transition-delay: .2s; }
+
+    /* ===== RESPONSIVE ===== */
+    .sp-only { display: none; }
+
+    @media (max-width: 1024px) {
+      .header-nav { display: none; }
+      .hamburger { display: block; }
+      .header-cta { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .jobs-grid { grid-template-columns: 1fr; }
+      .numbers-grid { gap: 32px; }
+      .office-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .sp-only { display: inline; }
+      section { padding: 80px 20px; }
+      .page-hero { height: 240px; }
+      .page-hero-content h1 { font-size: 1.5rem; }
+      .header-inner { padding: 12px 16px; }
+      .side-cta { display: none !important; }
+      .message-section { padding: 80px 20px; }
+      .numbers-section { padding: 60px 20px; }
+      .number-item { min-width: 120px; }
+      .numbers-grid { gap: 24px; }
+      .jobs-section { padding: 80px 20px; }
+      .benefits-section { padding: 80px 20px; }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .benefit-item { padding: 20px 12px; }
+      .apply-cta { padding: 80px 20px; }
+      .apply-buttons { flex-direction: column; align-items: center; }
+      .btn-apply, .btn-outline { width: 100%; max-width: 300px; text-align: center; }
+      .office-grid { grid-template-columns: repeat(2, 1fr); }
+      .breadcrumb { left: 20px; }
+      .side-cta.open .form-slide { width: 260px; }
+      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
+      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="hp-mockup.html">ホーム</a>
+  <a href="hp-mockup.html#works">制作事例</a>
+  <a href="hp-mockup.html#contact">お問い合わせ</a>
+  <a href="recruit.html">採用情報</a>
+  <a href="hp-mockup.html#contact" class="mobile-nav-cta">お見積り・お問い合わせ</a>
+</div>
+
+<!-- HEADER -->
+<header class="header scrolled" id="header">
+  <div class="header-inner">
+    <a href="hp-mockup.html" class="logo-mark">
+      <svg class="logo-white" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#fff"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+      <svg class="logo-color" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#00b097"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="hp-mockup.html">ホーム</a></li>
+        <li><a href="hp-mockup.html#works">制作事例</a></li>
+        <li><a href="hp-mockup.html#contact">お問い合わせ</a></li>
+        <li><a href="recruit.html">採用情報</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="hp-mockup.html#contact" class="header-cta">お見積り・お問い合わせ</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="img/recruit_bg.jpg" alt="採用情報">
+  </div>
+  <div class="page-hero-content">
+    <p class="section-label">RECRUIT</p>
+    <h1>採用情報</h1>
+    <p class="sub">一緒に「カエル」発想で空間をつくりませんか？</p>
+  </div>
+  <div class="breadcrumb">
+    <a href="hp-mockup.html">TOP</a><span>&gt;</span>採用情報
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="message-section fade-up">
+  <div class="message-inner">
+    <h2>わたしたちと一緒に働きませんか</h2>
+    <p>カエル・デザイン・プロジェクトは、「カエル」発想で商空間に新しい価値を生み出すデザイン会社です。設計から施工管理まで一貫して手がけるワンストップ体制のもと、全国15拠点でお客様の空間づくりをサポートしています。チャレンジ精神旺盛な仲間を募集しています。</p>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section fade-up">
+  <div class="numbers-grid">
+    <div class="number-item">
+      <div class="num">15</div>
+      <div class="num-label">全国拠点数</div>
+    </div>
+    <div class="number-item">
+      <div class="num">120<span style="font-size:.6em">+</span></div>
+      <div class="num-label">グループ従業員数</div>
+    </div>
+    <div class="number-item">
+      <div class="num">500<span style="font-size:.6em">+</span></div>
+      <div class="num-label">年間施工実績</div>
+    </div>
+    <div class="number-item">
+      <div class="num">98<span style="font-size:.6em">%</span></div>
+      <div class="num-label">顧客満足度</div>
+    </div>
+  </div>
+</section>
+
+<!-- JOB LISTINGS -->
+<section class="jobs-section">
+  <div class="section-head fade-up">
+    <p class="section-label">POSITIONS</p>
+    <h2>募集職種</h2>
+  </div>
+  <div class="jobs-grid">
+    <div class="job-card fade-up">
+      <h3>空間デザイナー</h3>
+      <div class="job-meta">
+        <span class="job-location">東京・札幌・大阪</span>
+        <span class="job-type">正社員</span>
+      </div>
+      <p>店舗やオフィスの空間デザインを担当。コンセプト設計からプレゼンテーション、現場監理まで。</p>
+      <a href="#" class="job-link">詳しく見る &rarr;</a>
+    </div>
+    <div class="job-card fade-up">
+      <h3>施工管理</h3>
+      <div class="job-meta">
+        <span class="job-location">全国各拠点</span>
+        <span class="job-type">正社員</span>
+      </div>
+      <p>内装工事の施工管理を担当。品質・コスト・工程の管理、協力会社との調整を行います。</p>
+      <a href="#" class="job-link">詳しく見る &rarr;</a>
+    </div>
+    <div class="job-card fade-up">
+      <h3>営業</h3>
+      <div class="job-meta">
+        <span class="job-location">東京・札幌</span>
+        <span class="job-type">正社員</span>
+      </div>
+      <p>新規顧客の開拓から既存顧客のフォローまで。お客様の課題をヒアリングし、最適なプランをご提案。</p>
+      <a href="#" class="job-link">詳しく見る &rarr;</a>
+    </div>
+    <div class="job-card fade-up">
+      <h3>Webデザイナー</h3>
+      <div class="job-meta">
+        <span class="job-location">札幌（リモート可）</span>
+        <span class="job-type">正社員</span>
+      </div>
+      <p>自社サイトやクライアントのWebサイト制作を担当。UI/UXデザインからコーディングまで。</p>
+      <a href="#" class="job-link">詳しく見る &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits-section">
+  <div class="section-head fade-up">
+    <p class="section-label">BENEFITS</p>
+    <h2>福利厚生・制度</h2>
+  </div>
+  <div class="benefits-grid fade-up">
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <p>各種社会保険完備</p>
+    </div>
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      <p>交通費全額支給</p>
+    </div>
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      <p>資格取得支援制度</p>
+    </div>
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <p>年間休日120日以上</p>
+    </div>
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <p>リモートワーク制度</p>
+    </div>
+    <div class="benefit-item">
+      <svg class="benefit-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#00b097" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <p>社内研修プログラム</p>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATION CTA -->
+<section class="apply-cta">
+  <div class="apply-cta-inner fade-up">
+    <h2>ご応募・お問い合わせ</h2>
+    <p>まずはお気軽にご連絡ください。カジュアル面談も実施しています。</p>
+    <div class="apply-buttons">
+      <a href="#" class="btn-apply">エントリーする</a>
+      <a href="#" class="btn-outline">会社説明資料を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <strong>カエル・デザイン・プロジェクト株式会社</strong>
+    <div class="office-grid">
+      <span>本社（小樽）</span>
+      <span>札幌</span>
+      <span>仙台</span>
+      <span>さいたま</span>
+      <span>東京（新宿）</span>
+      <span>東京（渋谷）</span>
+      <span>東京（品川）</span>
+      <span>横浜</span>
+      <span>川崎</span>
+      <span>名古屋</span>
+      <span>大阪（梅田）</span>
+      <span>大阪（心斎橋）</span>
+      <span>岡山</span>
+      <span>福岡</span>
+      <span>熊本</span>
+      <span>沖縄</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="https://kaeru.design/privacy">プライバシーポリシー</a>
+        <a href="https://kaeru.design/sitemap">サイトマップ</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Kaeru Design Project Co., Ltd.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SIDE CTA -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">お見積り・お問い合わせ</button>
+  <div class="form-slide" id="formSlide">
+    <div class="form-slide-inner">
+      <h2>お見積り・お問い合わせ</h2>
+      <p class="form-sub">ご相談・お見積りは無料です</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-group">
+          <label>お名前 <span class="req">必須</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+          <input type="text" name="company" placeholder="株式会社〇〇">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="req">必須</span></label>
+          <input type="email" name="email" required placeholder="info@example.com">
+        </div>
+        <div class="form-group">
+          <label>お電話番号</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea name="message" rows="3" required placeholder="ご要望やご質問をお書きください"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+        <p class="form-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Header: starts with .scrolled class on subpages
+const header = document.getElementById('header');
+const sideCta = document.getElementById('sideCta');
+
+// Show side CTA after scrolling past the hero
+function updateHeaderState() {
+  const scrollY = window.scrollY;
+  if (scrollY > 300) {
+    sideCta.classList.add('visible');
+  } else {
+    sideCta.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', updateHeaderState);
+updateHeaderState();
+
+// Fade-up on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburgerBtn').classList.remove('open');
+  });
+});
+
+// Side form slide toggle
+const sideCtaEl = document.getElementById('sideCta');
+const sideCtaBtn = document.getElementById('sideCtaBtn');
+
+sideCtaBtn.addEventListener('click', () => {
+  sideCtaEl.classList.toggle('open');
+});
+
+// Close side panel when clicking outside
+document.addEventListener('click', e => {
+  if (sideCtaEl.classList.contains('open') && !sideCtaEl.contains(e.target)) {
+    sideCtaEl.classList.remove('open');
+  }
+});
+
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

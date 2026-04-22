@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>制作事例｜カエル・デザイン・プロジェクト</title>
+  <meta name="description" content="カエル・デザイン・プロジェクトの制作事例。店舗・オフィス・クリニック・フィットネスなど、全国の空間デザイン実績をご紹介します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Zen+Maru+Gothic:wght@400;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --kaeru: #00b097;
+      --kaeru-dark: #009680;
+      --kaeru-light: #e6f8f5;
+      --sand: #f5f0e8;
+      --yellow: #ffdd66;
+      --text: #444;
+      --text-dark: #1a1a1a;
+      --white: #fff;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      line-height: 1.9;
+      background: var(--white);
+      overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background .4s, box-shadow .4s, opacity .5s ease, transform .5s ease;
+    }
+    .header.scrolled {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 16px rgba(0,0,0,.06);
+    }
+    .header.hidden {
+      opacity: 0;
+      transform: translateY(-100%);
+      pointer-events: none;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 32px;
+    }
+    .logo-mark {
+      display: flex; align-items: center; text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark svg {
+      height: 28px; width: auto;
+      transition: opacity .4s;
+    }
+    .logo-mark .logo-white { display: block; }
+    .logo-mark .logo-color { display: none; }
+    .header.scrolled .logo-mark .logo-white { display: none; }
+    .header.scrolled .logo-mark .logo-color { display: block; }
+
+    /* Nav */
+    .header-nav {
+      display: flex; align-items: center; gap: 24px;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .header-nav a {
+      text-decoration: none; font-size: .78rem; font-weight: 700;
+      color: var(--white); transition: color .4s, opacity .25s;
+      white-space: nowrap;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .header-nav a:hover { opacity: .7; }
+    .header.scrolled .header-nav a { color: var(--text-dark); }
+
+    .header-cta {
+      background: var(--yellow); color: var(--text-dark);
+      padding: 10px 28px; border-radius: 6px; text-decoration: none;
+      font-weight: 700; font-size: .85rem; transition: all .25s;
+      font-family: 'Noto Serif JP', serif;
+      flex-shrink: 0;
+    }
+    .header-cta:hover { background: #f5d050; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 32px; height: 32px; position: relative; z-index: 201;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--white);
+      position: absolute; left: 4px; transition: all .3s;
+    }
+    .header.scrolled .hamburger span { background: var(--text-dark); }
+    .hamburger span:nth-child(1) { top: 8px; }
+    .hamburger span:nth-child(2) { top: 15px; }
+    .hamburger span:nth-child(3) { top: 22px; }
+    .hamburger.open span:nth-child(1) { top: 15px; transform: rotate(45deg); background: var(--white); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { top: 15px; transform: rotate(-45deg); background: var(--white); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,26,26,.95);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 28px;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: auto; }
+    .mobile-nav a {
+      text-decoration: none; color: var(--white);
+      font-size: 1.1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      transition: opacity .25s;
+    }
+    .mobile-nav a:hover { opacity: .7; }
+    .mobile-nav .mobile-nav-cta {
+      margin-top: 16px;
+      background: var(--yellow); color: var(--text-dark);
+      padding: 14px 40px; border-radius: 6px; font-weight: 700;
+    }
+
+    /* ===== PAGE HERO ===== */
+    .page-hero {
+      position: relative;
+      width: 100%; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      background: var(--text-dark);
+    }
+    .page-hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .page-hero-bg img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      opacity: .35;
+    }
+    .page-hero::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.55) 100%);
+    }
+    .page-hero-content {
+      position: relative; z-index: 2;
+      text-align: center; color: var(--white);
+      padding: 0 24px;
+    }
+    .page-hero-content .section-label {
+      color: rgba(255,255,255,.7);
+      margin-bottom: 8px;
+    }
+    .page-hero-content h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+    .breadcrumb {
+      position: relative; z-index: 2;
+      text-align: center;
+      margin-top: 16px;
+      font-size: .75rem;
+      color: rgba(255,255,255,.6);
+    }
+    .breadcrumb a {
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      transition: color .25s;
+    }
+    .breadcrumb a:hover { color: var(--white); }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* ===== SECTION COMMON ===== */
+    section { padding: 120px 32px; }
+    .section-label {
+      font-size: .75rem; letter-spacing: .2em; color: var(--kaeru);
+      font-weight: 700; margin-bottom: 8px;
+    }
+
+    /* ===== FILTER TABS ===== */
+    .filter-tabs {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+      padding: 40px 32px 0;
+      max-width: 900px; margin: 0 auto;
+    }
+    .filter-tab {
+      padding: 8px 24px;
+      border-radius: 50px;
+      font-size: .82rem;
+      font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      border: 1px solid #ddd;
+      background: var(--white);
+      color: var(--text);
+      cursor: pointer;
+      transition: all .25s;
+      text-decoration: none;
+    }
+    .filter-tab:hover {
+      border-color: var(--kaeru);
+      color: var(--kaeru);
+    }
+    .filter-tab.active {
+      background: var(--kaeru);
+      color: var(--white);
+      border-color: var(--kaeru);
+    }
+
+    /* ===== PORTFOLIO GRID ===== */
+    .portfolio-section {
+      padding: 60px 32px 120px;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .work-card {
+      border-radius: 10px; overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
+      transition: transform .3s;
+      text-decoration: none; color: inherit; display: block; cursor: pointer;
+    }
+    .work-card:hover { transform: translateY(-4px); }
+    .work-card .slide-wrap { position: relative; width: 100%; height: 220px; overflow: hidden; }
+    .work-card .slide-wrap img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      opacity: 0; transition: opacity .8s ease;
+    }
+    .work-card .slide-wrap img.active { opacity: 1; }
+    .work-card .info { padding: 16px 18px; }
+    .work-card .tag {
+      display: inline-block; background: var(--kaeru); color: var(--white);
+      padding: 3px 10px; border-radius: 4px;
+      font-size: .7rem; font-weight: 700; margin-bottom: 6px;
+    }
+    .work-card h3 { font-size: .9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .work-card .meta { font-size: .75rem; color: #aaa; }
+
+    /* ===== PAGINATION ===== */
+    .pagination {
+      display: flex; justify-content: center; align-items: center; gap: 8px;
+      padding: 0 32px 80px;
+    }
+    .pagination a, .pagination span {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 6px;
+      font-size: .82rem; font-weight: 700;
+      text-decoration: none;
+      transition: all .25s;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .pagination a {
+      color: var(--text);
+      border: 1px solid #ddd;
+      background: var(--white);
+    }
+    .pagination a:hover {
+      border-color: var(--kaeru);
+      color: var(--kaeru);
+    }
+    .pagination span.active {
+      background: var(--kaeru);
+      color: var(--white);
+      border: 1px solid var(--kaeru);
+    }
+    .pagination .arrow {
+      font-size: .9rem;
+      color: var(--text);
+      border: 1px solid #ddd;
+      background: var(--white);
+    }
+    .pagination .arrow:hover {
+      border-color: var(--kaeru);
+      color: var(--kaeru);
+    }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      position: relative;
+      padding: 120px 32px;
+      text-align: center;
+      background: var(--kaeru);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto;
+    }
+    .cta-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1.8;
+      margin-bottom: 8px;
+      letter-spacing: .03em;
+    }
+    .cta-inner > p.cta-lead {
+      font-size: .9rem; opacity: .85; margin-bottom: 36px;
+    }
+    .cta-form {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 40px 36px;
+      text-align: left;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+    .cta-form .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 20px;
+    }
+    .cta-form .form-group { margin-bottom: 0; }
+    .cta-form .form-full { grid-column: 1 / -1; }
+    .cta-form .form-group label {
+      display: block; font-size: .78rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 5px;
+    }
+    .cta-form .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .6rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .cta-form .form-group input,
+    .cta-form .form-group select,
+    .cta-form .form-group textarea {
+      width: 100%; padding: 11px 13px;
+      border: 1px solid #ddd; border-radius: 7px;
+      font-size: .85rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .cta-form .form-group input:focus,
+    .cta-form .form-group select:focus,
+    .cta-form .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru); background: #fff;
+    }
+    .cta-form .form-group textarea { resize: vertical; min-height: 80px; }
+    .cta-form .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 7px;
+      padding: 16px; font-size: 1rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 8px;
+    }
+    .cta-form .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .cta-form .form-note {
+      text-align: center; font-size: .72rem; color: #aaa; margin-top: 10px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--text-dark); color: rgba(255,255,255,.5);
+      padding: 60px 32px 40px; font-size: .8rem;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer strong {
+      color: var(--white); font-size: 1rem; display: block; margin-bottom: 24px;
+      font-family: 'Noto Serif JP', serif;
+    }
+    .office-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px 24px;
+      margin-bottom: 32px;
+    }
+    .office-grid span {
+      font-size: .78rem; color: rgba(255,255,255,.5);
+      padding: 4px 0;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+    }
+    .footer-links {
+      display: flex; gap: 20px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,.5); text-decoration: none;
+      font-size: .75rem; transition: color .25s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: .72rem; color: rgba(255,255,255,.35);
+    }
+
+    /* ===== SIDE CTA ===== */
+    .side-cta {
+      position: fixed;
+      left: 0; top: 50%;
+      transform: translateY(-50%) translateX(-100%);
+      z-index: 99;
+      opacity: 0;
+      transition: opacity .5s ease, transform .5s ease;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+    }
+    .side-cta.visible {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+      pointer-events: auto;
+    }
+    .side-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: var(--yellow);
+      color: var(--text-dark);
+      padding: 28px 18px;
+      border-radius: 0 7px 7px 0;
+      font-family: 'Noto Serif JP', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      box-shadow: 2px 2px 16px rgba(0,0,0,.15);
+      transition: background .3s, box-shadow .3s;
+    }
+    .side-cta-btn:hover {
+      background: #f5d050;
+      box-shadow: 2px 4px 24px rgba(0,0,0,.25);
+    }
+    .form-slide {
+      width: 0;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: none;
+      transition: width .45s cubic-bezier(.4,0,.2,1), box-shadow .3s;
+      border-radius: 0 12px 12px 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .side-cta.open .form-slide {
+      width: 300px;
+      box-shadow: 4px 0 32px rgba(0,0,0,.12);
+      opacity: 1;
+      visibility: visible;
+    }
+    .side-cta.open .side-cta-btn {
+      border-radius: 0;
+      background: var(--kaeru-dark);
+    }
+    .form-slide-inner {
+      width: 300px;
+      min-width: 300px;
+      padding: 24px 20px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .form-slide-inner h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .form-slide-inner .form-sub {
+      font-size: .75rem; color: #999; margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 14px;
+    }
+    .form-group label {
+      display: block; font-size: .73rem; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 4px;
+    }
+    .form-group label .req {
+      background: #e74c3c; color: #fff; font-size: .58rem;
+      padding: 1px 5px; border-radius: 3px; margin-left: 4px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 9px 11px;
+      border: 1px solid #ddd; border-radius: 6px;
+      font-size: .82rem; font-family: 'Noto Sans JP', sans-serif;
+      transition: border-color .3s;
+      background: #fafafa;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--kaeru);
+      background: #fff;
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-submit {
+      display: block; width: 100%;
+      background: var(--kaeru); color: var(--white);
+      border: none; border-radius: 6px;
+      padding: 13px; font-size: .9rem; font-weight: 700;
+      font-family: 'Noto Serif JP', serif;
+      cursor: pointer; transition: background .3s, transform .2s;
+      margin-top: 4px;
+    }
+    .form-submit:hover { background: var(--kaeru-dark); transform: translateY(-1px); }
+    .form-note {
+      text-align: center; font-size: .68rem; color: #aaa; margin-top: 8px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.d1 { transition-delay: .1s; }
+    .fade-up.d2 { transition-delay: .2s; }
+
+    /* ===== RESPONSIVE ===== */
+    .sp-only { display: none; }
+
+    @media (max-width: 1024px) {
+      .header-nav { display: none; }
+      .hamburger { display: block; }
+      .header-cta { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .office-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .sp-only { display: inline; }
+      section { padding: 80px 20px; }
+      .portfolio-section { padding: 40px 20px 80px; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .work-card .slide-wrap { height: 200px; }
+      .header-inner { padding: 12px 16px; }
+      .side-cta { display: none !important; }
+      .cta-form .form-grid { grid-template-columns: 1fr; }
+      .cta-form { padding: 28px 20px; }
+      .cta-inner h2 { font-size: 1.15rem; }
+      .filter-tabs { gap: 8px; padding: 32px 20px 0; }
+      .filter-tab { padding: 6px 16px; font-size: .75rem; }
+      .page-hero { height: 240px; }
+      .office-grid { grid-template-columns: repeat(2, 1fr); }
+      .side-cta.open .form-slide { width: 260px; }
+      .form-slide-inner { width: 260px; min-width: 260px; padding: 18px 14px; }
+      .side-cta-btn { padding: 18px 10px; font-size: .75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="service.html">サービス</a>
+  <a href="works.html">制作事例</a>
+  <a href="division.html">事業紹介</a>
+  <a href="company.html">企業情報</a>
+  <a href="column.html">コラム</a>
+  <a href="recruit.html">採用情報</a>
+  <a href="#contact" class="mobile-nav-cta">お見積り・お問い合わせ</a>
+</div>
+
+<!-- HEADER -->
+<header class="header scrolled" id="header">
+  <div class="header-inner">
+    <a href="hp-mockup.html" class="logo-mark">
+      <svg class="logo-white" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#fff"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+      <svg class="logo-color" viewBox="0 0 640 108" xmlns="http://www.w3.org/2000/svg"><g fill="#00b097"><path d="M104.3,18.6c0,2.7-2.2,4.8-4.8,4.8c-2.7,0-4.8-2.2-4.8-4.8c0-2.7,2.2-4.8,4.8-4.8C102.2,13.8,104.3,16,104.3,18.6"/><path d="M85.1,106.7H45.3c-9.4,0-14.1-5.3-14.5-10.2c-0.4-4.8,3-10.9,13.9-12.7c9.9-1.6,26.8-5.9,29-16.5c0.7-3.6,0-6.9-2.1-9.5c-2.4-2.9-6.2-4.6-10.6-4.6c-22.3,0-36.1,22.8-36.2,23.1c-1.1,1.8-3.4,2.4-5.2,1.4c-1.8-1.1-2.4-3.4-1.4-5.2c0.6-1.1,16-26.8,42.8-26.8c6.7,0,12.7,2.7,16.5,7.4c3.6,4.4,4.9,10,3.7,15.9C78.8,80.2,66.6,88,45.9,91.3c-5.7,0.9-7.7,3.3-7.5,4.6c0.1,1.3,2.3,3.2,6.9,3.2h39.7c2.1,0,3.8,1.7,3.8,3.8C88.9,105,87.2,106.7,85.1,106.7"/><path d="M134.2,107.9c-0.1,0-0.3,0-0.4,0c-15.4-1.5-28.5-9.5-35.1-21.3c-4.4-7.8-5-16.2-1.7-23c2.6-5.3,9.4-9.8,17.3-14.9c8.5-5.5,18-11.7,24-20c-1-1.8-3.6-4.9-9.4-6c-8.2-1.5-15.1-5-19.1-9.6c-2.8-3.2-5.3-4.9-8.2-5.4c-3.2-0.6-6.5,0.1-9.2,2c-2.7,1.9-4.5,4.7-5.1,7.9c-0.3,1.6-1.6,2.9-3.2,3.1C62.8,23.8,48,28.4,36.4,35.9C5.6,55.8,3.7,79.1,11.4,93.1c1,1.8,0.4,4.2-1.5,5.2c-1.8,1-4.2,0.4-5.2-1.5c-10-18.2-5.4-46,27.6-67.2c12.1-7.8,27.1-12.7,48.3-15.8c1.3-4.1,4-7.6,7.5-10.1c4.4-3,9.7-4.2,14.9-3.3c6.1,1.1,10.1,5,12.6,7.9c1.1,1.2,5.2,5.3,14.7,7.1c13.2,2.5,15.9,12.6,16,13c0.3,1,0.1,2.1-0.5,3c-6.8,10.4-18.2,17.9-27.4,23.8c-6.7,4.3-13,8.4-14.6,11.8c-2.2,4.5-1.6,10.3,1.5,15.9c4.2,7.4,14,15.9,29.2,17.4c2.1,0.2,3.6,2.1,3.4,4.2C137.8,106.5,136.1,107.9,134.2,107.9"/><path d="M335.4,96.4c-7.2,0-13.1-5-13.1-11.2v-2.7h36.9V72c0-12-10.7-21.8-23.8-21.8c-13.1,0-23.8,9.8-23.8,21.8v13.3c0,12,10.7,21.8,23.8,21.8c12.6,0,23-9.1,23.7-20.6h-10.7C347.7,92.1,342.2,96.4,335.4,96.4 M335.4,60.8c7.2,0,13,4.9,13.1,11h-26.2C322.4,65.7,328.3,60.8,335.4,60.8"/><path d="M440.9,107.1c-12.8,0-23.2-9.6-23.2-21.4V53.6h10.7v32.2c0,5.9,5.6,10.7,12.5,10.7c3,0,4.4-0.4,6.6-1.1c1.1-0.3,2.3-0.7,3.7-1c0.9-0.2,1.8-0.3,2.7-0.4V53.6h10.7v51.7l-6-0.7c0,0-2.6-0.3-5.1,0.3c-1.2,0.3-2.2,0.5-3.1,0.8C447.9,106.3,445.3,107.1,440.9,107.1"/><path d="M386.5,105.2h-10.7V54.2l6,0.7c0,0,3.8,0.4,7.3-0.4c1.6-0.4,3-0.7,4.3-1.1c3.4-1,6.6-1.9,12.3-1.9v10.7c-4.2,0-6.3,0.6-9.3,1.5c-1.4,0.4-3,0.8-4.9,1.3c-1.7,0.4-3.4,0.6-5,0.7V105.2z"/><path d="M274.5,50.1c-11.4,0-20.9,7.4-23.2,17.3h11.3c2-3.9,6.6-6.6,11.9-6.6c6.4,0,11.8,4,12.9,9.2H272c-12.5,0-21.3,7.6-21.3,18.5c0,10.4,10.4,18.5,23.8,18.5c4.5,0,7.1-0.7,9.6-1.5c1-0.3,2-0.6,3.1-0.8c2.4-0.5,5.1-0.3,5.1-0.3l6,0.7V72C298.2,59.9,287.6,50.1,274.5,50.1 M284.8,94.4c-1.5,0.3-2.7,0.7-3.7,1c-2.2,0.6-3.7,1.1-6.6,1.1c-7.7,0-13.1-4.1-13.1-7.9c0-4.9,4.1-7.9,10.6-7.9h15.5v13.3C286.7,94,285.8,94.2,284.8,94.4"/><polygon points="214.7,70.2 243.6,37.7 229.3,37.7 200.8,69.8 228.9,105.2 242.5,105.2"/><rect x="183.9" y="37.7" width="11.4" height="67.6"/><path d="M490.2,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C487.3,94,490.2,96.9,490.2,100.5"/><path d="M577.4,100.5c0,3.6-2.9,6.5-6.5,6.5c-3.6,0-6.5-2.9-6.5-6.5c0-3.6,2.9-6.5,6.5-6.5C574.4,94,577.4,96.9,577.4,100.5"/><path d="M527,105.2h-23.1V37.7H527c18.6,0,33.8,15.2,33.8,33.8S545.7,105.2,527,105.2 M514.6,94.6H527c12.8,0,23.1-10.4,23.1-23.1S539.8,48.3,527,48.3h-12.5V94.6z"/><path d="M614.2,37.7h-28v51.6v15.9h10.7V89.4h17.3c14.2,0,25.8-11.6,25.8-25.8C640,49.3,628.4,37.7,614.2,37.7 M614.2,78.7h-17.3V48.4h17.3c8.4,0,15.2,6.8,15.2,15.2S622.5,78.7,614.2,78.7"/></g></svg>
+    </a>
+    <nav>
+      <ul class="header-nav">
+        <li><a href="service.html">サービス</a></li>
+        <li><a href="works.html">制作事例</a></li>
+        <li><a href="division.html">事業紹介</a></li>
+        <li><a href="company.html">企業情報</a></li>
+        <li><a href="column.html">コラム</a></li>
+        <li><a href="recruit.html">採用情報</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="#contact" class="header-cta">お見積り・お問い合わせ</a>
+  </div>
+</header>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-bg">
+    <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="制作事例">
+  </div>
+  <div class="page-hero-content">
+    <p class="section-label">WORKS</p>
+    <h1>制作事例</h1>
+    <div class="breadcrumb">
+      <a href="hp-mockup.html">TOP</a><span>&gt;</span>制作事例
+    </div>
+  </div>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-tabs">
+  <button class="filter-tab active">すべて</button>
+  <button class="filter-tab">店舗デザイン</button>
+  <button class="filter-tab">オフィスデザイン</button>
+  <button class="filter-tab">クリニック</button>
+  <button class="filter-tab">フィットネス</button>
+</div>
+
+<!-- PORTFOLIO GRID -->
+<section class="portfolio-section">
+  <div class="portfolio-grid">
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="ルミナスビューティークリニック様" class="active">
+        <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">美容クリニック・群馬</span>
+        <h3>ルミナスビューティークリニック様</h3>
+        <p class="meta">93.0坪 ／ 工期 2.5ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="喫煙喫茶オールドルーキーカフェ様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">カフェ・東京</span>
+        <h3>喫煙喫茶オールドルーキーカフェ様</h3>
+        <p class="meta">35.0坪 ／ 工期 1.5ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="b-monster 立川スタジオ様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2023/1113/1699862015848169390.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">フィットネス・東京</span>
+        <h3>b-monster 立川スタジオ様</h3>
+        <p class="meta">146.4坪 ／ 工期 2.0ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="ミキハウス ニセコビレッジ POP UPショップ様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">アパレル・北海道</span>
+        <h3>ミキハウス ニセコビレッジ POP UPショップ様</h3>
+        <p class="meta">店舗デザイン ／ ニセコ</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="勉強カフェ 札幌琴似スタジオ様" class="active">
+        <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">学習スペース・北海道</span>
+        <h3>勉強カフェ 札幌琴似スタジオ様</h3>
+        <p class="meta">カフェ ／ 札幌</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2025/1224/1766553469343240633.jpg" alt="やきとり日本一様" class="active">
+        <img src="https://kaeru.design//common/dat/2026/0210/1770685400139899110.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">飲食・北海道</span>
+        <h3>やきとり日本一様</h3>
+        <p class="meta">飲食店 ／ 札幌</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="Pilates KASANE おゆみ野店様" class="active">
+        <img src="https://kaeru.design//common/dat/2026/0126/17693876831703202760.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">ピラティス・千葉</span>
+        <h3>Pilates KASANE おゆみ野店様</h3>
+        <p class="meta">38.3坪 ／ 工期 1.8ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2025/1203/17647381541098785830.jpg" alt="ACCEA CAFE 渋谷店様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/1219/17661382361179480663.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">カフェ・東京</span>
+        <h3>ACCEA CAFE 渋谷店様</h3>
+        <p class="meta">コワーキング ／ 渋谷</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2025/1215/1765786614382874899.jpg" alt="Thoth Pte.Ltd.様" class="active">
+        <img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2026/0219/1771472358482255904.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">オフィス・北海道</span>
+        <h3>Thoth Pte.Ltd.様</h3>
+        <p class="meta">155.0坪 ／ 工期 1.5ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2025/1210/17653529631512263782.jpg" alt="CRONOS様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/0903/17568729941242484525.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">アパレル・栃木</span>
+        <h3>CRONOS様</h3>
+        <p class="meta">21.0坪 ／ 工期 1.5ヵ月</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2024/1119/1732008623336764148.jpg" alt="アシックス商事株式会社様" class="active">
+        <img src="https://kaeru.design//common/dat/2025/1203/17647386331700830505.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1222/1766380365446947744.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">オフィス・北海道</span>
+        <h3>アシックス商事株式会社様</h3>
+        <p class="meta">オフィスデザイン ／ 札幌</p>
+      </div>
+    </a>
+
+    <a href="#" class="work-card fade-up">
+      <div class="slide-wrap">
+        <img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt="メンズクリア 徳島駅前店様" class="active">
+        <img src="https://kaeru.design//common/dat/2026/0109/1767938537811814391.jpg" alt="" loading="lazy">
+        <img src="https://kaeru.design//common/dat/2025/1225/1766634773710034320.jpg" alt="" loading="lazy">
+      </div>
+      <div class="info">
+        <span class="tag">メンズサロン・徳島</span>
+        <h3>メンズクリア 徳島駅前店様</h3>
+        <p class="meta">脱毛サロン ／ 20坪</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PAGINATION -->
+<div class="pagination">
+  <a href="#" class="arrow">&larr;</a>
+  <span class="active">1</span>
+  <a href="#">2</a>
+  <a href="#">3</a>
+  <a href="#">4</a>
+  <a href="#">5</a>
+  <a href="#" class="arrow">&rarr;</a>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner fade-up">
+    <h2>
+      「こんな空間にしたいんだけど…」<br>その段階で大丈夫です。
+    </h2>
+    <p class="cta-lead">まだ具体的じゃなくても構いません。まずはお気軽にご相談ください。</p>
+    <div class="cta-form">
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>お名前 <span class="req">必須</span></label>
+            <input type="text" name="name" required placeholder="山田 太郎">
+          </div>
+          <div class="form-group">
+            <label>会社名 <span style="font-weight:400;font-size:.65rem;color:#888">個人のお客様は入力不要です</span></label>
+            <input type="text" name="company" placeholder="株式会社〇〇">
+          </div>
+          <div class="form-group">
+            <label>メールアドレス <span class="req">必須</span></label>
+            <input type="email" name="email" required placeholder="info@example.com">
+          </div>
+          <div class="form-group">
+            <label>お電話番号</label>
+            <input type="tel" name="tel" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group form-full">
+            <label>お問い合わせ内容 <span class="req">必須</span></label>
+            <textarea name="message" required placeholder="ご要望やご質問をお書きください"></textarea>
+          </div>
+          <div class="form-full">
+            <button type="submit" class="form-submit">送信する</button>
+            <p class="form-note">ご相談・お見積りは無料です</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <strong>カエル・デザイン・プロジェクト株式会社</strong>
+    <div class="office-grid">
+      <span>本社（小樽）</span>
+      <span>札幌</span>
+      <span>仙台</span>
+      <span>さいたま</span>
+      <span>東京（新宿）</span>
+      <span>東京（渋谷）</span>
+      <span>東京（品川）</span>
+      <span>横浜</span>
+      <span>川崎</span>
+      <span>名古屋</span>
+      <span>大阪（梅田）</span>
+      <span>大阪（心斎橋）</span>
+      <span>岡山</span>
+      <span>福岡</span>
+      <span>熊本</span>
+      <span>沖縄</span>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-links">
+        <a href="https://kaeru.design/privacy">プライバシーポリシー</a>
+        <a href="https://kaeru.design/sitemap">サイトマップ</a>
+      </div>
+      <span class="footer-copy">&copy; 2026 Kaeru Design Project Co., Ltd.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- SIDE CTA -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">お見積り・お問い合わせ</button>
+  <div class="form-slide" id="formSlide">
+    <div class="form-slide-inner">
+      <h2>お見積り・お問い合わせ</h2>
+      <p class="form-sub">ご相談・お見積りは無料です</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="form-group">
+          <label>お名前 <span class="req">必須</span></label>
+          <input type="text" name="name" required placeholder="山田 太郎">
+        </div>
+        <div class="form-group">
+          <label>会社名<span style="font-weight:400;font-size:.7em;color:#999;margin-left:6px;">個人のお客様は入力不要です</span></label>
+          <input type="text" name="company" placeholder="株式会社〇〇">
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="req">必須</span></label>
+          <input type="email" name="email" required placeholder="info@example.com">
+        </div>
+        <div class="form-group">
+          <label>お電話番号</label>
+          <input type="tel" name="tel" placeholder="090-0000-0000">
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容 <span class="req">必須</span></label>
+          <textarea name="message" rows="3" required placeholder="ご要望やご質問をお書きください"></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+        <p class="form-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+// Header scroll behavior - starts scrolled on subpage
+const header = document.getElementById('header');
+const sideCta = document.getElementById('sideCta');
+const contactSection = document.getElementById('contact');
+
+function updateHeaderState() {
+  const scrollY = window.scrollY;
+  const contactTop = contactSection ? contactSection.offsetTop : 999999;
+  const viewBottom = scrollY + window.innerHeight;
+
+  // Always keep scrolled class on subpage
+  header.classList.add('scrolled');
+
+  // Show side CTA after scrolling past hero, hide near contact
+  if (scrollY > 300 && viewBottom < contactTop) {
+    sideCta.classList.add('visible');
+  } else if (viewBottom >= contactTop) {
+    sideCta.classList.remove('visible');
+    sideCta.classList.remove('open');
+  } else {
+    sideCta.classList.remove('visible');
+  }
+}
+window.addEventListener('scroll', updateHeaderState);
+updateHeaderState();
+
+// Fade-up on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburgerBtn').classList.remove('open');
+  });
+});
+
+// Side form slide toggle
+const sideCtaEl = document.getElementById('sideCta');
+const sideCtaBtn = document.getElementById('sideCtaBtn');
+
+sideCtaBtn.addEventListener('click', () => {
+  sideCtaEl.classList.toggle('open');
+});
+
+document.addEventListener('click', e => {
+  if (sideCtaEl.classList.contains('open') && !sideCtaEl.contains(e.target)) {
+    sideCtaEl.classList.remove('open');
+  }
+});
+
+// Hamburger menu toggle
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburgerBtn.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+
+// Filter tabs toggle
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Auto slideshow for work cards
+document.querySelectorAll('.slide-wrap').forEach((wrap, i) => {
+  const imgs = wrap.querySelectorAll('img');
+  if (imgs.length < 2) return;
+  let idx = 0;
+  setInterval(() => {
+    imgs[idx].classList.remove('active');
+    idx = (idx + 1) % imgs.length;
+    imgs[idx].classList.add('active');
+  }, 3000 + i * 400); // stagger each card
+});
+</script>
+
+</body>
+</html>

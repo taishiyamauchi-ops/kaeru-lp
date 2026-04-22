@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>クリニック・医療機関の空間設計｜カエル・デザイン・プロジェクト</title>
+<meta name="description" content="クリニック・美容医療・歯科の内装設計。動線・プライバシー・バリアフリーの専門設計で、選ばれる医療空間を。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css?v=20260422">
+<style>
+body { background:#fbfaf5; }
+.hero-title h1 em { color:#e3ede9; }
+.sig-row { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.sig-row .tile { aspect-ratio:1; overflow:hidden; position:relative; }
+.sig-row .tile img { width:100%; height:100%; object-fit:cover; }
+.sig-row .copy { padding:60px; background:var(--white); display:flex; flex-direction:column; justify-content:center; }
+.sig-row .copy h3 { font-family:var(--f-jp-display); font-weight:400; font-size:26px; line-height:1.5; margin-bottom:20px; }
+.sig-row .copy h3 em { font-family:var(--f-jp-display); font-style:normal; color:var(--kaeru); font-weight:500; }
+.sig-row .copy p { font-size:13.5px; line-height:1.95; color:var(--ink-3); }
+.sig-row .copy .ey { display:block; margin-bottom:16px; }
+.plist { border-top:1px solid var(--line); }
+.plist .r { display:grid; grid-template-columns:80px 1fr 1fr 40px; gap:40px; align-items:center; padding:32px 0; border-bottom:1px solid var(--line); }
+.plist .r .n { font-family:var(--f-display); font-style:italic; font-size:22px; color:var(--ink-4); }
+.plist .r h3 { font-family:var(--f-jp-display); font-weight:400; font-size:18px; }
+.plist .r p { font-size:13px; color:var(--ink-3); line-height:1.8; }
+.plist .r .arr { font-family:var(--f-display); font-style:italic; color:var(--ink-4); font-size:18px; transition:color .4s; }
+.plist .r:hover .arr { color:var(--kaeru); }
+@media (max-width: 1100px) {
+  .sig-row { grid-template-columns:1fr; }
+  .sig-row .copy { padding:40px 28px; }
+  .plist .r { grid-template-columns:50px 1fr; gap:16px; }
+  .plist .r p, .plist .r .arr { display:none; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <a href="hub.html" class="wordmark">Kaeru <em>Design</em><small>— Clinic & Medical</small></a>
+  <nav class="topbar-nav">
+    <a href="#strengths">強み</a>
+    <a href="#fields">対応領域</a>
+    <a href="#works">実績</a>
+    <a href="#flow">流れ</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <a href="#contact" class="topbar-cta">無料相談 <span class="arrow"></span></a>
+</header>
+
+<section class="hero">
+  <div class="hero-media" id="heroMedia">
+    <img class="active" src="https://kaeru.design//common/dat/2024/0708/17204054141556526373.jpg" alt="綺翠 -kisui Clinic">
+    <img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt="ルミナスビューティークリニック">
+    <img src="https://kaeru.design//common/dat/2023/0705/16885489861494130529.jpg" alt="ミラクリニック三宮院">
+    <img src="https://kaeru.design//common/dat/2022/0803/1659496055196919212.jpg" alt="ミラクリニック大阪梅田院">
+    <img src="https://kaeru.design//common/dat/2023/0609/16863115731457278115.jpg" alt="ブレイズクリニック">
+    <img src="https://kaeru.design//common/dat/2025/1121/17636923071211400307.jpg" alt="余市Kクリニック">
+  </div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span>Clinic · Dental · Aesthetic Medicine</span></div>
+    <div class="hero-title">
+      <h1>選ばれる医院を、<br><em>空間から。</em></h1>
+      <div class="hero-meta">
+        <p>動線、プライバシー、バリアフリー、感染対策。<br>医療空間に求められる要件を、設計から施工までワンストップでお手伝いします。</p>
+        <a href="#contact" class="hero-cta">プロジェクト相談 <span class="arrow"></span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-rail"><span class="line"></span><span>Scroll</span></div>
+</section>
+
+<section class="intro">
+  <div class="intro-grid reveal">
+    <div class="intro-label"><span class="num">— 01</span><span class="eyebrow">Introduction</span></div>
+    <p class="intro-lead">
+      選ばれる医院には、<em>理由がある。</em><br>
+      やさしい空間が、<em>やさしい医療を支える。</em>
+    </p>
+    <div class="intro-body">
+      <p>クリニックは、もっとも繊細な配慮が求められる空間のひとつです。<strong>緊張と期待が交錯する待合室。診療室のプライバシー。スタッフの動線と感染対策。</strong>そのすべてを同時に実現する必要があります。</p>
+      <p>カエル・デザインは、開業コンサルティングから物件選定、意匠設計、医療機器レイアウト、施工、開業後の改修まで、<strong>ひとつの窓口</strong>でご対応いたします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="strengths">
+  <div class="section-head reveal">
+    <div class="label"><span class="num">— 02</span><span class="eyebrow">Strengths</span></div>
+    <h2>医院に、<em>欠かせない3つ。</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><span class="n">01</span><h3>動線とプライバシー</h3><p>受付・待合・診療室・会計。患者様とスタッフの動線を分け、視線や会話のプライバシーをしっかりと守ります。</p><span class="t">Privacy</span></div>
+    <div class="why-card reveal"><span class="n">02</span><h3>感染対策とクリーン設計</h3><p>ゾーニング、換気、素材選定。感染管理の基本を、デザインの質を損なうことなく設計に組み込みます。</p><span class="t">Hygiene</span></div>
+    <div class="why-card reveal"><span class="n">03</span><h3>バリアフリーと滞在体験</h3><p>段差、照明、待合室の座り心地。患者様が「また訪れたい」と感じる穏やかな時間を、空間全体で整えます。</p><span class="t">Comfort</span></div>
+  </div>
+</section>
+
+<!-- SIGNATURE (2 tiles) -->
+<section class="signature">
+  <div class="sig-row reveal">
+    <div class="tile"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt=""></div>
+    <div class="copy">
+      <span class="ey eyebrow">Case — 新宿三丁目メディカルクリニック</span>
+      <h3>駅前ビルに、<em>森のような待合室。</em></h3>
+      <p>混雑を感じさせず、木と光で緊張をやわらげる。動線を見せず、視線を通し、診療室への移動を自然に導く——駅近クリニックの新しいかたちを、ご一緒に実現しました。</p>
+    </div>
+  </div>
+  <div class="sig-row reveal" style="direction:rtl;">
+    <div class="tile" style="direction:ltr;"><img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt=""></div>
+    <div class="copy" style="direction:ltr;">
+      <span class="ey eyebrow">Case — ルミナスビューティークリニック</span>
+      <h3>美容医療に、<em>ラウンジの静けさ。</em></h3>
+      <p>相談室・施術室・リカバリー。他の患者様と視線が交わらない動線計画を基本に、素材と照明で「非日常の上質さ」を表現しました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FIELDS -->
+<section class="section" id="fields">
+  <div class="section-head reveal">
+    <div class="label"><span class="num">— 03</span><span class="eyebrow">Fields</span></div>
+    <h2>診療科目ごとに、<em>最適な設計を。</em></h2>
+  </div>
+  <div class="plist">
+    <div class="r reveal"><span class="n">01</span><h3>内科・小児科・耳鼻科</h3><p>一般診療科の動線、感染ゾーニング、お子様への配慮。駅前ビルから郊外の戸建てまで対応します。</p><span class="arr">→</span></div>
+    <div class="r reveal"><span class="n">02</span><h3>歯科・審美歯科</h3><p>ユニット配置、X線室、滅菌ゾーン、キッズスペース。新規開業から増床まで柔軟にご対応します。</p><span class="arr">→</span></div>
+    <div class="r reveal"><span class="n">03</span><h3>美容医療・美容皮膚科</h3><p>完全個室の動線、カウンセリング室の遮音、上質な素材選び。ブランド体験としての空間をお作りします。</p><span class="arr">→</span></div>
+    <div class="r reveal"><span class="n">04</span><h3>整形外科・リハビリ</h3><p>バリアフリー、リハビリ室の安全な動線、機器搬入経路まで含めて計画いたします。</p><span class="arr">→</span></div>
+    <div class="r reveal"><span class="n">05</span><h3>心療内科・メンタルクリニック</h3><p>視線、音環境、照度。心を預ける空間として、素材選びから細やかに整えます。</p><span class="arr">→</span></div>
+  </div>
+</section>
+
+<section class="dark-section" id="flow">
+  <div class="dark-inner">
+    <div class="section-head reveal">
+      <div class="label"><span class="num">— 04</span><span class="eyebrow">Process</span></div>
+      <h2>開業の半年前から、<em>ご一緒に。</em></h2>
+    </div>
+    <div class="f-list">
+      <div class="row reveal"><span class="n">01</span><h3>開業コンセプト・物件のご相談</h3><span class="d">診療科目、想定患者様、収益計画から、必要な空間要件を導きます。物件選定の段階からご一緒します。</span><span class="eyebrow">Month −6</span></div>
+      <div class="row reveal"><span class="n">02</span><h3>基本設計・医療機器の調整</h3><span class="d">医療機器メーカーとの協議、動線・電気容量・給排水を、ひとつの図面にまとめてご提案します。</span><span class="eyebrow">Month −5</span></div>
+      <div class="row reveal"><span class="n">03</span><h3>実施設計・お見積りの確定</h3><span class="d">素材、仕上げ、什器。保険診療と自由診療の投資配分を、お見積りの段階で最適化します。</span><span class="eyebrow">Month −4</span></div>
+      <div class="row reveal"><span class="n">04</span><h3>施工・現場管理</h3><span class="d">設計監理も自社で担当。医療施設特有の検査や届出にも、現場で一貫して対応いたします。</span><span class="eyebrow">Month −3〜−1</span></div>
+      <div class="row reveal"><span class="n">05</span><h3>開業・継続サポート</h3><span class="d">開業後の改修、増床、移転まで。同じ担当者がクリニックの成長をサポートし続けます。</span><span class="eyebrow">Open +</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="works-mini" id="works">
+  <div class="works-mini-inner">
+    <div class="section-head reveal">
+      <div class="label"><span class="num">— 05</span><span class="eyebrow">Selected Works</span></div>
+      <h2>手がけた<em>医療空間</em>の一部。</h2>
+    </div>
+    <div class="works-grid3">
+      <a href="https://kaeru.design/works_detail?id=108" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2024/1105/1730799323966146084.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 001</span><h3>ルミナスビューティークリニック</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">美容クリニック · 群馬 · 93.0坪 · 工期2.5ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=99" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2024/0708/1720408527868970962.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 002</span><h3>新宿三丁目メディカルクリニック</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">メディカルクリニック · 東京 · 151.0坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=104" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2024/0708/17204054141556526373.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 003</span><h3>綺翠 -kisui Clinic</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">美容クリニック · 北海道 · 41.0坪 · 工期2.5ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=127" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1121/17636923071211400307.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 004</span><h3>余市Kクリニック</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">クリニック · 北海道 · 30.8坪 · 工期1.5ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=68" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2023/0705/16885489861494130529.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 005</span><h3>ミラクリニック三宮院</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">医療脱毛クリニック · 兵庫 · 50.0坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=47" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2022/0803/1659496055196919212.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 006</span><h3>ミラクリニック大阪梅田院</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">美容医療クリニック · 大阪</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=67" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2023/0609/16863115731457278115.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 007</span><h3>ブレイズクリニック</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">医療ダイエット専門クリニック · 沖縄</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=125" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/0916/17579854011314694719.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 008</span><h3>整痛院ふっか 銀座</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">整骨院 · 東京 · 59.2坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=58" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2023/0214/1676361093196172573.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 009</span><h3>メンズクリア 徳島駅前店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">脱毛サロン · 徳島 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=33" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2021/1227/16405869341189608998.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 010</span><h3>メンズクリア イオンモール名古屋茶屋店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">脱毛サロン · 愛知 · 49.7坪 · 工期1.0ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=36" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2022/0117/1642396467552152480.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 011</span><h3>ストラッシュ 刈谷店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">脱毛サロン · 愛知 · 49.7坪 · 工期1.5ヵ月</span></div>
+      </a>
+      <a href="https://kaeru.design/works_detail?id=126" class="wcard reveal" target="_blank" rel="noopener">
+        <div class="media"><img src="https://kaeru.design//common/dat/2025/1003/17594529161483158817.jpg" alt=""></div>
+        <div class="cap"><span class="idx">№ 012</span><h3>理研産業補聴器センター 春日井支店</h3><span class="view">View →</span></div>
+        <div class="cap" style="border:0; margin-top:0; padding-top:6px;"><span class="meta">医療機器 · 愛知 · 29.0坪 · 工期0.7ヵ月</span></div>
+      </a>
+    </div>
+    <div style="margin-top:60px; text-align:center;">
+      <a href="https://kaeru.design/works" class="btn-outline" target="_blank" rel="noopener">全ての実績を見る <span class="arrow"></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-block" id="contact">
+  <div class="cta-inner">
+    <div class="cta-copy reveal">
+      <span class="eyebrow">Start a project</span>
+      <h2>そのクリニック、<br><em>ご相談ください。</em></h2>
+      <p class="lead">開業の半年前から、改修・増床・移転まで。13拠点・220件を超える医療実績を、ひとつの窓口でご提供します。</p>
+      <dl class="contact-lines">
+        <div><dt>Tel</dt><dd>03-5816-0280</dd></div>
+        <div><dt>Hours</dt><dd class="sml">平日 9:00–18:00（土日祝休）</dd></div>
+        <div><dt>Email</dt><dd class="sml">info@kaeru.design</dd></div>
+      </dl>
+    </div>
+    <form class="cta-form reveal" onsubmit="event.preventDefault(); alert('お問い合わせありがとうございます。');">
+      <div class="fh"><span class="label">お問い合わせフォーム</span><span class="num">— Inquiry</span></div>
+      <div class="form-grid">
+        <div class="field"><label>お名前 <span class="req">*</span></label><input type="text" required></div>
+        <div class="field"><label>医院・法人名</label><input type="text"></div>
+        <div class="field full"><label>Email <span class="req">*</span></label><input type="email" required></div>
+        <div class="field"><label>診療科目</label>
+          <select><option>内科 / 小児科</option><option>歯科 / 審美歯科</option><option>美容医療</option><option>整形外科</option><option>その他</option></select>
+        </div>
+        <div class="field"><label>開業予定時期</label><input type="text" placeholder="例）2026年秋"></div>
+        <div class="field full"><label>ご相談内容</label><textarea placeholder="物件の有無・想定規模・ご予算など"></textarea></div>
+        <button class="form-submit">送信する <span class="arrow"></span></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="brand">Kaeru <em>Design</em></span>
+    <a href="hub.html" class="back-hub">← バリエーション一覧に戻る</a>
+    <span class="meta">© 2026 Kaeru Design Project</span>
+  </div>
+</footer>
+
+<!-- SIDE CTA (left floating) -->
+<div class="side-cta" id="sideCta">
+  <button class="side-cta-btn" id="sideCtaBtn">無料相談・お見積り</button>
+  <div class="form-slide">
+    <div class="form-slide-inner">
+      <h3>開業相談・お見積り</h3>
+      <p class="form-sub">Free Consultation</p>
+      <form action="https://kaeru.design/contact" method="GET" target="_blank">
+        <div class="fg"><label>お名前 <span class="req">必須</span></label><input type="text" name="name" required placeholder="山田 太郎"></div>
+        <div class="fg"><label>医院名・法人名</label><input type="text" name="company" placeholder="医療法人〇〇クリニック"></div>
+        <div class="fg"><label>診療科目</label><input type="text" name="type" placeholder="内科・美容クリニック 他"></div>
+        <div class="fg"><label>メールアドレス <span class="req">必須</span></label><input type="email" name="email" required placeholder="info@example.com"></div>
+        <div class="fg"><label>お電話番号</label><input type="tel" name="tel" placeholder="090-0000-0000"></div>
+        <div class="fg"><label>ご相談内容 <span class="req">必須</span></label><textarea name="message" rows="3" required placeholder="開業予定地・規模・ご予算などをお書きください"></textarea></div>
+        <button type="submit" class="fs-submit">送信する</button>
+        <p class="fs-note">ご相談・お見積りは無料です</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="base.js?v=20260422"></script>
+</body>
+</html>
