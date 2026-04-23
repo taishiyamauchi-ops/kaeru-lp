@@ -1,0 +1,43 @@
+name: Deploy kdpclinic LP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'lp/LP Clinic.html'
+      - 'lp/base.css'
+      - 'lp/base.js'
+      - '.github/workflows/deploy-kdpclinic.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 153.126.173.212 >> ~/.ssh/known_hosts
+
+      - name: Prepare deploy files
+        run: |
+          mkdir -p deploy
+          cp "lp/LP Clinic.html" deploy/index.html
+          cp lp/base.css deploy/
+          cp lp/base.js deploy/
+          ls -la deploy
+
+      - name: Upload via rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            deploy/ \
+            ubuntu@153.126.173.212:/var/www/kdpclinic-lp/
+
+      - name: Notify completion
+        run: echo "✅ Deployed to https://kdpclinic.kaeru.design/"
